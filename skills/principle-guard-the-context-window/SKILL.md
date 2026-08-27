@@ -1,7 +1,6 @@
 ---
 name: principle-guard-the-context-window
 description: "Apply when context is filling up: large outputs, long files, repeated reads, fan-out planning. Route bulk to subagents; keep summaries in the main thread, not raw payloads."
-user-invocable: false
 ---
 
 The context window is finite and non-renewable within a session. Every token that enters should earn its place.

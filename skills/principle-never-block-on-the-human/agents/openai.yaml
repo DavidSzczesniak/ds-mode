@@ -1,0 +1,6 @@
+interface:
+  display_name: "Never Block On The Human"
+  short_description: "Proceed with safe reversible work without asking"
+
+policy:
+  allow_implicit_invocation: false

@@ -4,12 +4,13 @@
 
 ds-mode is a user-invoked engineering workflow for planning, implementing, proving, and reviewing a coding change. The active agent owns the change. One fresh reviewer agent checks completed code.
 
-The initial repository is intentionally small. Its principles are copied unchanged and will be reviewed one at a time before ds-mode is installed for live work. The current Codex validator rejects their existing `user-invocable` frontmatter key; resolve that compatibility issue during the individual reviews.
+The initial repository is intentionally small. Its principle bodies are copied unchanged and will be reviewed one at a time before ds-mode is installed for live work. Their explicit-only invocation metadata has been ported to Codex.
 
 ## Repository contents
 
 - `skills/ds-mode/` contains the workflow and its planning, principle, and review references.
 - `skills/principle-*/` contains the unchanged principle leaves awaiting review.
+- `skills/grilling/` resolves material planning decisions when evidence cannot settle them.
 - `skills/unslop/` and `skills/writing-for-agents/` contain supporting writing guidance.
 - `docs/dogfooding.md` guides transcript-based workflow reviews.
 - `scripts/install.sh` links the reviewed skills into `~/.agents/skills`.

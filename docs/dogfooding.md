@@ -26,4 +26,4 @@ Discuss the findings with the user before changing ds-mode. One observation is e
 
 ## Bootstrap inspection point
 
-The unchanged principle leaves use a `user-invocable` frontmatter key that the current Codex skill validator rejects. Decide how to represent non-user-invocable leaves as each principle is reviewed. Do not bulk-rewrite them before that review.
+The principle leaves use Codex's explicit-only invocation policy. Review each body before adding it to ds-mode's active routing list.

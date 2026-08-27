@@ -1,0 +1,6 @@
+interface:
+  display_name: "Foundational Thinking"
+  short_description: "Choose sound data structures before writing logic"
+
+policy:
+  allow_implicit_invocation: false

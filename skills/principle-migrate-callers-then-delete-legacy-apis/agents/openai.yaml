@@ -1,0 +1,6 @@
+interface:
+  display_name: "Migrate Callers Then Delete Legacy Apis"
+  short_description: "Migrate callers before deleting an internal API"
+
+policy:
+  allow_implicit_invocation: false

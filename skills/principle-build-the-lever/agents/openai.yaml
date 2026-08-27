@@ -1,0 +1,6 @@
+interface:
+  display_name: "Build The Lever"
+  short_description: "Build a rerunnable tool for non-trivial work"
+
+policy:
+  allow_implicit_invocation: false

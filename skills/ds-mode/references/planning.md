@@ -4,6 +4,8 @@ Use a written plan when the user requests one or the work contains a meaningful 
 
 Investigate before writing the plan. Resolve facts from the repository, tracker, runtime, or authoritative external source instead of asking the user. Ask the user only for product choices, preferences, irreversible actions, and decisions the evidence cannot settle.
 
+When those decisions form a meaningful tree, read [`grilling`](../../grilling/SKILL.md) and resolve that tree before writing the plan. Keep routine implementation choices out of the interview. Skip grilling when evidence settles the approach or no material decision remains.
+
 Apply `unslop` before presenting the plan.
 
 ## Plan format

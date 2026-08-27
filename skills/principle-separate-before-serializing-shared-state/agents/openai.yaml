@@ -1,0 +1,6 @@
+interface:
+  display_name: "Separate Before Serializing Shared State"
+  short_description: "Separate shared writers before coordinating them"
+
+policy:
+  allow_implicit_invocation: false

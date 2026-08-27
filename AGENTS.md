@@ -6,7 +6,7 @@ This repository develops the `$ds-mode` workflow. Keep it small and evidence-led
 
 ## Current bootstrap boundary
 
-- The `principle-*` skills are unchanged review candidates. Do not rewrite, remove, or activate one until the user has reviewed it individually.
+- The `principle-*` bodies are unchanged review candidates. Do not rewrite, remove, or activate one until the user has reviewed it individually.
 - Do not run `scripts/install.sh` until the principle review and routing are complete.
 - Leave `/Users/david/Documents/workspaces/dforge` unchanged as a reference.
 - Keep work on `main`. Create no branch or worktree without explicit approval.
