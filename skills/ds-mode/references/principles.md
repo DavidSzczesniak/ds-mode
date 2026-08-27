@@ -2,7 +2,11 @@
 
 `Status: bootstrap review`
 
-The principles below were copied unchanged from dforge. Their presence does not approve them for routing. Review each principle with the user before changing its wording or activating it in ds-mode.
+The principle bodies below were copied unchanged from dforge. Their presence does not approve them for routing. Review each principle with the user before changing its wording or activating it in ds-mode.
+
+Reviewed for routing:
+
+- `principle-boundary-discipline`
 
 Once reviewed, the active agent selects principles after investigation, when the real task shape is known. The reviewer makes its own selection from the same index. Read a selected leaf in full. Do not load every leaf.
 

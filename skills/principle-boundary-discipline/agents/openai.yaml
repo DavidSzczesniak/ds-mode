@@ -1,0 +1,6 @@
+interface:
+  display_name: "Boundary discipline"
+  short_description: "Place validation and adapters at real boundaries"
+
+policy:
+  allow_implicit_invocation: false
