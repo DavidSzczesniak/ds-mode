@@ -1,0 +1,6 @@
+interface:
+  display_name: "ds-mode"
+  short_description: "Plan, implement, prove, and review a coding change"
+
+policy:
+  allow_implicit_invocation: false
