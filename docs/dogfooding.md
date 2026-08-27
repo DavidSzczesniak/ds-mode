@@ -24,6 +24,6 @@ Pay particular attention to:
 
 Discuss the findings with the user before changing ds-mode. One observation is evidence to inspect, not an automatic new rule.
 
-## Bootstrap inspection point
+## Initial inspection point
 
-The principle leaves use Codex's explicit-only invocation policy. Review each body before adding it to ds-mode's active routing list.
+The principle leaves use Codex's explicit-only invocation policy. Start with the active and held routing in `skills/ds-mode/references/principles.md`. Reconsider a held leaf only when a session or broader agent model shows why v0 needs it.

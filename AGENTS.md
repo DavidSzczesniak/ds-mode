@@ -4,10 +4,10 @@
 
 This repository develops the `$ds-mode` workflow. Keep it small and evidence-led.
 
-## Current bootstrap boundary
+## Current dogfooding boundary
 
-- The `principle-*` bodies are unchanged review candidates. Do not rewrite, remove, or activate one until the user has reviewed it individually.
-- Do not run `scripts/install.sh` until the principle review and routing are complete.
+- Keep the `principle-*` bodies unchanged until dogfooding supplies evidence for a correction. The active and held lists in `skills/ds-mode/references/principles.md` are canonical.
+- Run `scripts/install.sh` only when the user asks to change the active global installation.
 - Leave `/Users/david/Documents/workspaces/dforge` unchanged as a reference.
 - Keep work on `main`. Create no branch or worktree without explicit approval.
 - Stage, commit, publish, or create a remote only when the user asks.

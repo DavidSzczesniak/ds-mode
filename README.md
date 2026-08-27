@@ -1,15 +1,15 @@
 # ds-mode
 
-`Status: bootstrap, not installed`
+`Status: ready for dogfooding, not installed`
 
 ds-mode is a user-invoked engineering workflow for planning, implementing, proving, and reviewing a coding change. The active agent owns the change. One fresh reviewer agent checks completed code.
 
-The initial repository is intentionally small. Its principle bodies are copied unchanged and will be reviewed one at a time before ds-mode is installed for live work. Their explicit-only invocation metadata has been ported to Codex.
+The initial repository is intentionally small. Its principle bodies remain unchanged from their source. Eighteen are active for dogfooding, and three incompatible with the v0 workflow remain held. Their explicit-only invocation metadata has been ported to Codex.
 
 ## Repository contents
 
 - `skills/ds-mode/` contains the workflow and its planning, principle, and review references.
-- `skills/principle-*/` contains the unchanged principle leaves awaiting review.
+- `skills/principle-*/` contains the unchanged principle leaves. The ds-mode index owns active and held routing.
 - `skills/grilling/` resolves material planning decisions when evidence cannot settle them.
 - `skills/unslop/` and `skills/writing-for-agents/` contain supporting writing guidance.
 - `docs/dogfooding.md` guides transcript-based workflow reviews.
@@ -17,7 +17,7 @@ The initial repository is intentionally small. Its principle bodies are copied u
 
 ## Install
 
-Do not install the bootstrap version. After the principle review and routing are complete, run:
+To install the dogfooding version, run:
 
 ```sh
 ./scripts/install.sh
