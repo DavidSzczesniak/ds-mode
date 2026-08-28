@@ -11,6 +11,8 @@ The initial repository is intentionally small. Its principle bodies remain uncha
 - `skills/ds-mode/` contains the workflow and its planning, principle, and review references.
 - `skills/principle-*/` contains the unchanged principle leaves. The ds-mode index owns active and held routing.
 - `skills/grilling/` resolves material planning decisions when evidence cannot settle them.
+- `skills/read-the-damn-docs/` grounds external and version-sensitive contracts in authoritative documentation.
+- `skills/research/` investigates design patterns, industry standards, and material decisions against primary sources.
 - `skills/unslop/` and `skills/writing-for-agents/` contain supporting writing guidance.
 - `docs/dogfooding.md` guides transcript-based workflow reviews.
 - `scripts/install.sh` links the reviewed skills into `~/.agents/skills`.

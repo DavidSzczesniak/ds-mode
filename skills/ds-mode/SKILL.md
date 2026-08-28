@@ -18,6 +18,14 @@ Read the repository instructions and inspect the relevant code before choosing a
 
 After investigation, read [references/principles.md](references/principles.md). Follow its review status and routing instructions.
 
+## Ground the approach
+
+Use repository code and documentation first for local behavior.
+
+Read [`read-the-damn-docs`](../read-the-damn-docs/SKILL.md) before choosing or revising an approach that depends on an external, version-sensitive, unfamiliar, or possibly drifting contract. Follow its docs-first workflow in full.
+
+Read [`research`](../research/SKILL.md) during investigation or planning when a larger change or material decision could benefit from established design patterns, industry standards, comparison of credible approaches, or reconciliation of several primary sources. Give the research agent the decision it must inform, the relevant local constraints, and any unacceptable consequence or invariant. Research may also re-ground later work when new evidence invalidates the current model.
+
 ## Decide whether to plan
 
 Read [references/planning.md](references/planning.md) when the user requests a plan or the work contains a meaningful product decision, architecture choice, ownership-boundary change, or several dependent feature slices.
