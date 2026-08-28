@@ -1,6 +1,6 @@
 # Review a completed change
 
-Start one fresh reviewer agent after a completed code change. The reviewer inspects the implementation without prior exposure to the active agent's reasoning.
+Start one fresh reviewer agent after a completed code change. Start it without inherited conversation history (`fork_turns: "none"`) and provide only the brief below. The reviewer inspects the implementation without prior exposure to the active agent's reasoning.
 
 ## Build the brief
 
