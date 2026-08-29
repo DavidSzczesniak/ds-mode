@@ -1,7 +1,5 @@
 # ds-mode
 
-`Status: ready for dogfooding`
-
 ds-mode is a user-invoked engineering workflow for planning, implementing, proving, and reviewing a coding change. The active agent owns the change. One fresh reviewer agent checks completed code.
 
 The initial repository is intentionally small. Its principle bodies remain unchanged from their source. Eighteen are active for dogfooding, and three incompatible with the v0 workflow remain held. Their explicit-only invocation metadata has been ported to Codex.
@@ -29,6 +27,6 @@ The installer links this repository's skill directories into `~/.agents/skills`.
 
 ## Credits
 
-The principle leaves and `unslop` derive from [pstack](https://github.com/cursor/plugins/tree/main/pstack) by Lauren Tan. `writing-for-agents` comes from [Matt Pocock's engineering skills](https://github.com/mattpocock/skills/tree/main/skills/engineering). Both projects use the MIT License. The retained license notices are in [LICENSE](./LICENSE).
+The principle leaves and `unslop` derive from [pstack](https://github.com/cursor/plugins/tree/main/pstack) by Lauren Tan. `grilling`, `research`, and `writing-for-agents` come from [Matt Pocock's engineering skills](https://github.com/mattpocock/skills/tree/main/skills/engineering). Both projects use the MIT License. The retained license notices are in [LICENSE](./LICENSE).
 
 `Last reviewed: 2026-08`
