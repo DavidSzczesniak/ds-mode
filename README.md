@@ -1,6 +1,6 @@
 # ds-mode
 
-`Status: ready for dogfooding, not installed`
+`Status: ready for dogfooding`
 
 ds-mode is a user-invoked engineering workflow for planning, implementing, proving, and reviewing a coding change. The active agent owns the change. One fresh reviewer agent checks completed code.
 
@@ -25,7 +25,7 @@ To install the dogfooding version, run:
 ./scripts/install.sh
 ```
 
-The installer links this repository's skill directories into `~/.agents/skills`. It replaces links to the old dforge checkout, but refuses to overwrite real files, real directories, or unrelated links. It does not configure another agent runtime, model selection, hooks, or global instructions.
+The installer links this repository's skill directories into `~/.agents/skills`. It refuses to overwrite real files, real directories, or unrelated links. It does not configure another agent runtime, model selection, hooks, or global instructions.
 
 ## Credits
 
