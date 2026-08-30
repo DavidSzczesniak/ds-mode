@@ -1,6 +1,6 @@
 ---
 name: how
-description: "Use for \"how does X work\", code walkthroughs before changing something, and placement / ownership / layering questions (\"where should this live\", \"which package owns this\", \"is this the right layer\"). Explains subsystem architecture, runtime flow, and onboarding mental models. Can critique architecture."
+description: "Use for \"how does X work\", code walkthroughs before changing something, and placement / ownership / layering questions (\"where should this live\", \"which package owns this\", \"is this the right layer\"). Explains subsystem architecture, runtime flow, and onboarding mental models. Can critique architecture. Use why for motivation."
 ---
 
 # How
@@ -81,7 +81,7 @@ Follow this structure, adapted to the question. Not every section is needed for 
 
 **Where Things Live.** A brief map of the relevant files/directories. Not every file, just the ones needed to start working in this area.
 
-**Gotchas.** Non-obvious or surprising things that would trip someone up. Historical context that explains why something looks weird. Known sharp edges.
+**Gotchas.** Non-obvious or surprising things that would trip someone up. Known sharp edges. Read [`why`](../why/SKILL.md) when the explanation needs historical motivation.
 
 ## Critique Mode
 
