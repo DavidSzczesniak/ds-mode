@@ -18,7 +18,7 @@ You are the only explorer. Cover the assigned boundary deeply enough that your f
 
 ## Exploration Instructions
 
-Start by finding the relevant code. Use Glob to find directories and files, Grep to find key symbols, Read to understand the actual implementation. Don't guess from names. Read the code.
+Start by finding the relevant code. List directories and files, search for key symbols, and inspect the actual implementation. Don't guess from names. Read the code.
 
 Follow this pattern:
 1. **Find the entry point.** What triggers this behavior? A user action, an API call, a scheduled job? Find where it starts.

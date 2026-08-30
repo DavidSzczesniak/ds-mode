@@ -45,7 +45,7 @@ The brief should name the subsystem boundary and the main path to trace. Keep in
 Start one fresh explorer agent without inherited conversation history (`fork_turns: "none"`). Give it a read-only investigation task with no implementation work.
 
 Build its prompt from `references/explorer-prompt.md` and add the exploration brief. The explorer should:
-- Start broad: Glob for relevant directories, Grep for key types/interfaces/class names
+- Start broad: list relevant directories and search for key types, interfaces, and class names
 - Follow the thread: from an entry point, trace the call chain (callers, callees, data flow, type definitions)
 - Read the actual code, don't guess from file names
 - Stop when it can describe the full path from input to output (or trigger to effect) without hand-waving any step
