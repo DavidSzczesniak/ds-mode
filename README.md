@@ -7,6 +7,8 @@ The initial repository is intentionally small. Its principle bodies remain uncha
 ## Repository contents
 
 - `skills/ds-mode/` contains the workflow and its planning, principle, and review references.
+- `skills/how/` explains subsystem architecture, ownership, layering, and runtime flow.
+- `skills/diagnosing-bugs/` runs a tight reproduction and hypothesis-testing loop for hard defects and performance regressions.
 - `skills/principle-*/` contains the unchanged principle leaves. The ds-mode index owns active and held routing.
 - `skills/grilling/` resolves material planning decisions when evidence cannot settle them.
 - `skills/read-the-damn-docs/` grounds external and version-sensitive contracts in authoritative documentation.
@@ -27,6 +29,6 @@ The installer links this repository's skill directories into `~/.agents/skills`.
 
 ## Credits
 
-The principle leaves and `unslop` derive from [pstack](https://github.com/cursor/plugins/tree/main/pstack) by Lauren Tan. `grilling`, `research`, and `writing-for-agents` come from [Matt Pocock's engineering skills](https://github.com/mattpocock/skills/tree/main/skills/engineering). Both projects use the MIT License. The retained license notices are in [LICENSE](./LICENSE).
+The `how` skill, principle leaves, and `unslop` derive from [pstack](https://github.com/cursor/plugins/tree/main/pstack) by Lauren Tan. `diagnosing-bugs`, `grilling`, `research`, and `writing-for-agents` come from [Matt Pocock's engineering skills](https://github.com/mattpocock/skills/tree/main/skills/engineering). Both projects use the MIT License. The retained license notices are in [LICENSE](./LICENSE).
 
 `Last reviewed: 2026-08`

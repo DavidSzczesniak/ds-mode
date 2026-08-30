@@ -22,6 +22,10 @@ After investigation, read [references/principles.md](references/principles.md). 
 
 Use repository code and documentation first for local behavior.
 
+For a reported defect or performance regression, read [`diagnosing-bugs`](../diagnosing-bugs/SKILL.md) and follow its feedback-loop discipline. It routes to `how` after reproduction and minimisation when architectural tracing is needed.
+
+For other work, read [`how`](../how/SKILL.md) and use Explain mode before proposing changes when the work crosses an unfamiliar subsystem or when ownership, layering, or runtime flow is unclear.
+
 Read [`read-the-damn-docs`](../read-the-damn-docs/SKILL.md) before choosing or revising an approach that depends on an external, version-sensitive, unfamiliar, or possibly drifting contract. Follow its docs-first workflow in full.
 
 Read [`research`](../research/SKILL.md) during investigation or planning when a larger change or material decision could benefit from established design patterns, industry standards, comparison of credible approaches, or reconciliation of several primary sources. Give the research agent the decision it must inform, the relevant local constraints, and any unacceptable consequence or invariant. Research may also re-ground later work when new evidence invalidates the current model.

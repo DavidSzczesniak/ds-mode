@@ -19,6 +19,8 @@ Do not provide the implementer's rationale, self-assessment, suspected findings,
 
 Review the complete change for correctness, required behavior, structure, test strength, and repository rules. Inspect surrounding architecture where needed to judge ownership, state, boundaries, and acceptance paths.
 
+If you cannot confidently trace the affected ownership, boundaries, or runtime flow, read [`how`](../../how/SKILL.md) and use its Explain flow before judging the architecture.
+
 Read the principle index, independently select the principles that match the task and diff, then read those leaves in full. Do not load every principle.
 
 For each material finding, report:

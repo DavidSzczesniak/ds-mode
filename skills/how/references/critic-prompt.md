@@ -1,6 +1,6 @@
-# Critic Prompt Template
+# Critic prompt template
 
-Build each critic subagent's prompt from this template. Fill in the placeholders.
+Build the critic agent's prompt from this template. Fill in the placeholders.
 
 ---
 
