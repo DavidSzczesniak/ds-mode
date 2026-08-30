@@ -11,6 +11,7 @@ Provide:
 - Relevant repository instructions and authoritative specifications.
 - The exact current changes and the base they should be compared with.
 - Verification already completed and any known verification gap.
+- For performance work, the workload, metric, baseline and post-change artifacts, sampling method, expected noise, and correctness checks.
 - Permission to inspect surrounding code and run focused, non-destructive checks.
 
 Do not provide the implementer's rationale, self-assessment, suspected findings, or earlier review discussion before the independent review.

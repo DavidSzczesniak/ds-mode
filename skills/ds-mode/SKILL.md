@@ -24,6 +24,8 @@ Use repository code and documentation first for local behavior.
 
 For a reported defect or performance regression, read [`diagnosing-bugs`](../diagnosing-bugs/SKILL.md) and follow its feedback-loop discipline. It routes to `how` after reproduction and minimisation when architectural tracing is needed.
 
+For an explicit performance improvement or performance-sensitive refactor, read [references/performance.md](references/performance.md). For a reported regression, follow it after reproduction and minimisation through `diagnosing-bugs`.
+
 For other work, read [`how`](../how/SKILL.md) and use Explain mode before proposing changes when the work crosses an unfamiliar subsystem or when ownership, layering, or runtime flow is unclear.
 
 Read [`read-the-damn-docs`](../read-the-damn-docs/SKILL.md) before choosing or revising an approach that depends on an external, version-sensitive, unfamiliar, or possibly drifting contract. Follow its docs-first workflow in full.
