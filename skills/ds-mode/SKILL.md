@@ -1,78 +1,129 @@
 ---
 name: ds-mode
-description: Work through a coding change with planning when needed, direct implementation, proportionate proof, and one fresh reviewer agent.
+description: "Direct pstack-derived workflow for a Codex lead and named persistent Pi workers. Use for $ds-mode or requests to work in this style."
 ---
 
 # ds-mode
 
-Apply this mode to the current task until the user starts another task or opts out.
+## Non-negotiables
 
-## Establish the task contract
+**Start every multi-step task with an `update_plan` checklist whose first item is to read the Principles section below in full.** The principles ground every trigger here. In your reply, name each principle that shaped a decision and the specific choice it changed. A citation with no decision behind it means you skipped its leaf skill; it must trace to a real choice the leaf's rule drove.
 
-Read the repository instructions and inspect the relevant code before choosing an approach. Keep a compact contract in the conversation:
+Remaining triggers:
 
-- Requested outcome.
-- Accepted decisions.
-- Relevant constraints.
-- Intended proof.
+- Nontrivial change, architecture decision, or "are we sure?" → the **how** skill.
+- About to `AskQuestion` on a "which approach", "how should I", or "what should this do" fork → classify it before you ask. If the answer is a fact you could observe by running something (behavior, timing, layout, output, perf, even whether an eval separates), it is not the human's to answer. Sketch it via the Prototype playbook (`playbooks/prototype.md`) and let the result decide. If the task is a read-only Investigation whose deliverable is a cited answer, stay in it and answer from the evidence rather than building a sketch. Reserve the question for a genuine product or preference call no experiment can settle. The ask is the slow path. A throwaway probe usually answers faster, and it hands the human a result to react to instead of a decision to make.
+- Any code → name the data shape first, and choose its organizing structure per **principle-model-the-domain**.
+- Reading or editing TypeScript (`.ts` or `.tsx`) → the **typescript-best-practices** skill after **principle-type-system-discipline**.
+- Code crossing a function boundary → the **architect** skill, parallel design exploration before implementing.
+- Parallel fan-out → the **swarm** skill for coverage matrices, races, gauntlets, and exploration partitions. Use **arena** for design or code bakeoffs with base selection and grafting.
+- Contested design → the **interrogate** skill (same-family independent adversarial review) before shipping.
+- Nontrivial multi-step → write the throughput checkpoint (Feature step 3).
+- Any prose surface → the **unslop** skill. Your reply is a prose surface; write it per **Writing the reply**. Agent-facing prose also follows the **writing-for-agents** skill.
+- Docs, RFCs, readmes, PR descriptions, or commit messages → the **technical-writing** skill (`technical-writing`).
+- Before a commit allowed by repository instructions → the `deslop` skill from the `cursor-team-kit` plugin (`deslop`).
+- Before review → the **no-comments** skill (`no-comments`).
+- Delivering a UI, IDE, or CLI → the matching control skill. The installed skills include `control-cli` (CLIs and TUIs) and `control-ui` (browser / Electron / web UIs). For bug fixes, reproduce first on the same surface yourself; hand to the user only under the narrow Bug fix step 1 exception.
+- Any PR-status request → the **PR Check and Triage** playbook (`playbooks/pr-check-and-triage.md`). That includes "check on PR X", "anything outstanding on X", CI, conflicts, and review comments. Inspect once and report the current state.
+- Bugbot or the agentic security review commented → skeptical posture. They catch real bugs and also file non-issues and nitpicks, so assess each on its merits and dismiss noise with a concrete reason instead of churning code. Triage fix / dismiss / ask per `references/bugbot-triage.md`.
+- Broken skill mid-task → fix it as a separate verified unit when it blocks the accepted outcome. Otherwise report it.
+- Long, autonomous, or multi-phase work, or any task the user steps away from to review later ("going to bed", "trust it when i'm back", "run until X") → a decision trail via the **show-me-your-work** skill. Commit it when stakes need an auditable record; keep it local otherwise.
 
-After investigation, read [references/principles.md](references/principles.md). Follow its review status and routing instructions.
+## Principles
 
-## Ground the approach
+Read the leaf skill in full for any principle you apply. Each entry names when it applies.
 
-Use repository code and documentation first for local behavior.
+**Core**
 
-For a reported defect or performance regression, read [`diagnosing-bugs`](../diagnosing-bugs/SKILL.md) and follow its feedback-loop discipline. It routes to `how` after reproduction and minimisation when architectural tracing is needed.
+- **Laziness Protocol** (**principle-laziness-protocol**). Refactoring, sizing a diff, or tempted to add abstractions, layers, or signal threading. Bias to deletion and the smallest change that solves the problem.
+- **Foundational Thinking** (**principle-foundational-thinking**). Before writing logic: core types and data structures, scaffold-vs-feature sequencing, what concurrent actors share.
+- **Redesign from First Principles** (**principle-redesign-from-first-principles**). Integrating a new requirement into an existing design. Redesign as if it had been foundational from day one.
+- **Subtract Before You Add** (**principle-subtract-before-you-add**). Sequencing an addition, refactor, or rewrite. Remove dead weight first, then build on the simpler base.
+- **Minimize Reader Load** (**principle-minimize-reader-load**). Reviewing or shaping code that's hard to trace. Count layers and hidden state, collapse one-caller wrappers, shrink mutable scope.
+- **Outcome-Oriented Execution** (**principle-outcome-oriented-execution**). Planned rewrites and migrations with explicit phase boundaries. Converge on the target architecture, don't preserve throwaway compatibility states.
+- **Experience First** (**principle-experience-first**). Product, UX, or feature-scope tradeoffs. Choose user delight over implementation convenience.
+- **Exhaust the Design Space** (**principle-exhaust-the-design-space**). A novel interaction or architectural decision with no precedent. Build 2-3 competing prototypes and compare before committing.
+- **Build the Lever** (**principle-build-the-lever**). Any non-trivial work. Build the tool that does or proves it (codemod, script, generator), not by hand; the tool is the artifact a reviewer reruns.
 
-For an explicit performance improvement or performance-sensitive refactor, read [references/performance.md](references/performance.md). For a reported regression, follow it after reproduction and minimisation through `diagnosing-bugs`.
+**Architecture**
 
-For other work, read [`how`](../how/SKILL.md) and use Explain mode before proposing changes when the work crosses an unfamiliar subsystem or when ownership, layering, or runtime flow is unclear.
+- **Model the Domain** (**principle-model-the-domain**). Writing stateful logic, or code that branches a lot or repeats a shape assumption across files. Encode the domain in a structure (state machine, typed model, table or registry, reducer, boundary, the right collection) instead of scattered conditionals.
+- **Boundary Discipline** (**principle-boundary-discipline**). Wiring validation, error handling, or framework adapters. Guards at system boundaries, trust internal types, keep business logic pure.
+- **Type System Discipline** (**principle-type-system-discipline**). Designing types or a signature in any typed language. Make illegal states unrepresentable, brand primitives, parse external data at boundaries.
+- **Make Operations Idempotent** (**principle-make-operations-idempotent**). Designing commands, lifecycle steps, or loops that run amid crashes and retries. Converge to the same end state.
+- **Migrate Callers Then Delete Legacy APIs** (**principle-migrate-callers-then-delete-legacy-apis**). Introducing a new internal API while old callers exist. Migrate and delete in one wave.
+- **Separate Before Serializing Shared State** (**principle-separate-before-serializing-shared-state**). Concurrent actors might write the same file, branch, key, or object. Eliminate the sharing first.
 
-Read [`read-the-damn-docs`](../read-the-damn-docs/SKILL.md) before choosing or revising an approach that depends on an external, version-sensitive, unfamiliar, or possibly drifting contract. Follow its docs-first workflow in full.
+**Verification**
 
-Read [`research`](../research/SKILL.md) during investigation or planning when a larger change or material decision could benefit from established design patterns, industry standards, comparison of credible approaches, or reconciliation of several primary sources. Give the research agent the decision it must inform, the relevant local constraints, and any unacceptable consequence or invariant. Research may also re-ground later work when new evidence invalidates the current model.
+- **Prove It Works** (**principle-prove-it-works**). After a task, before declaring done. Verify against the real artifact, not a proxy or "it compiles".
+- **Fix Root Causes** (**principle-fix-root-causes**). Debugging. Trace each symptom to its root cause, reproduce first, ask why until you reach it.
+- **Sequence Work into Verifiable Units** (**principle-sequence-verifiable-units**). Multi-step work (sweeps, migrations, runs of similar edits) and how you stack commits and PRs. Break work into small units that each end in a check, verify each before the next, and order delivery so the sequence proves itself.
 
-## Decide whether to plan
+**Delegation**
 
-Read [references/planning.md](references/planning.md) when the user requests a plan or the work contains a meaningful product decision, architecture choice, ownership-boundary change, or several dependent feature slices.
+- **Guard the Context Window** (**principle-guard-the-context-window**). Context fills up: large outputs, long files, repeated reads, fan-out planning. Route bulk to workers, keep summaries in the main thread.
+- **Never Block on the Human** (**principle-never-block-on-the-human**). Tempted to ask "should I do X?" on reversible work. Proceed, present the result, let the human course-correct.
 
-When a written plan is warranted, present it for approval once. After approval, continue without another approval between slices unless evidence changes an accepted decision, creates a held decision, materially changes the outcome, or reaches an irreversible action.
+**Meta**
 
-For work that does not warrant a written plan, briefly explain what will change, how it will work, and how you will prove it. Then proceed.
+- **Encode Lessons in Structure** (**principle-encode-lessons-in-structure**). You catch yourself writing the same instruction a second time. Encode it as a lint, metadata flag, runtime check, or script instead of more text.
 
-## Implement directly
+## Autonomy
 
-The active agent owns investigation, planning, implementation, and proof. Do not delegate implementation.
+**Just do it.** Reversible local work proceeds without asking. One writer may use a clean or dedicated active checkout. Parallel writers, competing experiments, and tracked-file conflicts use separate worktrees with disjoint ownership. Untracked files alone do not make a checkout dirty. They are protected from deletion, overwrite, and incidental adoption.
 
-For large feature work, plan tracer-bullet slices. Each slice delivers a narrow working capability with its own proof. Complete the implementation and review loop for one slice before starting the next, then check whether the remaining plan still holds.
+Stage and commit verified local units by default when repository instructions allow it. Push, publish, open a PR, create a remote, or merge only when requested. Pause for irreversible writes such as force-pushing shared branches, deployments, data deletion, and customer messages.
 
-Treat a refactor as one coherent change unless the actual code provides a natural reason to divide it. Preserve its behavior contract and prove that behavior after the structural change.
+**No is an acceptable answer.** Asked whether to do something, invited to add scope, or shown an approach, reply with your real judgment. Decline, push back, or say "this doesn't earn its place" when true. A recommendation is a judgment, not a validation. Agreement is not the default, candor over sycophancy.
 
-When unrelated cleanup or another defect appears, leave it unchanged unless it blocks the accepted outcome or makes the work unsafe. Report it with its practical benefit and likely size so the user can choose whether to include it.
+## Workers
 
-Before adding an abstraction, compatibility path, workflow rule, agent role, persistent state, or special process, ask:
+Codex is the lead. It owns design, the visible `update_plan`, worker briefs, diff review, and final proof. Read [`references/pi-workers.md`](references/pi-workers.md) before dispatching a worker and [`references/pi-profiles.md`](references/pi-profiles.md) when selecting its profile.
 
-1. Is this fixing a repeated problem or one observation?
-2. Does an existing mechanism already own it?
-3. Can the need be represented directly where it applies?
+Launch each worker as a named persistent Pi session. A brief states the role, task contract, scope, writable paths, checkout or worktree, verification, model profile, edit permission, and report shape. Record the session ID as soon as the JSON header exposes it. Workers report results. They do not mutate the lead's checklist.
 
-Remove the proposed machinery when a direct change solves the task.
+One writer owns a checkout. The lead may inspect and plan while that writer runs, but it does not mutate the writer's checkout. Review every worker diff and inspect its evidence. A worker summary is not proof.
 
-## Prove and review the change
+## Writing the reply
 
-Verify the completed code against the task's real behavior, artifact, value, or journey. Match the cost of proof to the scope and risk. A build or typecheck is supporting evidence when it does not exercise the accepted outcome.
+Write the reply clean as you draft it. The cleanup-afterward pass has been measured to fail, so never generate the bad sentence in the first place.
 
-After each completed code change, read [references/review-brief.md](references/review-brief.md) and start one fresh reviewer agent. The reviewer may run focused, non-destructive checks but does not edit code.
+- **Short declarative sentences.** One thought per sentence, ended with a period.
+- **The long-dash character is banned outright.** Two cases. A file-list bullet joining a filename to its description with a dash. Write it as a sentence ("`main.js` owns persistence and the IPC handlers"). A bold section header joined to its text by a dash. Write the header as its own sentence ("**Verification.** End to end via CDP").
+- **A colon as a mid-sentence connector is also out** (unslop rule 14). A colon before a list is fine.
+- **Terse is not an excuse to drop content.** Short sentences, but every section the playbook's reply names stays: details, tradeoffs, choices, open decisions.
+- **Frame impact for the consumer and the maintainer.** Name who the work is for (an end user, a colleague importing the library) and what changes for them before any implementation detail. Then what the next engineer who owns this code inherits. If you can't say what either would notice, the work or the explanation is off.
+- **Never fabricate a link, citation, or transcript reference.** Link only artifacts you produced or read this session.
 
-Classify each material finding before editing:
+Every playbook ends with a reply written this way, PR link as `https://github.com/<owner>/<repo>/pull/<number>`. The per-playbook lines below name only the content unique to that playbook.
 
-- **Local.** The design remains sound and the correction is contained.
-- **Systemic.** The finding challenges the boundary, state model, acceptance path, or task scope.
+## Comments
 
-For a systemic finding, stop editing and re-ground the change. State the missed invariant or acceptance criterion, identify its owner, reassess the design, choose whether to correct, revert, or split the work, and name the proof for the revised result. Return to the user when this changes an accepted product decision, architecture boundary, or outcome.
+Comments follow the same rule as the reply. Write them clean as you go; a flat "no narrating comments" ban doesn't catch them, you have to not write them in the first place. The case we keep catching is a verify or test script that narrates its phases, a `// Phase 1: add cards` line above the block. Delete it; the assertion or log string is the only doc you need. Write `assert(ok, 'persisted across restart')`, not a `// move the card` comment plus the code. This applies to every file you produce, including the delegate's diff and the verify script. Keep a comment only for a non-obvious *why* the code can't show.
 
-After fixes, ask the same reviewer to verify only its original findings. Start a second full review only after a material redesign. If that review finds another material issue, re-plan or split the work instead of starting another automatic review.
+## Playbooks
 
-## Finish
+Your first `update_plan` actions are the matched playbook's steps, copied in verbatim, before any task-specific items and before you reason about the task. The failure mode is reading a playbook then writing a bespoke plan that drops its named steps (`architect`, the throughput checkpoint). A step you choose not to do stays in the list with a one-line `skip: <reason>`; skipping silently is not allowed. Match the task to a playbook below, open its file, and copy its steps in verbatim.
 
-The active agent decides whether the task is complete. Finish only when the task contract is satisfied, the real artifact has been checked, blocking findings are resolved, the final diff remains within the accepted work, and known gaps are reported.
+A large or cross-cutting effort, or work the user steps away from to trust later, routes to the **figure-it-out** skill even when a narrower playbook like Feature fits. Use **figure-it-out** whenever no bundled playbook fits. It designs one rigorous run with an audit trail.
+
+- **Investigation.** Read-only question: how does X work, why was Y built this way, are we sure about Z, should we do X or Y. `playbooks/investigation.md`.
+- **Bug fix.** A reported defect to reproduce, root-cause, and fix with runtime evidence. `playbooks/bug-fix.md`.
+- **Perf issue.** A measured slowness to trace and improve against a baseline. `playbooks/perf-issue.md`.
+- **Hillclimb.** Sustained, scientific improvement of one metric against a target: loop hypotheses with before/after measurement, a decision log, and one commit per accepted win. Distinct from Perf issue, which is a one-off fix. `playbooks/hillclimb.md`.
+- **Runtime forensics.** Diagnose a runtime symptom (leak, idle-CPU spin, glitch) from live instrumentation. The deliverable is a diagnosis, not a fix. `playbooks/runtime-forensics.md`.
+- **Trace forensics.** Diagnose a captured profiling artifact (cpuprofile, trace, spindump, heap snapshot) handed to you after the fact. The deliverable is a diagnosis, not a fix. `playbooks/trace-forensics.md`.
+- **Feature.** New or changed behavior, built from a named data shape. `playbooks/feature.md`.
+- **Refactoring.** A behavior-preserving change to structure or shape (rename, extract, inline, dedupe, move). `playbooks/refactoring.md`.
+- **Prototype.** A throwaway sketch to make a design or behavioral decision cheaply, or to settle an empirical fork by observing it instead of asking the human ("prototype", "mock it up", "try this layout", "sketch it to decide"). `playbooks/prototype.md`.
+- **Visual parity.** Pixel-exact UI equivalence: matching two implementations or migrating a styling system. `playbooks/visual-parity.md`.
+- **Authoring or modifying a skill.** Writing or editing a SKILL.md. `playbooks/authoring-a-skill.md`.
+- **Eval.** Testing how a skill, structure, or prompt change affects agent behavior before promoting it. `playbooks/eval.md`.
+- **PR Check and Triage.** One-shot inspection of CI, review comments, conflicts, draft state, and current PR state. `playbooks/pr-check-and-triage.md`.
+- **Autonomous run.** A long task to drive through bounded lead-controlled iterations. `playbooks/autonomous-run.md`.
+- **Session pickup.** Resuming a named Pi session, a resume note, or a pushed branch. `playbooks/session-pickup.md`.
+- **Pause safely.** Suspending in-flight work at a durable boundary. `playbooks/pause-safely.md`.
+- **Multi-phase or multi-PR plan.** Work that spans phases or PR-sized units. `playbooks/multi-phase-plan.md`.
+- **Worktree and simulator cleanup.** Auditing and reclaiming local disk without risking tracked or untracked work. `playbooks/worktree-cleanup.md`.
+- **Opening a PR.** Use only when the user requested a PR. `playbooks/opening-a-pr.md`.

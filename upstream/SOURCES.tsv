@@ -1,0 +1,5 @@
+source	repository	commit	import_date	license	tree_hash	local_path
+pstack	https://github.com/cursor/plugins.git	b9ddc83c32972210b8a94d389130713e8eed346e	2026-09-01	MIT, Copyright 2026 Lauren Tan	950b90234c17babd00c43e32b19ae50abb4720f5	upstream/pstack
+cursor-team-kit/control-ui	https://github.com/cursor/plugins.git	b9ddc83c32972210b8a94d389130713e8eed346e	2026-09-01	MIT, Copyright 2026 Cursor	797e6d20a029b2ae757a97951278d308f3b53026	upstream/cursor-team-kit/skills/control-ui
+cursor-team-kit/control-cli	https://github.com/cursor/plugins.git	b9ddc83c32972210b8a94d389130713e8eed346e	2026-09-01	MIT, Copyright 2026 Cursor	21f3eee2663ae7c78464bfc2a69f6a8cc6c4f7ed	upstream/cursor-team-kit/skills/control-cli
+cursor-team-kit/deslop	https://github.com/cursor/plugins.git	b9ddc83c32972210b8a94d389130713e8eed346e	2026-09-01	MIT, Copyright 2026 Cursor	ac9ba043f9dd3b3a8850de6624ec5bc12e375599	upstream/cursor-team-kit/skills/deslop

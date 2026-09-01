@@ -3,6 +3,8 @@ name: principle-minimize-reader-load
 description: "Apply when reviewing or shaping code that's hard to trace. Count layers between question and answer, and hidden state in the reader's head; collapse one-caller wrappers and shrink mutable scope."
 ---
 
+# Minimize Reader Load
+
 Maintainability is the work a reader must do to understand code. Track two axes:
 1. **Layers to trace.** How many indirections sit between the question and the answer.
 2. **State to hold.** How much hidden or mutable context the reader must keep in their head.

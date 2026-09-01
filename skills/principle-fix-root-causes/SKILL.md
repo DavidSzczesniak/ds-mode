@@ -3,6 +3,8 @@ name: principle-fix-root-causes
 description: "Apply when debugging. Trace each symptom to its root cause and fix it there; reproduce first, ask why until you reach it, resist nil-check guards that silence crashes."
 ---
 
+# Fix Root Causes
+
 When debugging, do not paper over symptoms. Trace every problem to its root cause and fix it there.
 
 **Why:** Symptom fixes accumulate. Each workaround makes the system harder to reason about, and the real bug remains. Root-cause fixes are slower upfront but reduce total debugging time.

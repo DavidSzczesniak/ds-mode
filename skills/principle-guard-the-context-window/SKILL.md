@@ -3,6 +3,8 @@ name: principle-guard-the-context-window
 description: "Apply when context is filling up: large outputs, long files, repeated reads, fan-out planning. Route bulk to subagents; keep summaries in the main thread, not raw payloads."
 ---
 
+# Guard the Context Window
+
 The context window is finite and non-renewable within a session. Every token that enters should earn its place.
 
 **Why:** Context overflow degrades reasoning quality, creates compression artifacts, and halts progress. Unlike compute or time, context spent inside a session cannot be reclaimed.

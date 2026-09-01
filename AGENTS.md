@@ -6,10 +6,8 @@ This repository develops the `$ds-mode` workflow. Keep it small and evidence-led
 
 ## Current dogfooding boundary
 
-- Keep the `principle-*` bodies unchanged until dogfooding supplies evidence for a correction. The active and held lists in `skills/ds-mode/references/principles.md` are canonical.
+- Keep the `principle-*` bodies unchanged until dogfooding supplies evidence for a correction. All 21 pinned pstack principles are active.
 - Run `scripts/install.sh` only when the user asks to change the active global installation.
-- Keep work on `main`. Create no branch or worktree without explicit approval.
-- Stage, commit, publish, or create a remote only when the user asks.
 
 ## Change the workflow
 

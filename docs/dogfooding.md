@@ -1,29 +1,43 @@
 # Review a ds-mode dogfooding session
 
-`Last reviewed: 2026-08`
+`Last reviewed: 2026-09`
 
-Use this guide when a completed ds-mode session needs retrospective analysis. The goal is to identify the source of friction before changing the workflow.
+Use this guide after a completed ds-mode session. Record observations, not success stories. Cite the transcript, Pi session JSONL, diff, command output, or artifact behind each claim.
 
 ## Inspect the session
 
-1. Read the relevant transcript, including user corrections and any reviewer output.
-2. Identify where the agent lost direction, added ceremony, accepted weak proof, or entered a review-fix loop.
-3. Record what worked and should remain unchanged.
-4. Inspect the target codebase, tests, tooling, and repository instructions behind each repeated failure.
-5. Classify each issue as a project problem, a ds-mode problem, or unresolved.
-6. Recommend the smallest response and explain what evidence supports it.
+1. Read the lead transcript, named worker briefs, persisted Pi session JSONL, and reviewer output.
+2. Compare the lead's `update_plan` with the matched playbook. Record verbatim steps, explicit skips, and dropped steps.
+3. Inspect the target repository before blaming ds-mode for a repeated failure.
+4. Check the real artifacts behind every proof claim.
+5. Classify friction as a target-project problem, a ds-mode problem, or unresolved.
+6. Recommend the smallest change supported by repeated evidence.
 
-Pay particular attention to:
+Keep deliberate exclusions out of this review. Cloud agents, Graphite, Shipping, Orchestrate, Autopilot, polling, and automatic merging are inactive design decisions. They are not failed dogfooding experiments.
 
-- User interventions that restored progress.
-- Reviews that found architectural problems rather than contained defects.
-- Passing checks that did not prove the accepted outcome.
-- Local code patterns that taught the agent the wrong design.
-- Tooling or repository boundaries that forced repeated rediscovery.
-- Process that cost more than the task warranted.
+## Questions to test
 
-Discuss the findings with the user before changing ds-mode. One observation is evidence to inspect, not an automatic new rule.
+1. Are named Pi sessions enough for occasional manual recovery?
+2. Would a persistent-worker launcher add more complexity than value?
+3. Do mandatory How, Architect consideration, and delegated implementation improve results enough to justify their cost?
+4. Do conditional worktrees prevent collisions without leaving too many stale trees?
+5. Does Show Me Your Work produce a truthful, useful trail with its complete contract?
+6. Does a fresh same-family reviewer find useful issues despite the missing model-family diversity?
+7. Does Codex `update_plan` preserve verbatim playbook steps and visible skips?
+8. Do Control UI and Control CLI produce better proof than ad hoc verification instructions?
+9. Does one-shot PR Check and Triage retain the useful part of Babysit?
+10. Are the four role profiles sufficient without pstack's larger model matrix?
 
-## Initial inspection point
+## Record an observation
 
-The principle leaves use Codex's explicit-only invocation policy. Start with the active and held routing in `skills/ds-mode/references/principles.md`. Reconsider a held leaf only when a session or broader agent model shows why v0 needs it.
+For each question, record:
+
+- The task and repository.
+- The lead session and Pi session IDs.
+- The exact behavior observed.
+- Evidence paths or command output.
+- Cost or friction.
+- Whether the observation repeated.
+- The smallest proposed response, if any.
+
+Do not weaken a retained pstack contract from one observation. Link the evidence in `docs/upstream-deviations.tsv` when it supports a change.

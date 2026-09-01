@@ -1,35 +1,46 @@
 # ds-mode
 
-ds-mode is a user-invoked engineering workflow for planning, implementing, proving, and reviewing a coding change. The active agent owns the change. One fresh reviewer agent checks completed code.
+ds-mode is a user-invoked, pstack-derived engineering workflow. A Codex lead owns design, the visible plan, worker briefs, diff review, and final proof. Named persistent Pi sessions handle exploration, implementation, review, and judgment.
 
-The initial repository is intentionally small. Its principle bodies remain unchanged from their source. Eighteen are active for dogfooding, and three incompatible with the v0 workflow remain held. Their explicit-only invocation metadata has been ported to Codex.
+The active workflow covers local investigation, implementation, verification, and requested GitHub PR work. Cloud agents, Graphite, polling, automatic merging, and fleet orchestration remain available only in the pinned source snapshot.
 
 ## Repository contents
 
-- `skills/ds-mode/` contains the workflow and its planning, principle, and review references.
-- `skills/how/` explains subsystem architecture, ownership, layering, and runtime flow.
-- `skills/why/` investigates the motivation, history, and constraints behind code decisions.
-- `skills/diagnosing-bugs/` runs a tight reproduction and hypothesis-testing loop for hard defects and performance regressions.
-- `skills/principle-*/` contains the unchanged principle leaves. The ds-mode index owns active and held routing.
-- `skills/grilling/` resolves material planning decisions when evidence cannot settle them.
-- `skills/read-the-damn-docs/` grounds external and version-sensitive contracts in authoritative documentation.
-- `skills/research/` investigates design patterns, industry standards, and material decisions against primary sources.
-- `skills/unslop/` and `skills/writing-for-agents/` contain supporting writing guidance.
-- `docs/dogfooding.md` guides transcript-based workflow reviews.
-- `scripts/install.sh` links the reviewed skills into `~/.agents/skills`.
+- `skills/ds-mode/` contains the direct workflow, active playbooks, and the Codex-to-Pi worker contract.
+- `skills/principle-*/` contains all 21 pstack principle bodies, copied unchanged from the pin.
+- `skills/tdd/` contains pstack TDD.
+- `skills/control-ui/`, `skills/control-cli/`, and `skills/deslop/` contain the pinned Cursor Team Kit control skills.
+- `skills/architect/`, `skills/arena/`, `skills/how/`, `skills/why/`, and the other pstack supporting skills back the active routes.
+- `skills/create-verification-skill/`, `skills/maintain-verification-skill/`, and `skills/reflect/` remain explicit invocations.
+- Existing Matt Pocock-derived skills remain installed but are not routed from ds-mode.
+- `upstream/` contains the complete pinned pstack tree and the selected Cursor Team Kit sources.
+- `docs/upstream-deviations.tsv` records active substitutions and inactive routes.
+- `scripts/check-lineage.sh` verifies source hashes, verbatim active copies, and manifest coverage.
 
 ## Install
 
-To install the dogfooding version, run:
+Run:
 
 ```sh
 ./scripts/install.sh
 ```
 
-The installer links this repository's skill directories into `~/.agents/skills`. It refuses to overwrite real files, real directories, or unrelated links. It does not configure another agent runtime, model selection, hooks, or global instructions.
+The installer links every directory under `skills/` into `DS_MODE_SKILLS_DIR`, or `~/.agents/skills` when that variable is unset. It refuses to overwrite real paths or unrelated links. It remains skills-only. It does not configure Pi, models, hooks, or global instructions.
+
+## Lineage
+
+The source pin is Cursor plugins commit `b9ddc83c32972210b8a94d389130713e8eed346e`. `upstream/SOURCES.tsv` records repository URLs, tree hashes, import date, and licenses. `upstream/SHA256SUMS` records every imported file.
+
+Run:
+
+```sh
+./scripts/check-lineage.sh
+```
+
+The full pstack snapshot retains inactive cloud, Graphite, shipping, orchestration, autopilot, and polling code for inspection. Active ds-mode replaces Babysit with one-shot PR Check and Triage.
 
 ## Credits
 
-The `how` and `why` skills, principle leaves, and `unslop` derive from [pstack](https://github.com/cursor/plugins/tree/main/pstack) by Lauren Tan. `diagnosing-bugs`, `grilling`, `research`, and `writing-for-agents` come from [Matt Pocock's engineering skills](https://github.com/mattpocock/skills/tree/main/skills/engineering). Both projects use the MIT License. The retained license notices are in [LICENSE](./LICENSE).
+Pstack and its principle skills are by Lauren Tan. The imported Cursor Team Kit skills are by Cursor. Existing Matt Pocock-derived skills include `diagnosing-bugs`, `grilling`, `research`, and `writing-for-agents`. All three sources use the MIT License. See [LICENSE](./LICENSE) and the license files under `upstream/`.
 
-`Last reviewed: 2026-08`
+`Last reviewed: 2026-09`

@@ -1,6 +1,6 @@
-# Critic prompt template
+# Critic Prompt Template
 
-Build the critic agent's prompt from this template. Fill in the placeholders.
+Build each Pi Review worker's prompt from this template. Fill in the placeholders.
 
 ---
 

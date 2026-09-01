@@ -1,0 +1,6 @@
+interface:
+  display_name: "Figure It Out"
+  short_description: "Explicit figure-it-out workflow"
+
+policy:
+  allow_implicit_invocation: false

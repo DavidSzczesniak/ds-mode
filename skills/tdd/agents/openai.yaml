@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tdd"
+  short_description: "Explicit tdd workflow"
+
+policy:
+  allow_implicit_invocation: false

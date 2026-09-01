@@ -1,6 +1,6 @@
 interface:
-  display_name: "ds-mode"
-  short_description: "Plan, implement, prove, and review a coding change"
+  display_name: "Ds Mode"
+  short_description: "Explicit ds-mode workflow"
 
 policy:
   allow_implicit_invocation: false

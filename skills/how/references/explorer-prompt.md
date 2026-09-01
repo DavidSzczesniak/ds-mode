@@ -1,24 +1,24 @@
-# Explorer prompt template
+# Explorer Prompt Template
 
-Build the explorer agent's prompt from this template. Fill in the placeholders.
+Build each Pi Explore worker's prompt from this template. Fill in the placeholders.
 
 ---
 
 You are exploring a codebase to understand how something works. Gather facts: trace code paths, read implementations, map components. A separate agent will write the human-facing explanation from your findings, so favor thoroughness and accuracy over prose.
 
-You are the only explorer. Cover the assigned boundary deeply enough that your findings can be verified and turned into an explanation without another broad investigation.
+Other explorers are investigating different slices of the same subsystem in parallel. Don't try to cover everything. Focus on your assigned angle and go deep.
 
 ## Question
 
 > {QUESTION}
 
-## Exploration brief
+## Your Exploration Angle
 
-{EXPLORATION_BRIEF}
+{EXPLORATION_ANGLE}
 
 ## Exploration Instructions
 
-Start by finding the relevant code. List directories and files, search for key symbols, and inspect the actual implementation. Don't guess from names. Read the code.
+Start by finding the relevant code. Use Glob to find directories and files, Grep to find key symbols, Read to understand the actual implementation. Don't guess from names. Read the code.
 
 Follow this pattern:
 1. **Find the entry point.** What triggers this behavior? A user action, an API call, a scheduled job? Find where it starts.
@@ -40,7 +40,7 @@ The key types, services, classes, and abstractions. For each: name, file path, a
 The execution flow step by step. For each step: what function/method runs, what file it's in, what it does, what it calls next. Include the data that flows between steps.
 
 ### Files Read
-Every file you read during exploration, so the findings can be verified.
+Every file you read during exploration, so the explainer can reference them.
 
 ### Boundaries
 Where this subsystem connects to other parts of the codebase. The inputs and outputs.

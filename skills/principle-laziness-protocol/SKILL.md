@@ -3,6 +3,8 @@ name: principle-laziness-protocol
 description: "Apply when refactoring, evaluating diff size, or tempted to add abstractions, layers, or signal threading. Bias toward deletion and the smallest change that solves the problem."
 ---
 
+# Laziness Protocol
+
 Writing code is cheap for you, which makes over-engineering easy. Counter it by borrowing a human maintainer's fatigue. Aim for the most result with the least code and complexity.
 
 - **Prefer deletion.** When asked to refactor or improve, look for removals before additions.
