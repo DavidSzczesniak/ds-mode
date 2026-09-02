@@ -1,6 +1,6 @@
 # Critic Prompt Template
 
-Build each Pi Review worker's prompt from this template. Fill in the placeholders.
+Build each Codex Review child's prompt from this template. Fill in the placeholders.
 
 ---
 

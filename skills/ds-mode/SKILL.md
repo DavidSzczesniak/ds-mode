@@ -1,6 +1,7 @@
 ---
 name: ds-mode
-description: "Direct pstack-derived workflow for a Codex lead and named persistent Pi workers. Use for $ds-mode or requests to work in this style."
+description: "Direct pstack-derived workflow for a Codex lead and native Codex workers. Use for $ds-mode or requests to work in this style."
+disable-model-invocation: true
 ---
 
 # ds-mode
@@ -79,9 +80,9 @@ Stage and commit verified local units by default when repository instructions al
 
 ## Workers
 
-Codex is the lead. It owns design, the visible `update_plan`, worker briefs, diff review, and final proof. Read [`references/pi-workers.md`](references/pi-workers.md) before dispatching a worker and [`references/pi-profiles.md`](references/pi-profiles.md) when selecting its profile.
+Codex is the lead. It owns design, the visible `update_plan`, worker briefs, diff review, and final proof. Read [`references/workers.md`](references/workers.md) before dispatching a worker and [`references/worker-profiles.md`](references/worker-profiles.md) when selecting its profile.
 
-Launch each worker as a named persistent Pi session. A brief states the role, task contract, scope, writable paths, checkout or worktree, verification, model profile, edit permission, and report shape. Record the session ID as soon as the JSON header exposes it. Workers report results. They do not mutate the lead's checklist.
+Launch every ordinary worker as a fresh native Codex child. A brief states the role, task contract, scope, writable paths, checkout or worktree, verification, model profile, edit permission, and report shape. Record the canonical child target returned by `spawn_agent`. Workers report results. They do not mutate the lead's checklist.
 
 One writer owns a checkout. The lead may inspect and plan while that writer runs, but it does not mutate the writer's checkout. Review every worker diff and inspect its evidence. A worker summary is not proof.
 
@@ -122,7 +123,7 @@ A large or cross-cutting effort, or work the user steps away from to trust later
 - **Eval.** Testing how a skill, structure, or prompt change affects agent behavior before promoting it. `playbooks/eval.md`.
 - **PR Check and Triage.** One-shot inspection of CI, review comments, conflicts, draft state, and current PR state. `playbooks/pr-check-and-triage.md`.
 - **Autonomous run.** A long task to drive through bounded lead-controlled iterations. `playbooks/autonomous-run.md`.
-- **Session pickup.** Resuming a named Pi session, a resume note, or a pushed branch. `playbooks/session-pickup.md`.
+- **Session pickup.** Resuming a canonical Codex child, a resume note, or a pushed branch. `playbooks/session-pickup.md`.
 - **Pause safely.** Suspending in-flight work at a durable boundary. `playbooks/pause-safely.md`.
 - **Multi-phase or multi-PR plan.** Work that spans phases or PR-sized units. `playbooks/multi-phase-plan.md`.
 - **Worktree and simulator cleanup.** Auditing and reclaiming local disk without risking tracked or untracked work. `playbooks/worktree-cleanup.md`.

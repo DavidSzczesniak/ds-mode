@@ -1,6 +1,7 @@
 ---
 name: how
 description: "Use for \"how does X work\", code walkthroughs before changing something, and placement / ownership / layering questions (\"where should this live\", \"which package owns this\", \"is this the right layer\"). Explains subsystem architecture, runtime flow, onboarding mental models. Can critique architecture. Use why for motivation."
+disable-model-invocation: true
 ---
 
 # How
@@ -10,7 +11,7 @@ Explore the codebase to answer "how does X work?" questions. Produce clear archi
 Two modes:
 
 1. **Explain** (default). Explore the codebase and produce a clear explanation
-2. **Critique.** Explain first, then launch fresh Pi reviewers to identify architectural issues independently
+2. **Critique.** Explain first, then launch fresh native Codex reviewers to identify architectural issues independently
 
 ## Explain Mode
 
@@ -28,7 +29,7 @@ Identify the scope. If ambiguous, state your best-guess interpretation before ex
 **Assess complexity to decide the approach:**
 
 - **Simple** (a single module, a small utility, a narrow question like "how does function X work"): skip explorer agents; the explainer explores and explains in a single pass. Go to Step 2b.
-- **Complex** (a subsystem spanning multiple files/services, a cross-cutting feature, a full architectural overview): launch named parallel Pi Explore workers first, then hand off to the explainer. Go to Step 2a.
+- **Complex** (a subsystem spanning multiple files/services, a cross-cutting feature, a full architectural overview): launch fresh parallel Codex Explore children first, then hand off to the explainer. Go to Step 2a.
 
 When in doubt, lean simple. You can always launch explorers if the explainer hits a wall.
 
@@ -42,7 +43,7 @@ Decompose the question into 2-4 parallel exploration angles, each a distinct sli
 
 The right decomposition depends on the question. Use your judgment. Narrow questions: 2 explorers is fine. Broad subsystems: up to 4.
 
-Launch all explorers as named persistent Pi sessions. Follow `../ds-mode/references/pi-workers.md`:
+Launch all explorers as fresh native Codex children. Follow `../ds-mode/references/workers.md`:
 
 - Role: Explore
 - Profile: Explore
@@ -61,7 +62,7 @@ Then proceed to Step 3.
 
 ### Step 2b. Direct Explain (simple questions)
 
-Launch one named Pi worker that explores and explains in one pass:
+Launch one fresh native Codex child that explores and explains in one pass:
 
 - Role: Judgment
 - Profile: Judgment
@@ -73,7 +74,7 @@ Proceed to Step 4.
 
 ### Step 3. Synthesize (complex questions only)
 
-Once all explorers return, launch one named Pi Judgment worker to synthesize their findings into one coherent explanation:
+Once all explorers return, launch one fresh native Codex Judgment child to synthesize their findings into one coherent explanation:
 
 - Role: Judgment
 - Profile: Judgment
@@ -109,7 +110,7 @@ Run the full explain flow above (Steps 1-4). You must understand the architectur
 
 ### Step 2. Spawn Critics
 
-After the explanation is complete, launch at least two fresh named Pi Review workers. The current profiles use one model family, so label the result `same-family independent review`.
+After the explanation is complete, launch at least two fresh native Codex Review children. The current profiles use one model family, so label the result `same-family independent review`.
 
 For each critic:
 - Role: Review

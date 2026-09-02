@@ -1,6 +1,7 @@
 ---
 name: reflect
-description: "Review the active Pi session through three lenses, surface durable lessons, and route approved edits to an existing skill. Explicit invocation only."
+description: "Review the active session through three lenses, surface durable lessons, and route approved edits to an existing skill. Explicit invocation only."
+disable-model-invocation: true
 ---
 
 # Reflect
@@ -11,11 +12,11 @@ Mine the current conversation for durable lessons, then route them into skill ed
 
 ### 1. Locate the active transcript
 
-Use `PI_SESSION_FILE` inside Pi. Otherwise use the session ID recorded by the lead and locate that session under `~/.pi/agent/sessions/`. If no file resolves, write a tight session digest and pass that instead. Do not search unrelated sessions.
+Use the current transcript when the host exposes its exact path. Otherwise write a tight session digest and pass that instead. Do not search unrelated sessions.
 
 ### 2. Launch three reviewers
 
-Launch three named persistent Pi sessions in parallel. Give them no edit permission and follow `../ds-mode/references/pi-workers.md`.
+Launch three fresh native Codex children in parallel. Give them no edit permission and follow `../ds-mode/references/workers.md`.
 
 | Lens | Profile | Prompt |
 |---|---|---|
@@ -27,7 +28,7 @@ Pass each template verbatim with the transcript path or digest. All configured p
 
 ### 3. Synthesize
 
-Launch one fresh Pi Judgment worker with `references/synthesizer.md` and the three full outputs. Give it no edit permission. It returns Accepted, Rejected, and Backlog lists.
+Launch one fresh native Codex Judgment child with `references/synthesizer.md` and the three full outputs. Give it no edit permission. It returns Accepted, Rejected, and Backlog lists.
 
 ### 4. Check structural enforcement
 

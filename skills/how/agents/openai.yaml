@@ -1,0 +1,6 @@
+interface:
+  display_name: "How"
+  short_description: "Explicit how workflow"
+
+policy:
+  allow_implicit_invocation: false

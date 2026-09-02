@@ -48,7 +48,7 @@ for (const heading of required) {
   if (!text.includes(heading)) errors.push(`missing ${heading}`);
 }
 if (!/^# .+ plan$/m.test(text)) errors.push("missing '# <Program> plan' title");
-if (!text.includes("Pi") || !text.includes("session ID")) errors.push("missing Pi role or session-ID ownership");
+if (!text.includes("worker role") || !text.includes("canonical child target")) errors.push("missing worker role or canonical-child ownership");
 if (!text.includes("worktree") && !text.includes("checkout")) errors.push("missing checkout or worktree decision");
 
 const headingPattern = /^## (.+)$/gm;

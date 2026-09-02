@@ -1,6 +1,6 @@
 # Pstack-based ds-mode redesign
 
-Status: approved for implementation on 2026-09-01.
+Status: implemented on 2026-09-01. The Pi worker topology was superseded by the native Codex decision in `docs/dogfooding/issue-202-remediation/unit5/topology.md`. Pi worker references below document the original design, not current behavior.
 
 ## Goal
 

@@ -2,11 +2,11 @@
 
 `Last reviewed: 2026-09`
 
-Use this guide after a completed ds-mode session. Record observations, not success stories. Cite the transcript, Pi session JSONL, diff, command output, or artifact behind each claim.
+Use this guide after a completed ds-mode session. Record observations, not success stories. Cite the lead and child transcripts, diff, command output, or artifact behind each claim.
 
 ## Inspect the session
 
-1. Read the lead transcript, named worker briefs, persisted Pi session JSONL, and reviewer output.
+1. Read the lead transcript, worker briefs, child transcripts, and reviewer output.
 2. Compare the lead's `update_plan` with the matched playbook. Record verbatim steps, explicit skips, and dropped steps.
 3. Inspect the target repository before blaming ds-mode for a repeated failure.
 4. Check the real artifacts behind every proof claim.
@@ -17,8 +17,8 @@ Keep deliberate exclusions out of this review. Cloud agents, Graphite, Shipping,
 
 ## Questions to test
 
-1. Are named Pi sessions enough for occasional manual recovery?
-2. Would a persistent-worker launcher add more complexity than value?
+1. Do native Codex children cover every ordinary worker role without external transport or cleanup?
+2. Does continuation with `followup_task` preserve enough context for bounded follow-up work?
 3. Do mandatory How, Architect consideration, and delegated implementation improve results enough to justify their cost?
 4. Do conditional worktrees prevent collisions without leaving too many stale trees?
 5. Does Show Me Your Work produce a truthful, useful trail with its complete contract?
@@ -33,7 +33,7 @@ Keep deliberate exclusions out of this review. Cloud agents, Graphite, Shipping,
 For each question, record:
 
 - The task and repository.
-- The lead session and Pi session IDs.
+- The lead session and canonical child targets.
 - The exact behavior observed.
 - Evidence paths or command output.
 - Cost or friction.

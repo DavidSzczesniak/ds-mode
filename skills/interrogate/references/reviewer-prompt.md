@@ -1,6 +1,6 @@
 # Reviewer Prompt Template
 
-Build each Pi review worker's prompt from this template, filling in the placeholders.
+Build each Codex review child's prompt from this template, filling in the placeholders.
 
 ---
 

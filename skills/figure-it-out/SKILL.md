@@ -1,6 +1,7 @@
 ---
 name: figure-it-out
 description: "Design an auditable playbook when no narrower one fits: a large migration, an ambitious multi-part change, or work a human reviews after stepping away. Scales rigor to the task, runs a hypothesis loop, and logs decisions via show-me-your-work. Use for /figure-it-out, 'figure it out', a large migration, or when no narrower playbook applies."
+disable-model-invocation: true
 ---
 
 # Figure it out
@@ -28,7 +29,7 @@ Present the framing and tradeoffs before committing to a long run. Reversible wo
 Decompose into atomic, independently-landable units. Sequence riskiest-unknown-first so option value stays high. Scaffold and verification come before features (the **foundational-thinking** principle skill).
 
 - Build the verification harness before the work, with the baseline captured from the pre-change state, so the check reads as "old value vs new value".
-- For one-way-door design decisions, run the **architect** skill (it runs **arena**) with isolated, opinionated candidates and a fresh read-only Pi Judgment worker. Disclose the same-family review. Skip it for mechanical work whose shape is already concrete. A second arena over a settled design is over-engineering (the **laziness-protocol** principle skill).
+- For one-way-door design decisions, run the **architect** skill (it runs **arena**) with isolated, opinionated candidates and a fresh read-only native Codex Judgment child. Disclose the same-family review. Skip it for mechanical work whose shape is already concrete. A second arena over a settled design is over-engineering (the **laziness-protocol** principle skill).
 - Decide what fans out. Parallelize only across genuine seams, and give conflicting writers separate worktrees and disjoint ownership (the **separate-before-serializing-shared-state** principle skill). Don't over-fan.
 - Write the designed phase list down. That list is what the human reviews.
 

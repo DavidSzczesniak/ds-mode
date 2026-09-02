@@ -1,6 +1,7 @@
 ---
 name: show-me-your-work
 description: "Keep a reviewable decision trail for long-running or unattended work: a TSV log with one row per decision (what, why, evidence, result). Local by default; commit it when a reviewer needs the trail to trust the result. Use for show-me-your-work, autonomous or multi-phase runs, or work a human reviews after stepping away."
+disable-model-invocation: true
 ---
 
 # Show me your work
@@ -52,7 +53,7 @@ Commit it only when the work is ambitious enough that a reviewer needs the trail
 
 ## Audit the log against the transcript
 
-At the end of the run, before handing back, check the log told the truth. Use `PI_SESSION_FILE` inside Pi, or locate the exact session JSONL under `~/.pi/agent/sessions/` from the persisted Pi session ID. Do not search unrelated sessions. Walk the log against what actually happened:
+At the end of the run, before handing back, check the log told the truth. Use the exact lead transcript when the host exposes it. Otherwise audit against the current conversation and durable command artifacts. Do not search unrelated sessions. Walk the log against what actually happened:
 
 - Every row maps to a real action. Cut invented or aspirational entries.
 - Each row's evidence resolves and shows what the row claims.
@@ -63,7 +64,7 @@ Fix the log, not the story. If the work diverged from what a row claims, the row
 
 ## Fresh review of the trail
 
-Before handing back, launch a fresh named Pi Judgment worker. Give it the audit trail, exact Pi session JSONL, and no edit permission. The worker flags what the user should inspect. This is a `same-family independent review` while every configured profile uses GPT-5.6 Sol. Higher thinking effort does not provide model-family diversity.
+Before handing back, launch a fresh native Codex Judgment child. Give it the audit trail, exact transcript or session digest, and no edit permission. The worker flags what the user should inspect. This is a `same-family independent review`. Higher reasoning effort does not provide model-family diversity.
 
 The review scans for:
 

@@ -1,12 +1,12 @@
 # ds-mode
 
-ds-mode is a user-invoked, pstack-derived engineering workflow. A Codex lead owns design, the visible plan, worker briefs, diff review, and final proof. Named persistent Pi sessions handle exploration, implementation, review, and judgment.
+ds-mode is a user-invoked, pstack-derived engineering workflow. A Codex lead owns design, the visible plan, worker briefs, diff review, and final proof. Fresh native Codex children handle exploration, implementation, review, and judgment.
 
 The active workflow covers local investigation, implementation, verification, and requested GitHub PR work. Cloud agents, Graphite, polling, automatic merging, and fleet orchestration remain available only in the pinned source snapshot.
 
 ## Repository contents
 
-- `skills/ds-mode/` contains the direct workflow, active playbooks, and the Codex-to-Pi worker contract.
+- `skills/ds-mode/` contains the direct workflow, active playbooks, and the native Codex worker contract.
 - `skills/principle-*/` contains all 21 pstack principle bodies, copied unchanged from the pin.
 - `skills/tdd/` contains pstack TDD.
 - `skills/control-ui/`, `skills/control-cli/`, and `skills/deslop/` contain the pinned Cursor Team Kit control skills.

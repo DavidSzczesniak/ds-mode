@@ -1,6 +1,6 @@
 # Explainer Prompt Template
 
-Build the Pi Judgment worker's prompt from this template. Fill in the placeholders.
+Build the Codex Judgment child's prompt from this template. Fill in the placeholders.
 
 ---
 

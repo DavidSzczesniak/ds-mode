@@ -1,11 +1,12 @@
 ---
 name: interrogate
-description: "Use for \"interrogate\", \"adversarial review\", \"multi-model review\", \"challenge this\", \"stress test this code\", \"find blind spots\", or \"tear this apart\". Fresh Pi reviewers challenge changes from independent runs."
+description: "Use for \"interrogate\", \"adversarial review\", \"multi-model review\", \"challenge this\", \"stress test this code\", \"find blind spots\", or \"tear this apart\". Fresh Codex reviewers challenge changes from independent runs."
+disable-model-invocation: true
 ---
 
 # Interrogate
 
-Launch fresh Pi reviewers to adversarially review code changes. Each reviewer gets the same prompt and rubric. The current profiles use one GPT model family. Independence comes from fresh sessions and isolated reads, not model-family diversity. Agreement is useful signal, but it is still same-family evidence.
+Launch fresh native Codex reviewers to adversarially review code changes. Each reviewer gets the same prompt and rubric. The current profiles use one GPT model family. Independence comes from fresh sessions and isolated reads, not model-family diversity. Agreement is useful signal, but it is still same-family evidence.
 
 The deliverable is a synthesized verdict. Do NOT auto-apply changes.
 
@@ -32,7 +33,7 @@ Write one clear paragraph. Reviewers challenge whether the work achieves the int
 
 ## Step 3, Spawn reviewers
 
-Launch at least two fresh named persistent Pi Review workers. Follow `../ds-mode/references/pi-workers.md`. Give each the same intent, diff, and references. Use the Review profile by default and Judgment for the final independent verdict. Give reviewers no edit permission.
+Launch at least two fresh native Codex Review children. Follow `../ds-mode/references/workers.md`. Give each the same intent, diff, and references. Use the Review profile by default and Judgment for the final independent verdict. Give reviewers no edit permission.
 
 Read `references/reviewer-prompt.md` and fill in the template with:
 

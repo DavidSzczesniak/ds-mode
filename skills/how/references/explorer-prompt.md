@@ -1,6 +1,6 @@
 # Explorer Prompt Template
 
-Build each Pi Explore worker's prompt from this template. Fill in the placeholders.
+Build each Codex Explore child's prompt from this template. Fill in the placeholders.
 
 ---
 

@@ -20,7 +20,7 @@ Scan for:
 Findings must point to skills, tools, or MCPs invoked in this transcript. Speculative routings to skills the parent never opened do not count. To check whether a skill was used, scan the transcript for:
 
 - `Read` tool calls against any `SKILL.md` file (repository `skills/`, project `.agents/skills/`, or user-level `~/.agents/skills/`)
-- Pi worker briefs that name a skill path
+- Codex worker briefs that name a skill path
 - Tool calls (Shell, Grep, MCP, etc.) that match a skill's documented commands
 
 Two valid finding shapes:

@@ -4,13 +4,13 @@
 
 1. When the change is one or two files with an obvious approach, skip the plan. Say so and stop.
 2. Settle observable open questions by prototype before writing. Ask the operator only about a product or preference call that no run can settle.
-3. Explore with named persistent Pi Explore workers per [`../references/pi-workers.md`](../references/pi-workers.md). Each returns file pointers, conventions, test commands, and entry points. No inlined dumps.
+3. Explore with fresh native Codex Explore children per [`../references/workers.md`](../references/workers.md). Each returns file pointers, conventions, test commands, and entry points. No inlined dumps.
 4. Copy the skeleton below into the plan file and fill every placeholder. Keep every heading in order. One section is one task-shaped, verifiable unit. A unit may become a PR only when the user requests PR delivery.
 5. Write under `technical-writing`, then `unslop`.
 6. Run `node skills/ds-mode/scripts/check-plan.mjs <plan.md>` and fix every line it prints.
 7. Hand back the plan path and script output, then stop. Execution starts on the operator's explicit go.
 
-The Codex lead owns the visible `update_plan`. Copy each matched playbook step into it verbatim. Keep skipped steps as `skip: <reason>`. Workers report results and session IDs. They do not share or mutate the checklist.
+The Codex lead owns the visible `update_plan`. Copy each matched playbook step into it verbatim. Keep skipped steps as `skip: <reason>`. Workers report results and canonical child targets. They do not share or mutate the checklist.
 
 ````markdown
 # <Program> plan
@@ -26,7 +26,7 @@ One box is one unit of work. Check a box only when its named evidence exists. Th
 - [ ] State the done predicate.
 - [ ] Record dependencies between units.
 - [ ] Record writable paths and the writer for each unit.
-- [ ] Record each Pi role, profile, and session ID when delegated.
+- [ ] Record each worker role, profile, and canonical child target when delegated.
 - [ ] Record the checkout or worktree decision.
 - [ ] Run each unit's exact verification before the next dependent unit.
 - [ ] Perform PR actions only when the user requested them.
@@ -35,7 +35,7 @@ One box is one unit of work. Check a box only when its named evidence exists. Th
 
 **Depends on.** <Unit id, or None.>
 
-**Owner.** <Codex lead or named Pi role and profile.>
+**Owner.** <Codex lead or native child role and profile.>
 
 **Writable paths.**
 
@@ -65,7 +65,7 @@ One box is one unit of work. Check a box only when its named evidence exists. Th
 
 - [ ] Every unit is checked with its evidence.
 - [ ] Inspect the final diff and the real artifact against the done predicate.
-- [ ] Report open risks and persisted Pi session IDs.
+- [ ] Report open risks and canonical child targets.
 
 ## Appendix A. Prototype evidence
 
