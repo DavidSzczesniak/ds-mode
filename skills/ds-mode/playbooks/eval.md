@@ -19,8 +19,8 @@ Evals test how a change affects agent behavior before promoting it: a new skill 
 1. **Frame.** State what variant is under test and what behavior counts as success. Write the rubric (3-6 concrete criteria) for the Judgment worker only. Hold it back from candidates.
 2. **Set up sanitized environments.** Per-candidate working dir with the variant in place. Plant any context an organic task would have: a project skeleton, the skills the candidate would naturally read.
 3. **Author one organic prompt.** What a user would type. No leakage of what's being measured.
-4. **Spawn N parallel candidates** as fresh native Codex children per the **arena** skill's Phase B. Use isolated writable paths and the profiles in `../references/worker-profiles.md`. Same-family candidates test run-to-run variation, not model-family diversity.
-5. **Spawn one fresh Judgment worker** per the **arena** skill's Phase C. It sees outputs by sanitized label and the rubric, never a worker name or profile. Label its result `same-family independent review`.
+4. **Spawn N parallel candidates** as fresh native Codex children per the [**arena**](../../arena/SKILL.md) skill's Phase B. Use isolated writable paths and the profiles in `../references/worker-profiles.md`. Same-family candidates test run-to-run variation, not model-family diversity.
+5. **Spawn one fresh Judgment worker** per the [**arena**](../../arena/SKILL.md) skill's Phase C. It sees outputs by sanitized label and the rubric, never a worker name or profile. Label its result `same-family independent review`.
 6. **Verify the chain from transcripts, not self-report.** Read each candidate's exact Codex JSONL resolved from its canonical child target. Do not search unrelated sessions. Look at which files each candidate actually opened. Citing a principle is not reading its leaf skill, and reading it is not applying it. Grade chain-following from the files it really read plus the shape of the code, never from the candidate's own claims.
 7. **Read every candidate output yourself** end to end. Compare to the Judgment worker's verdict. Disagreement means a reviewer is biased or the rubric is ambiguous. Synthesize.
 

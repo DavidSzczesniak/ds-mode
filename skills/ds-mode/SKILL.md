@@ -12,23 +12,23 @@ disable-model-invocation: true
 
 Remaining triggers:
 
-- Nontrivial change, architecture decision, or "are we sure?" → the **how** skill.
+- Nontrivial change, architecture decision, or "are we sure?" → the [**how**](../how/SKILL.md) skill.
 - About to `AskQuestion` on a "which approach", "how should I", or "what should this do" fork → classify it before you ask. If the answer is a fact you could observe by running something (behavior, timing, layout, output, perf, even whether an eval separates), it is not the human's to answer. Sketch it via the Prototype playbook (`playbooks/prototype.md`) and let the result decide. If the task is a read-only Investigation whose deliverable is a cited answer, stay in it and answer from the evidence rather than building a sketch. Reserve the question for a genuine product or preference call no experiment can settle. The ask is the slow path. A throwaway probe usually answers faster, and it hands the human a result to react to instead of a decision to make.
-- Any code → name the data shape first, and choose its organizing structure per **principle-model-the-domain**.
-- Reading or editing TypeScript (`.ts` or `.tsx`) → the **typescript-best-practices** skill after **principle-type-system-discipline**.
-- Code crossing a function boundary → the **architect** skill, parallel design exploration before implementing.
-- Parallel fan-out → the **swarm** skill for coverage matrices, races, gauntlets, and exploration partitions. Use **arena** for design or code bakeoffs with base selection and grafting.
-- Contested design → the **interrogate** skill (same-family independent adversarial review) before shipping.
+- Any code → name the data shape first, and choose its organizing structure per [**principle-model-the-domain**](../principle-model-the-domain/SKILL.md).
+- Reading or editing TypeScript (`.ts` or `.tsx`) → the [**typescript-best-practices**](../typescript-best-practices/SKILL.md) skill after [**principle-type-system-discipline**](../principle-type-system-discipline/SKILL.md).
+- Code crossing a function boundary → the [**architect**](../architect/SKILL.md) skill, parallel design exploration before implementing.
+- Parallel fan-out → the [**swarm**](../swarm/SKILL.md) skill for coverage matrices, races, gauntlets, and exploration partitions. Use [**arena**](../arena/SKILL.md) for design or code bakeoffs with base selection and grafting.
+- Contested design → the [**interrogate**](../interrogate/SKILL.md) skill (same-family independent adversarial review) before shipping.
 - Nontrivial multi-step → write the throughput checkpoint (Feature step 3).
-- Any prose surface → the **unslop** skill. Your reply is a prose surface; write it per **Writing the reply**. Agent-facing prose also follows the **writing-for-agents** skill.
-- Docs, RFCs, readmes, PR descriptions, or commit messages → the **technical-writing** skill (`technical-writing`).
-- Before a commit allowed by repository instructions → the `deslop` skill from the `cursor-team-kit` plugin (`deslop`).
-- Before review → the **no-comments** skill (`no-comments`).
-- Delivering a UI, IDE, or CLI → the matching control skill. The installed skills include `control-cli` (CLIs and TUIs) and `control-ui` (browser / Electron / web UIs). For bug fixes, reproduce first on the same surface yourself; hand to the user only under the narrow Bug fix step 1 exception.
+- Any prose surface → the [**unslop**](../unslop/SKILL.md) skill. Your reply is a prose surface; write it per **Writing the reply**. Agent-facing prose also follows the [**writing-for-agents**](../writing-for-agents/SKILL.md) skill.
+- Docs, RFCs, readmes, PR descriptions, or commit messages → the [**technical-writing**](../technical-writing/SKILL.md) skill.
+- Before a commit allowed by repository instructions → the [**deslop**](../deslop/SKILL.md) skill.
+- Before review → the [**no-comments**](../no-comments/SKILL.md) skill.
+- Delivering a UI, IDE, or CLI → the matching control skill. Use [**control-cli**](../control-cli/SKILL.md) for CLIs and TUIs, or [**control-ui**](../control-ui/SKILL.md) for browser, Electron, and web UIs. For bug fixes, reproduce first on the same surface yourself; hand to the user only under the narrow Bug fix step 1 exception.
 - Any PR-status request → the **PR Check and Triage** playbook (`playbooks/pr-check-and-triage.md`). That includes "check on PR X", "anything outstanding on X", CI, conflicts, and review comments. Inspect once and report the current state.
 - Bugbot or the agentic security review commented → skeptical posture. They catch real bugs and also file non-issues and nitpicks, so assess each on its merits and dismiss noise with a concrete reason instead of churning code. Triage fix / dismiss / ask per `references/bugbot-triage.md`.
 - Broken skill mid-task → fix it as a separate verified unit when it blocks the accepted outcome. Otherwise report it.
-- Long, autonomous, or multi-phase work, or any task the user steps away from to review later ("going to bed", "trust it when i'm back", "run until X") → a decision trail via the **show-me-your-work** skill. Commit it when stakes need an auditable record; keep it local otherwise.
+- Long, autonomous, or multi-phase work, or any task the user steps away from to review later ("going to bed", "trust it when i'm back", "run until X") → a decision trail via the [**show-me-your-work**](../show-me-your-work/SKILL.md) skill. Commit it when stakes need an auditable record; keep it local otherwise.
 
 ## Principles
 
@@ -36,39 +36,39 @@ Read the leaf skill in full for any principle you apply. Each entry names when i
 
 **Core**
 
-- **Laziness Protocol** (**principle-laziness-protocol**). Refactoring, sizing a diff, or tempted to add abstractions, layers, or signal threading. Bias to deletion and the smallest change that solves the problem.
-- **Foundational Thinking** (**principle-foundational-thinking**). Before writing logic: core types and data structures, scaffold-vs-feature sequencing, what concurrent actors share.
-- **Redesign from First Principles** (**principle-redesign-from-first-principles**). Integrating a new requirement into an existing design. Redesign as if it had been foundational from day one.
-- **Subtract Before You Add** (**principle-subtract-before-you-add**). Sequencing an addition, refactor, or rewrite. Remove dead weight first, then build on the simpler base.
-- **Minimize Reader Load** (**principle-minimize-reader-load**). Reviewing or shaping code that's hard to trace. Count layers and hidden state, collapse one-caller wrappers, shrink mutable scope.
-- **Outcome-Oriented Execution** (**principle-outcome-oriented-execution**). Planned rewrites and migrations with explicit phase boundaries. Converge on the target architecture, don't preserve throwaway compatibility states.
-- **Experience First** (**principle-experience-first**). Product, UX, or feature-scope tradeoffs. Choose user delight over implementation convenience.
-- **Exhaust the Design Space** (**principle-exhaust-the-design-space**). A novel interaction or architectural decision with no precedent. Build 2-3 competing prototypes and compare before committing.
-- **Build the Lever** (**principle-build-the-lever**). Any non-trivial work. Build the tool that does or proves it (codemod, script, generator), not by hand; the tool is the artifact a reviewer reruns.
+- **Laziness Protocol** ([**principle-laziness-protocol**](../principle-laziness-protocol/SKILL.md)). Refactoring, sizing a diff, or tempted to add abstractions, layers, or signal threading. Bias to deletion and the smallest change that solves the problem.
+- **Foundational Thinking** ([**principle-foundational-thinking**](../principle-foundational-thinking/SKILL.md)). Before writing logic: core types and data structures, scaffold-vs-feature sequencing, what concurrent actors share.
+- **Redesign from First Principles** ([**principle-redesign-from-first-principles**](../principle-redesign-from-first-principles/SKILL.md)). Integrating a new requirement into an existing design. Redesign as if it had been foundational from day one.
+- **Subtract Before You Add** ([**principle-subtract-before-you-add**](../principle-subtract-before-you-add/SKILL.md)). Sequencing an addition, refactor, or rewrite. Remove dead weight first, then build on the simpler base.
+- **Minimize Reader Load** ([**principle-minimize-reader-load**](../principle-minimize-reader-load/SKILL.md)). Reviewing or shaping code that's hard to trace. Count layers and hidden state, collapse one-caller wrappers, shrink mutable scope.
+- **Outcome-Oriented Execution** ([**principle-outcome-oriented-execution**](../principle-outcome-oriented-execution/SKILL.md)). Planned rewrites and migrations with explicit phase boundaries. Converge on the target architecture, don't preserve throwaway compatibility states.
+- **Experience First** ([**principle-experience-first**](../principle-experience-first/SKILL.md)). Product, UX, or feature-scope tradeoffs. Choose user delight over implementation convenience.
+- **Exhaust the Design Space** ([**principle-exhaust-the-design-space**](../principle-exhaust-the-design-space/SKILL.md)). A novel interaction or architectural decision with no precedent. Build 2-3 competing prototypes and compare before committing.
+- **Build the Lever** ([**principle-build-the-lever**](../principle-build-the-lever/SKILL.md)). Any non-trivial work. Build the tool that does or proves it (codemod, script, generator), not by hand; the tool is the artifact a reviewer reruns.
 
 **Architecture**
 
-- **Model the Domain** (**principle-model-the-domain**). Writing stateful logic, or code that branches a lot or repeats a shape assumption across files. Encode the domain in a structure (state machine, typed model, table or registry, reducer, boundary, the right collection) instead of scattered conditionals.
-- **Boundary Discipline** (**principle-boundary-discipline**). Wiring validation, error handling, or framework adapters. Guards at system boundaries, trust internal types, keep business logic pure.
-- **Type System Discipline** (**principle-type-system-discipline**). Designing types or a signature in any typed language. Make illegal states unrepresentable, brand primitives, parse external data at boundaries.
-- **Make Operations Idempotent** (**principle-make-operations-idempotent**). Designing commands, lifecycle steps, or loops that run amid crashes and retries. Converge to the same end state.
-- **Migrate Callers Then Delete Legacy APIs** (**principle-migrate-callers-then-delete-legacy-apis**). Introducing a new internal API while old callers exist. Migrate and delete in one wave.
-- **Separate Before Serializing Shared State** (**principle-separate-before-serializing-shared-state**). Concurrent actors might write the same file, branch, key, or object. Eliminate the sharing first.
+- **Model the Domain** ([**principle-model-the-domain**](../principle-model-the-domain/SKILL.md)). Writing stateful logic, or code that branches a lot or repeats a shape assumption across files. Encode the domain in a structure (state machine, typed model, table or registry, reducer, boundary, the right collection) instead of scattered conditionals.
+- **Boundary Discipline** ([**principle-boundary-discipline**](../principle-boundary-discipline/SKILL.md)). Wiring validation, error handling, or framework adapters. Guards at system boundaries, trust internal types, keep business logic pure.
+- **Type System Discipline** ([**principle-type-system-discipline**](../principle-type-system-discipline/SKILL.md)). Designing types or a signature in any typed language. Make illegal states unrepresentable, brand primitives, parse external data at boundaries.
+- **Make Operations Idempotent** ([**principle-make-operations-idempotent**](../principle-make-operations-idempotent/SKILL.md)). Designing commands, lifecycle steps, or loops that run amid crashes and retries. Converge to the same end state.
+- **Migrate Callers Then Delete Legacy APIs** ([**principle-migrate-callers-then-delete-legacy-apis**](../principle-migrate-callers-then-delete-legacy-apis/SKILL.md)). Introducing a new internal API while old callers exist. Migrate and delete in one wave.
+- **Separate Before Serializing Shared State** ([**principle-separate-before-serializing-shared-state**](../principle-separate-before-serializing-shared-state/SKILL.md)). Concurrent actors might write the same file, branch, key, or object. Eliminate the sharing first.
 
 **Verification**
 
-- **Prove It Works** (**principle-prove-it-works**). After a task, before declaring done. Verify against the real artifact, not a proxy or "it compiles".
-- **Fix Root Causes** (**principle-fix-root-causes**). Debugging. Trace each symptom to its root cause, reproduce first, ask why until you reach it.
-- **Sequence Work into Verifiable Units** (**principle-sequence-verifiable-units**). Multi-step work (sweeps, migrations, runs of similar edits) and how you stack commits and PRs. Break work into small units that each end in a check, verify each before the next, and order delivery so the sequence proves itself.
+- **Prove It Works** ([**principle-prove-it-works**](../principle-prove-it-works/SKILL.md)). After a task, before declaring done. Verify against the real artifact, not a proxy or "it compiles".
+- **Fix Root Causes** ([**principle-fix-root-causes**](../principle-fix-root-causes/SKILL.md)). Debugging. Trace each symptom to its root cause, reproduce first, ask why until you reach it.
+- **Sequence Work into Verifiable Units** ([**principle-sequence-verifiable-units**](../principle-sequence-verifiable-units/SKILL.md)). Multi-step work (sweeps, migrations, runs of similar edits) and how you stack commits and PRs. Break work into small units that each end in a check, verify each before the next, and order delivery so the sequence proves itself.
 
 **Delegation**
 
-- **Guard the Context Window** (**principle-guard-the-context-window**). Context fills up: large outputs, long files, repeated reads, fan-out planning. Route bulk to workers, keep summaries in the main thread.
-- **Never Block on the Human** (**principle-never-block-on-the-human**). Tempted to ask "should I do X?" on reversible work. Proceed, present the result, let the human course-correct.
+- **Guard the Context Window** ([**principle-guard-the-context-window**](../principle-guard-the-context-window/SKILL.md)). Context fills up: large outputs, long files, repeated reads, fan-out planning. Route bulk to workers, keep summaries in the main thread.
+- **Never Block on the Human** ([**principle-never-block-on-the-human**](../principle-never-block-on-the-human/SKILL.md)). Tempted to ask "should I do X?" on reversible work. Proceed, present the result, let the human course-correct.
 
 **Meta**
 
-- **Encode Lessons in Structure** (**principle-encode-lessons-in-structure**). You catch yourself writing the same instruction a second time. Encode it as a lint, metadata flag, runtime check, or script instead of more text.
+- **Encode Lessons in Structure** ([**principle-encode-lessons-in-structure**](../principle-encode-lessons-in-structure/SKILL.md)). You catch yourself writing the same instruction a second time. Encode it as a lint, metadata flag, runtime check, or script instead of more text.
 
 ## Autonomy
 
@@ -107,7 +107,7 @@ Comments follow the same rule as the reply. Write them clean as you go; a flat "
 
 Your first `update_plan` actions are the matched playbook's steps, copied in verbatim, before any task-specific items and before you reason about the task. The failure mode is reading a playbook then writing a bespoke plan that drops its named steps (`architect`, the throughput checkpoint). A step you choose not to do stays in the list with a one-line `skip: <reason>`; skipping silently is not allowed. Match the task to a playbook below, open its file, and copy its steps in verbatim.
 
-A large or cross-cutting effort, or work the user steps away from to trust later, routes to the **figure-it-out** skill even when a narrower playbook like Feature fits. Use **figure-it-out** whenever no bundled playbook fits. It designs one rigorous run with an audit trail.
+A large or cross-cutting effort, or work the user steps away from to trust later, routes to the [**figure-it-out**](../figure-it-out/SKILL.md) skill even when a narrower playbook like Feature fits. Use [**figure-it-out**](../figure-it-out/SKILL.md) whenever no bundled playbook fits. It designs one rigorous run with an audit trail.
 
 - **Investigation.** Read-only question: how does X work, why was Y built this way, are we sure about Z, should we do X or Y. `playbooks/investigation.md`.
 - **Bug fix.** A reported defect to reproduce, root-cause, and fix with runtime evidence. `playbooks/bug-fix.md`.
@@ -125,6 +125,6 @@ A large or cross-cutting effort, or work the user steps away from to trust later
 - **Autonomous run.** A long task to drive through bounded lead-controlled iterations. `playbooks/autonomous-run.md`.
 - **Session pickup.** Resuming a canonical Codex child, a resume note, or a pushed branch. `playbooks/session-pickup.md`.
 - **Pause safely.** Suspending in-flight work at a durable boundary. `playbooks/pause-safely.md`.
-- **Multi-phase or multi-PR plan.** Work that spans phases or PR-sized units. `playbooks/multi-phase-plan.md`.
+- **Multi-phase or multi-PR plan.** Work that spans phases or PR-sized units. Route through the [**show-me-your-work**](../show-me-your-work/SKILL.md) skill and use `playbooks/multi-phase-plan.md`.
 - **Worktree and simulator cleanup.** Auditing and reclaiming local disk without risking tracked or untracked work. `playbooks/worktree-cleanup.md`.
 - **Opening a PR.** Use only when the user requested a PR. `playbooks/opening-a-pr.md`.

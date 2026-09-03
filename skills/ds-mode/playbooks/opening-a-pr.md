@@ -6,7 +6,7 @@ Use only when the user requested a PR.
 
 **Commits.** Commit verified local units when repository instructions allow. Rebase into small, ordered commits before opening the PR. Amend when a fix belongs in the last commit. Use a new commit when it stands alone.
 
-**Review.** Run `deslop` over the diff before commit. Run `no-comments` before review. Write every title, description, and commit body with `technical-writing`, then apply `unslop`.
+**Review.** Run [**deslop**](../../deslop/SKILL.md) over the diff before commit. Run [**no-comments**](../../no-comments/SKILL.md) before review. Write every title, description, and commit body with [**technical-writing**](../../technical-writing/SKILL.md), then apply [**unslop**](../../unslop/SKILL.md).
 
 **Titles.** Use Conventional Commits in the form `type(scope): subject`. Use `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, or `perf`. Keep the subject short, imperative, and without a trailing period.
 
