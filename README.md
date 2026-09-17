@@ -9,6 +9,7 @@ The active workflow covers local investigation, implementation, verification, an
 - `skills/ds-mode/` contains the direct workflow, active playbooks, and the native Codex worker contract.
 - `skills/principle-*/` contains all 21 pstack principle bodies, copied unchanged from the pin.
 - `skills/tdd/` contains pstack TDD.
+- `skills/pull-request/` prepares and creates GitHub PRs across projects, or repairs an existing title and body when requested. Use `$pull-request` independently of `$ds-mode`; it follows each repository's contribution rules and issue tracker.
 - `skills/control-ui/`, `skills/control-cli/`, and `skills/deslop/` contain the pinned Cursor Team Kit control skills.
 - `skills/architect/`, `skills/arena/`, `skills/how/`, `skills/why/`, and the other pstack supporting skills back the active routes.
 - `skills/create-verification-skill/`, `skills/maintain-verification-skill/`, and `skills/reflect/` remain explicit invocations.
