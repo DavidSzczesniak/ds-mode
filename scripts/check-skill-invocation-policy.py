@@ -6,7 +6,8 @@ import re
 import sys
 from pathlib import Path
 
-REQUIRED_EXPLICIT = {"how", "typescript-best-practices", "unslop", "why"}
+REQUIRED_EXPLICIT = {"how", "why"}
+REQUIRED_IMPLICIT = {"technical-writing", "typescript-best-practices", "unslop"}
 
 
 def frontmatter(path: Path) -> str:
@@ -56,6 +57,8 @@ def main() -> int:
             )
         if skill.name in REQUIRED_EXPLICIT and not (pi_explicit and codex_explicit):
             errors.append(f"{skill.name}: required explicit-only policy is absent")
+        if skill.name in REQUIRED_IMPLICIT and (pi_explicit or codex_explicit):
+            errors.append(f"{skill.name}: automatic invocation must be enabled")
         checked += 1
     if errors:
         print("\n".join(errors), file=sys.stderr)

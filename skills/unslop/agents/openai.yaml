@@ -1,6 +1,3 @@
 interface:
   display_name: "Unslop"
-  short_description: "Explicit unslop workflow"
-
-policy:
-  allow_implicit_invocation: false
+  short_description: "Remove AI patterns from writing"

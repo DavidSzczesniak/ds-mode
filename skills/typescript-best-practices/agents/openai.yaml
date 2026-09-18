@@ -1,6 +1,3 @@
 interface:
   display_name: "Typescript Best Practices"
-  short_description: "Explicit typescript-best-practices workflow"
-
-policy:
-  allow_implicit_invocation: false
+  short_description: "Apply TypeScript best practices"
