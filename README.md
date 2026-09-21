@@ -26,7 +26,9 @@ Run:
 ./scripts/install.sh
 ```
 
-The installer links every directory under `skills/` into `DS_MODE_SKILLS_DIR`, or `~/.agents/skills` when that variable is unset. It refuses to overwrite real paths or unrelated links. It remains skills-only. It does not configure Pi, models, hooks, or global instructions.
+The installer links every directory under `skills/` into `~/.agents/skills`, then links each entry into `~/.claude/skills`. Existing relative Claude links remain valid. It checks both destinations before adding links and refuses to overwrite real paths or unrelated links. It remains skills-only. It does not configure Pi, models, hooks, or global instructions.
+
+Set `DS_MODE_SKILLS_DIR` and `DS_MODE_CLAUDE_SKILLS_DIR` to override the respective destinations. Set both variables when testing against temporary directories. Run `python3 scripts/check-install.py` to check installation, repeat runs, and conflict handling in isolated directories.
 
 ## Lineage
 
