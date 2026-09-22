@@ -1,6 +1,6 @@
 # Reviewer Prompt Template
 
-Build each Codex review child's prompt from this template, filling in the placeholders.
+Build each Review worker's prompt from this template, filling in the placeholders.
 
 ---
 

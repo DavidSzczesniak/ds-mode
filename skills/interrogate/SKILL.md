@@ -1,12 +1,12 @@
 ---
 name: interrogate
-description: "Use for \"interrogate\", \"adversarial review\", \"multi-model review\", \"challenge this\", \"stress test this code\", \"find blind spots\", or \"tear this apart\". Fresh Codex reviewers challenge changes from independent runs."
+description: "Use for \"interrogate\", \"adversarial review\", \"multi-model review\", \"challenge this\", \"stress test this code\", \"find blind spots\", or \"tear this apart\". Fresh reviewers challenge changes from independent runs."
 disable-model-invocation: true
 ---
 
 # Interrogate
 
-Launch fresh native Codex reviewers to adversarially review code changes. Each reviewer gets the same prompt and rubric. The current profiles use one GPT model family. Independence comes from fresh sessions and isolated reads, not model-family diversity. Agreement is useful signal, but it is still same-family evidence.
+Launch fresh reviewers to adversarially review code changes. Each reviewer gets the same prompt and rubric. Independence requires fresh sessions and isolated reads. Record the actual model-family composition per `../ds-mode/references/worker-profiles.md`; independent runs alone do not establish model-family diversity.
 
 The deliverable is a synthesized verdict. Do NOT auto-apply changes.
 
@@ -33,7 +33,7 @@ Write one clear paragraph. Reviewers challenge whether the work achieves the int
 
 ## Step 3, Spawn reviewers
 
-Launch at least two fresh native Codex Review children. Follow `../ds-mode/references/workers.md`. Give each the same intent, diff, and references. Use the Review profile by default and Judgment for the final independent verdict. Give reviewers no edit permission.
+Launch at least two fresh Review workers. Follow `../ds-mode/references/workers.md`. Give each the same intent, diff, and references. Use the Review profile by default and Judgment for the final independent verdict. Give reviewers no edit permission.
 
 Read `references/reviewer-prompt.md` and fill in the template with:
 
@@ -42,7 +42,7 @@ Read `references/reviewer-prompt.md` and fill in the template with:
 3. The review rubric from `references/rubric.md`.
 4. The code-quality lens from `references/code-quality-review.md`.
 
-The same filled template goes to every reviewer. Label the combined result `same-family independent review`. Do not describe higher thinking effort as model-family diversity.
+The same filled template goes to every reviewer. Disclose the combined review's actual model-family composition per `../ds-mode/references/worker-profiles.md`.
 
 ## Step 4, Synthesize
 
@@ -52,7 +52,7 @@ As results come back, build a unified picture:
 2. **Identify consensus**. Findings raised by 2 or more reviewers independently are highest signal.
 3. **Identify single-reviewer findings**. Still worth reading, but weight accordingly.
 4. **Deduplicate**. Different reviewers may describe the same issue differently. Merge these and note which sessions raised it.
-5. **Note disagreements**. If one model flags something and another explicitly says the opposite, that's useful context for the verdict.
+5. **Note disagreements**. If one reviewer flags something and another explicitly says the opposite, that's useful context for the verdict.
 
 ## Step 5, Lead Judgment
 
@@ -80,7 +80,7 @@ Present the verdict in this structure:
 > [The stated intent paragraph from Step 2]
 
 ### Reviewers
-- Reviewer [label]: [model name], [N findings] (one bullet per reviewer)
+- Reviewer [label]: [provider, model, known family], [N findings] (one bullet per reviewer)
 
 ### Act On
 [Findings that should be addressed. For each: description, which reviewer sessions raised it, why it matters.]

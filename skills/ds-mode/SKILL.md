@@ -1,6 +1,6 @@
 ---
 name: ds-mode
-description: "Direct pstack-derived workflow for a Codex lead and native Codex workers. Use for $ds-mode or requests to work in this style."
+description: "Direct pstack-derived workflow for a lead and fresh workers. Use for $ds-mode or requests to work in this style."
 disable-model-invocation: true
 ---
 
@@ -13,12 +13,12 @@ disable-model-invocation: true
 Remaining triggers:
 
 - Nontrivial change, architecture decision, or "are we sure?" → the [**how**](../how/SKILL.md) skill.
-- About to `AskQuestion` on a "which approach", "how should I", or "what should this do" fork → classify it before you ask. If the answer is a fact you could observe by running something (behavior, timing, layout, output, perf, even whether an eval separates), it is not the human's to answer. Sketch it via the Prototype playbook (`playbooks/prototype.md`) and let the result decide. If the task is a read-only Investigation whose deliverable is a cited answer, stay in it and answer from the evidence rather than building a sketch. Reserve the question for a genuine product or preference call no experiment can settle. The ask is the slow path. A throwaway probe usually answers faster, and it hands the human a result to react to instead of a decision to make.
+- About to ask the human about a "which approach", "how should I", or "what should this do" fork → classify it before you ask. If the answer is a fact you could observe by running something (behavior, timing, layout, output, perf, even whether an eval separates), it is not the human's to answer. Sketch it via the Prototype playbook (`playbooks/prototype.md`) and let the result decide. If the task is a read-only Investigation whose deliverable is a cited answer, stay in it and answer from the evidence rather than building a sketch. Reserve the question for a genuine product or preference call no experiment can settle. The ask is the slow path. A throwaway probe usually answers faster, and it hands the human a result to react to instead of a decision to make.
 - Any code → name the data shape first, and choose its organizing structure per [**principle-model-the-domain**](../principle-model-the-domain/SKILL.md).
 - Reading or editing TypeScript (`.ts` or `.tsx`) → the [**typescript-best-practices**](../typescript-best-practices/SKILL.md) skill after [**principle-type-system-discipline**](../principle-type-system-discipline/SKILL.md).
 - Code crossing a function boundary → the [**architect**](../architect/SKILL.md) skill, parallel design exploration before implementing.
 - Parallel fan-out → the [**swarm**](../swarm/SKILL.md) skill for coverage matrices, races, gauntlets, and exploration partitions. Use [**arena**](../arena/SKILL.md) for design or code bakeoffs with base selection and grafting.
-- Contested design → the [**interrogate**](../interrogate/SKILL.md) skill (same-family independent adversarial review) before shipping.
+- Contested design → the [**interrogate**](../interrogate/SKILL.md) skill (independent adversarial review) before shipping.
 - Nontrivial multi-step → write the throughput checkpoint (Feature step 3).
 - Any prose surface → the [**unslop**](../unslop/SKILL.md) skill. Your reply is a prose surface; write it per **Writing the reply**. Agent-facing prose also follows the [**writing-for-agents**](../writing-for-agents/SKILL.md) skill.
 - Docs, RFCs, readmes, PR descriptions, or commit messages → the [**technical-writing**](../technical-writing/SKILL.md) skill.
@@ -80,9 +80,9 @@ Stage and commit verified local units by default when repository instructions al
 
 ## Workers
 
-Codex is the lead. It owns design, the visible `update_plan`, worker briefs, diff review, and final proof. Read [`references/workers.md`](references/workers.md) before dispatching a worker and [`references/worker-profiles.md`](references/worker-profiles.md) when selecting its profile.
+The lead owns design, the visible `update_plan`, worker briefs, diff review, and final proof. Read [`references/workers.md`](references/workers.md) before using host tools or dispatching a worker. It maps retained tool labels and transcript references to the runtime. Read [`references/worker-profiles.md`](references/worker-profiles.md) when selecting a profile or disclosing review composition.
 
-Launch every ordinary worker as a fresh native Codex child. A brief states the role, task contract, scope, writable paths, checkout or worktree, verification, model profile, edit permission, and report shape. Record the canonical child target returned by `spawn_agent`. Workers report results. They do not mutate the lead's checklist.
+Launch every ordinary worker with a fresh context. A brief states the role, task contract, scope, writable paths, checkout or worktree, verification, model profile, edit permission, and report shape. Record the canonical child target returned by dispatch. Workers report results and may keep their own task plans. They never share or mutate the lead's checklist.
 
 One writer owns a checkout. The lead may inspect and plan while that writer runs, but it does not mutate the writer's checkout. Review every worker diff and inspect its evidence. A worker summary is not proof.
 
@@ -123,7 +123,7 @@ A large or cross-cutting effort, or work the user steps away from to trust later
 - **Eval.** Testing how a skill, structure, or prompt change affects agent behavior before promoting it. `playbooks/eval.md`.
 - **PR Check and Triage.** One-shot inspection of CI, review comments, conflicts, draft state, and current PR state. `playbooks/pr-check-and-triage.md`.
 - **Autonomous run.** A long task to drive through bounded lead-controlled iterations. `playbooks/autonomous-run.md`.
-- **Session pickup.** Resuming a canonical Codex child, a resume note, or a pushed branch. `playbooks/session-pickup.md`.
+- **Session pickup.** Resuming an exact worker conversation, a resume note, or a pushed branch. `playbooks/session-pickup.md`.
 - **Pause safely.** Suspending in-flight work at a durable boundary. `playbooks/pause-safely.md`.
 - **Multi-phase or multi-PR plan.** Work that spans phases or PR-sized units. Route through the [**show-me-your-work**](../show-me-your-work/SKILL.md) skill and use `playbooks/multi-phase-plan.md`.
 - **Worktree and simulator cleanup.** Auditing and reclaiming local disk without risking tracked or untracked work. `playbooks/worktree-cleanup.md`.

@@ -1,6 +1,6 @@
 # Explainer Prompt Template
 
-Build the Codex Judgment child's prompt from this template. Fill in the placeholders.
+Build the Judgment worker's prompt from this template. Fill in the placeholders.
 
 ---
 
@@ -20,7 +20,7 @@ The explorers each investigated a different angle of the same subsystem. Their f
 
 Write an explanation a senior engineer unfamiliar with this area could read and walk away with a solid mental model, understanding the architecture well enough to start working in it confidently.
 
-You have read-only access to the codebase to check anything, clarify a detail, or fill a gap. Use Read, Grep, and Glob as needed. The explorers did the heavy lifting, so you shouldn't need to re-explore from scratch.
+Your assignment permits reading the codebase to check anything, clarify a detail, or fill a gap, but no edits. Use Read, Grep, and Glob as needed. The explorers did the heavy lifting, so you shouldn't need to re-explore from scratch.
 
 ## Output Format
 

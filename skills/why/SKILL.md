@@ -98,7 +98,7 @@ Capture this as seed context (file paths, symbols, commits, PR numbers, linked t
 
 ### Discovery
 
-Before launching investigators, list the evidence tools available to the Codex lead. Inspect tool names and documentation. Do not assume a child has the lead's external tools.
+Before launching investigators, list the evidence tools available to the lead. Inspect tool names and documentation. Do not assume a child has the lead's external tools.
 
 Map each available evidence tool to one category:
 
@@ -114,7 +114,7 @@ Source control is available through git and, when authenticated, `gh`. For the o
 
 Aim for a complete **coverage map**, not a minimal one. A null result from an issue tracker is evidence the decision was not ticketed, a useful fact in itself. Document the null, don't skip the search.
 
-Run external evidence queries in the Codex lead when only the lead owns those tools. Launch a fresh native Codex Explore child for the local source-control category and for any category whose exact tool is explicitly available to that worker. Follow `../ds-mode/references/workers.md`; give investigators no edit permission. One investigator owns one category.
+Run external evidence queries in the lead when only the lead owns those tools. Launch a fresh Explore worker for the local source-control category and for any category whose exact tool is explicitly available to that worker. Follow `../ds-mode/references/workers.md`; give investigators no edit permission. One investigator owns one category.
 
 Each investigator gets:
 1. The base prompt from `references/investigator-prompt.md`
@@ -156,7 +156,7 @@ If your scope assessment suggests a single-commit trivial target where the PR de
 
 ## Step 4. Synthesize
 
-Launch one fresh native Codex Judgment child to synthesize. Give it the gathered evidence and no edit permission. If citation spot-checking needs a lead-only external tool, the Codex lead performs that check before presenting the result.
+Launch one fresh Judgment worker to synthesize. Give it the gathered evidence and no edit permission. If citation spot-checking needs a lead-only external tool, the lead performs that check before presenting the result.
 
 The synthesizer gets:
 1. The investigator findings, including any null results and any categories skipped with justification
@@ -215,7 +215,7 @@ After the Sources Consulted block, if the user's `why` question is a precursor t
 ## Reference Files
 
 - `references/epistemics.md`. Confidence tiers and phrasing guide. The synthesizer must follow it.
-- `references/investigator-prompt.md`. Base prompt template for Codex investigator children.
+- `references/investigator-prompt.md`. Base prompt template for investigator workers.
 - `references/source-playbook.md`. Index pointing at the category playbooks below.
 - `references/sources/*.md`. One self-contained example playbook per category, plus cross-cutting `incident-postmortem.md`. Give an investigator the single file that matches its category and adapt it to the available MCP.
-- `references/synthesizer-prompt.md`. Prompt template for the Codex Judgment child, including the output format.
+- `references/synthesizer-prompt.md`. Prompt template for the Judgment worker, including the output format.

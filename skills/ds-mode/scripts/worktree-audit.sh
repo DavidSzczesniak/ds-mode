@@ -42,4 +42,4 @@ while IFS= read -r path; do
 done
 
 printf '\nAge is days since the head commit. Reachable refs count local and remote branch refs that contain the head.\n'
-printf 'Every tracked edit and untracked file is protected. Supply active Codex child associations before deletion.\n'
+printf 'Every tracked edit and untracked file is protected. Supply active worker associations before deletion.\n'

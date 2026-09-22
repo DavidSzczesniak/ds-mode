@@ -16,7 +16,7 @@ Use the current transcript when the host exposes its exact path. Otherwise write
 
 ### 2. Launch three reviewers
 
-Launch three fresh native Codex children in parallel. Give them no edit permission and follow `../ds-mode/references/workers.md`.
+Launch three fresh workers in parallel. Give them no edit permission and follow `../ds-mode/references/workers.md`.
 
 | Lens | Profile | Prompt |
 |---|---|---|
@@ -24,11 +24,11 @@ Launch three fresh native Codex children in parallel. Give them no edit permissi
 | Tooling | Review | `references/tooling-reviewer.md` |
 | Divergent | Judgment | `references/divergent-reviewer.md` |
 
-Pass each template verbatim with the transcript path or digest. All configured profiles use one GPT model family. Label the result `same-family independent review`.
+Pass each template verbatim with the transcript path or digest. Disclose the actual review composition per `../ds-mode/references/worker-profiles.md`.
 
 ### 3. Synthesize
 
-Launch one fresh native Codex Judgment child with `references/synthesizer.md` and the three full outputs. Give it no edit permission. It returns Accepted, Rejected, and Backlog lists.
+Launch one fresh Judgment worker with `references/synthesizer.md` and the three full outputs. Give it no edit permission. It returns Accepted, Rejected, and Backlog lists.
 
 ### 4. Check structural enforcement
 
@@ -49,4 +49,4 @@ File Backlog items only when the user requests an external tracker action.
 
 ### 6. Summarize
 
-Report applied paths, new skills, backlog actions, rejected findings, checks, and the same-family disclosure.
+Report applied paths, new skills, backlog actions, rejected findings, checks, and the model-family disclosure.

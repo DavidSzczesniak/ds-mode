@@ -1,12 +1,12 @@
 # ds-mode
 
-ds-mode is a user-invoked, pstack-derived engineering workflow. A Codex lead owns design, the visible plan, worker briefs, diff review, and final proof. Fresh native Codex children handle exploration, implementation, review, and judgment.
+ds-mode is a user-invoked, pstack-derived engineering workflow. The lead owns design, the visible plan, worker briefs, diff review, and final proof. Fresh workers handle exploration, implementation, review, and judgment.
 
 The active workflow covers local investigation, implementation, verification, and requested GitHub PR work. Cloud agents, Graphite, polling, automatic merging, and fleet orchestration remain available only in the pinned source snapshot.
 
 ## Repository contents
 
-- `skills/ds-mode/` contains the direct workflow, active playbooks, and the native Codex worker contract. Its [Opening a PR playbook](skills/ds-mode/playbooks/opening-a-pr.md) explains how to propose or create a PR and repair its title or body when asked.
+- `skills/ds-mode/` contains the direct workflow, active playbooks, and the worker contract. Its [Opening a PR playbook](skills/ds-mode/playbooks/opening-a-pr.md) explains how to propose or create a PR and repair its title or body when asked.
 - `skills/principle-*/` contains all 21 pstack principle bodies, copied unchanged from the pin.
 - `skills/tdd/` contains pstack TDD.
 - `skills/control-ui/`, `skills/control-cli/`, and `skills/deslop/` contain the pinned Cursor Team Kit control skills.
@@ -17,15 +17,23 @@ The active workflow covers local investigation, implementation, verification, an
 - `docs/upstream-deviations.tsv` records active substitutions and inactive routes.
 - `scripts/check-lineage.sh` verifies source hashes, verbatim active copies, and manifest coverage.
 
+## Runtime scope
+
+The workflow uses generic lead and worker roles. The concrete [worker binding](skills/ds-mode/references/workers.md) documents `pi-herdr-agents` for Pi 0.87.0 in Herdr. The [profiles](skills/ds-mode/references/worker-profiles.md) document caller-model inheritance, fixed role thinking settings, and actual model-family disclosure. Other runtimes need verified equivalent controls; generic wording alone does not make them compatible.
+
+Pi support for a selected model does not prove that model can execute every workflow phase well. This wording port addresses a known host mismatch, not the skipped workflow steps observed in an earlier Pi journey. No model-comparison or behavioral success is claimed for this branch. Use the [dogfooding guide](docs/dogfooding.md) to record those results.
+
 ## Install
 
-Run:
+Only when changing the active installation, run:
 
 ```sh
 ./scripts/install.sh
 ```
 
 The installer links every directory under `skills/` into `~/.agents/skills`, then links each entry into `~/.claude/skills`. Existing relative Claude links remain valid. It checks both destinations before adding links and refuses to overwrite real paths or unrelated links. It remains skills-only. It does not configure Pi, models, hooks, or global instructions.
+
+Links follow the checkout used for installation. The live installation currently points at the main checkout, not this experimental worktree. Editing this branch does not update the installed skills, and this worktree must not be installed without an explicit request.
 
 Set `DS_MODE_SKILLS_DIR` and `DS_MODE_CLAUDE_SKILLS_DIR` to override the respective destinations. Set both variables when testing against temporary directories. Run `python3 scripts/check-install.py` to check installation, repeat runs, and conflict handling in isolated directories.
 

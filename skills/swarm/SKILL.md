@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Swarm
 
-Fan out N parallel native Codex children. They may cover separate slices, race the same brief, or mix both. The parent waits, aggregates, and returns one report.
+Fan out N parallel workers. They may cover separate slices, race the same brief, or mix both. The parent waits, aggregates, and returns one report.
 
 ## Start
 
@@ -22,12 +22,12 @@ Open an `update_plan` checklist with one entry per phase before launching anythi
 1. State the done predicate and the artifact or report the swarm must return.
 2. Choose the shape. Partition into slices, race N workers on identical briefs, or mix both. For a race or mixed shape, declare `first pass`, `rank all`, or `best-of` before spawning.
 3. Set N from the user or derive it from the shape. N is total workers, not the local concurrency limit.
-4. Pick each worker role and effort from `../ds-mode/references/worker-profiles.md`. For a profile race, name each arm up front and disclose that all defaults use one model family.
+4. Pick each worker role from `../ds-mode/references/worker-profiles.md`. For a profile race, name each arm up front and disclose the actual model-family composition.
 5. Give each worker its own writable output when it writes. Use a worktree, branch, or `/tmp/swarm-<slug>/worker-<n>/`.
 
 ## Phase B: Fan out
 
-Launch all N as fresh native Codex children. Follow `../ds-mode/references/workers.md`. Give writers separate worktrees only when tracked-file ownership overlaps or experiments compete.
+Launch all N as fresh workers. Follow `../ds-mode/references/workers.md`. Give writers separate worktrees only when tracked-file ownership overlaps or experiments compete.
 
 Every brief stands alone. Include the goal, scope, exact slice or race arm, how to verify, and what to report. Reports use `PASS`, `ISSUES`, or `BLOCKED` with evidence.
 

@@ -64,7 +64,7 @@ Fix the log, not the story. If the work diverged from what a row claims, the row
 
 ## Fresh review of the trail
 
-Before handing back, launch a fresh native Codex Judgment child. Give it the audit trail, exact transcript or session digest, and no edit permission. The worker flags what the user should inspect. This is a `same-family independent review`. Higher reasoning effort does not provide model-family diversity.
+Before handing back, launch a fresh Judgment worker per `../ds-mode/references/workers.md`. Give it the audit trail, exact transcript or session digest, and no edit permission. The worker flags what the user should inspect. Disclose the actual review composition per `../ds-mode/references/worker-profiles.md`.
 
 The review scans for:
 
@@ -73,7 +73,7 @@ The review scans for:
 - Risky choices that were premature, widened scope, or hid a symptom.
 - Gaps the user would miss on a casual skim.
 
-Every reply for a run that produced a trail ends with an `Attention` section. Start with `same-family independent review by <model>` on its own line. List each flag with its exact row or session moment. `No flags` is valid. A model name alone is not.
+Every reply for a run that produced a trail ends with an `Attention` section. Start with the review label and actual reviewer model and family on its own line, per `../ds-mode/references/worker-profiles.md`. List each flag with its exact row or session moment. `No flags` is valid. A model name alone is not.
 
 ## Reviewing the trail
 
