@@ -19,7 +19,7 @@ End each brief with this report contract:
 
 These instructions use `pi-herdr-agents` in a persistent Pi TUI inside Herdr. Check the available tool schemas before dispatch. Stock Pi, non-TUI modes, and ephemeral sessions do not provide these controls.
 
-1. Call `spawn_agent` with the brief in `task`, the assigned `cwd`, and `fork_turns: "none"`. Choose `role` from `explore`, `implement`, `review`, or `judgment`. Each worker starts a fresh Pi conversation in its own tab.
+1. Call `spawn_agent` with the brief in `task`, the assigned `cwd`, and `fork_turns: "none"`. Pass the `role`, `model`, and `thinking` from [worker-profiles.md](worker-profiles.md). Each worker starts a fresh Pi conversation in its own tab.
 2. Save the returned `workerId` and `submissionId` in your plan's `explanation`. Keep playbook step text unchanged. Report descendant targets to the lead. This pair is the **canonical child target** used in the playbooks. Pass the values as `agent_id` and `submission_id`; pane IDs, Pi session UUIDs, and runtime generations are different identifiers.
 3. Call `wait_agent` with both IDs and `timeout_ms` between 120000 and 600000. It returns early if the task settles. A timeout leaves the task running. On timeout, call `list_agents` once to diagnose, then make one final multi-minute wait on the same submission. If it still has not settled, record the anomaly and stop waiting.
 
