@@ -1,12 +1,12 @@
 # Worker profiles
 
-All roles require fresh contexts for new assignments. Continuation of an existing task uses the same worker conversation, not a fresh review. Use the dispatch contract in [workers.md](workers.md).
+Use [workers.md](workers.md) for briefs, fresh contexts, and task control.
 
-## Pi model and reasoning settings
+## Model and effort
 
-The current Pi-Herdr adapter inherits the spawning agent's selected model for every new worker, including nested workers. It has no per-spawn model or effort parameters. Cold continuation uses the worker's saved model, not the caller's current selection. The lead retains its own thinking setting.
+New workers use the spawning agent's selected model, including when a worker launches another worker. Restarting a dead worker restores its saved model, not the caller's current model.
 
-The adapter requests these fixed Pi thinking levels by role. This table is the authoritative role profile:
+The Pi-Herdr adapter sets thinking effort by role:
 
 | Role | Pi thinking level |
 |---|---|
@@ -15,10 +15,14 @@ The adapter requests these fixed Pi thinking levels by role. This table is the a
 | Review | medium |
 | Judgment | high |
 
-Pi must support the selected model, and the child must have the provider configuration and authentication it needs. Adapter launch support is not evidence that a model can execute every ds-mode phase well. These thinking labels are Pi settings, not portable promises about provider reasoning budgets. Verify the selected model's supported settings and record any effective difference rather than claiming identical effort across providers. Selecting a role at spawn selects its fixed setting. A brief cannot override the tool schema.
+The lead keeps its own thinking setting. `spawn_agent` has no model or effort override. These settings come from adapter code; editing this file or naming an override in a brief does not change them.
+
+The child needs Pi support, provider configuration, and authentication for its model. Pi's thinking levels do not imply equal reasoning budgets across providers. Verify the model's supported thinking settings and record any effective difference. Mark unavailable effective settings as unknown.
 
 ## Review disclosure
 
-Fresh Review and Judgment workers provide independent context. Record the actual provider, model, and known family for the lead, candidates, and reviewers. Use runtime identity and native message evidence, not an assumed default. Mark unknown family or effective reasoning settings as unknown.
+Record the provider, model, known family, and effective thinking setting for the lead, candidates, and reviewers. Use runtime records and native messages. Mark unknown values as unknown.
 
-Label a review `same-family independent review` only when the recorded composition supports it. Same-model and same-family runs are not model-family diversity. Different provider names and higher thinking effort do not establish different underlying model families. If the run actually includes different families, name them and the workers using each. Fresh-context independence remains mandatory in either case; multiple providers are not required.
+Use `same-family independent review` when the records support that label. If different families took part, name them and their workers. Different provider names or effort levels alone do not prove family diversity.
+
+Fresh contexts are required for independent review; multiple providers are not. A follow-up in the original worker conversation is not a fresh review.
