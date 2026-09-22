@@ -33,7 +33,7 @@ Only when changing the active installation, run:
 
 The installer links every directory under `skills/` into `~/.agents/skills`, then links each entry into `~/.claude/skills`. Existing relative Claude links remain valid. It checks both destinations before adding links and refuses to overwrite real paths or unrelated links. It remains skills-only. It does not configure Pi, models, hooks, or global instructions.
 
-Links follow the checkout used for installation. The live installation currently points at the main checkout, not this experimental worktree. Editing this branch does not update the installed skills, and this worktree must not be installed without an explicit request.
+Links follow the checkout used for installation. Editing skills or switching branches in that checkout changes the active skills without rerunning the installer.
 
 Set `DS_MODE_SKILLS_DIR` and `DS_MODE_CLAUDE_SKILLS_DIR` to override the respective destinations. Set both variables when testing against temporary directories. Run `python3 scripts/check-install.py` to check installation, repeat runs, and conflict handling in isolated directories.
 
