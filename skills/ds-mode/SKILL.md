@@ -127,4 +127,4 @@ A large or cross-cutting effort, or work the user steps away from to trust later
 - **Pause safely.** Suspending in-flight work at a durable boundary. `playbooks/pause-safely.md`.
 - **Multi-phase or multi-PR plan.** Work that spans phases or PR-sized units. Route through the [**show-me-your-work**](../show-me-your-work/SKILL.md) skill and use `playbooks/multi-phase-plan.md`.
 - **Worktree and simulator cleanup.** Auditing and reclaiming local disk without risking tracked or untracked work. `playbooks/worktree-cleanup.md`.
-- **Opening a PR.** Use only when the user requested a PR. `playbooks/opening-a-pr.md`.
+- **Opening a PR.** Prepare or create a PR when requested, or repair an existing PR's title or body when explicitly requested. `playbooks/opening-a-pr.md`.
