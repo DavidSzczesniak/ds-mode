@@ -21,6 +21,8 @@ The active workflow covers local investigation, implementation, verification, an
 
 The workflow uses generic lead and worker roles. The concrete [worker binding](skills/ds-mode/references/workers.md) documents `pi-herdr-agents` for Pi 0.87.0 in Herdr. The [profiles](skills/ds-mode/references/worker-profiles.md) document the configured GPT models and thinking levels for each role, and actual model-family disclosure. Other runtimes need verified equivalent controls; generic wording alone does not make them compatible.
 
+After accepting results, the lead explicitly retires workers it no longer needs. Retirement closes their processes and tabs while preserving conversations for later follow-up. See the [worker closeout instructions](skills/ds-mode/references/workers.md#retire-idle-workers).
+
 Pi support for a selected model does not prove that model can execute every workflow phase well. This wording port addresses a known host mismatch, not the skipped workflow steps observed in an earlier Pi journey. No model-comparison or behavioral success is claimed for this branch. Use the [dogfooding guide](docs/dogfooding.md) to record those results.
 
 ## Install

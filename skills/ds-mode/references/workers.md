@@ -40,6 +40,14 @@ Use `interrupt_agent` with both IDs for a verified stuck or obsolete task, or an
 
 Use these tools for ordinary worker operations, not manual pane or process control. The adapter retains completed conversations and records. For a failed or uncertain launch, inspect its exact operation receipt instead of guessing from the focused pane.
 
+## Retire idle workers
+
+Before the final handoff, call `retire_agent` with `agent_id` for each owned worker you no longer need. Accept its result and finish any follow-up first. Retire descendants before their parents. Task settlement alone does not close a worker's process or tab.
+
+Retirement refuses active or uncertain work and workers with live or unresolved descendants. Only a result with `kind: "retirement"` and `state: "retired"` confirms process death and pane cleanup. For `incomplete`, keep the evidence path and report the unresolved cleanup. Retry retirement only for that same worker's cleanup; never replay its task or close a guessed pane.
+
+Retirement preserves the conversation, results, artifacts, and model settings. A later `followup_task` resumes that conversation in a new process and tab. It is still a continuation, not an independent review.
+
 ## Tools and permissions
 
 Every role has normal tools, including Bash, Git through Bash, edit, write, and nested delegation. A read-only brief limits what the worker may change, not which tools it receives.
@@ -71,4 +79,4 @@ Inspect the diff and evidence yourself. Run the checks that prove the accepted o
 
 ## Other runtimes
 
-Verify equivalent controls before using another runtime: fresh contexts, exact worker and task IDs, bounded waits, continuation, interruption, separate session plans, and transcript evidence. Map tool labels to its documented APIs. If a required control is missing, report it rather than skipping the workflow phase.
+Verify equivalent controls before using another runtime: fresh contexts, exact worker and task IDs, bounded waits, continuation, interruption, explicit idle-worker retirement, separate session plans, and transcript evidence. Map tool labels to its documented APIs. If a required control is missing, report it rather than skipping the workflow phase.
