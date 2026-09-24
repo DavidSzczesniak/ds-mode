@@ -23,7 +23,7 @@ Remaining triggers:
 - Any prose surface → the [**unslop**](../unslop/SKILL.md) skill. Your reply is a prose surface; write it per **Writing the reply**. Agent-facing prose also follows the [**writing-for-agents**](../writing-for-agents/SKILL.md) skill.
 - Docs, RFCs, readmes, PR descriptions, or commit messages → the [**technical-writing**](../technical-writing/SKILL.md) skill.
 - Before a commit allowed by repository instructions → the [**deslop**](../deslop/SKILL.md) skill.
-- Before review → the [**no-comments**](../no-comments/SKILL.md) skill.
+- Before review, when the diff adds comment or lint-suppression lines → the [**no-comments**](../no-comments/SKILL.md) skill.
 - Delivering a UI, IDE, or CLI → the matching control skill. Use [**control-cli**](../control-cli/SKILL.md) for CLIs and TUIs, or [**control-ui**](../control-ui/SKILL.md) for browser, Electron, and web UIs. For bug fixes, reproduce first on the same surface yourself; hand to the user only under the narrow Bug fix step 1 exception.
 - Any PR-status request → the **PR Check and Triage** playbook (`playbooks/pr-check-and-triage.md`). That includes "check on PR X", "anything outstanding on X", CI, conflicts, and triaging existing review comments. Inspect once and report the current state.
 - Reviewing the code of a PR or branch ("review this PR", "review this branch") → the [**interrogate**](../interrogate/SKILL.md) skill.
