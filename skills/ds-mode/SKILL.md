@@ -25,7 +25,8 @@ Remaining triggers:
 - Before a commit allowed by repository instructions → the [**deslop**](../deslop/SKILL.md) skill.
 - Before review → the [**no-comments**](../no-comments/SKILL.md) skill.
 - Delivering a UI, IDE, or CLI → the matching control skill. Use [**control-cli**](../control-cli/SKILL.md) for CLIs and TUIs, or [**control-ui**](../control-ui/SKILL.md) for browser, Electron, and web UIs. For bug fixes, reproduce first on the same surface yourself; hand to the user only under the narrow Bug fix step 1 exception.
-- Any PR-status request → the **PR Check and Triage** playbook (`playbooks/pr-check-and-triage.md`). That includes "check on PR X", "anything outstanding on X", CI, conflicts, and review comments. Inspect once and report the current state.
+- Any PR-status request → the **PR Check and Triage** playbook (`playbooks/pr-check-and-triage.md`). That includes "check on PR X", "anything outstanding on X", CI, conflicts, and triaging existing review comments. Inspect once and report the current state.
+- Reviewing the code of a PR or branch ("review this PR", "review this branch") → the [**interrogate**](../interrogate/SKILL.md) skill.
 - Bugbot or the agentic security review commented → skeptical posture. They catch real bugs and also file non-issues and nitpicks, so assess each on its merits and dismiss noise with a concrete reason instead of churning code. Triage fix / dismiss / ask per `references/bugbot-triage.md`.
 - Broken skill mid-task → fix it in its own PR, or its own commit under a local-only override. Don't block. Don't silently work around it.
 - Long, autonomous, or multi-phase work, or any task the user steps away from to review later ("going to bed", "trust it when i'm back", "run until X") → a decision trail via the [**show-me-your-work**](../show-me-your-work/SKILL.md) skill. Commit it when stakes need an auditable record; keep it local otherwise.
