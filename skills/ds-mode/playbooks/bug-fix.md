@@ -10,7 +10,7 @@ Be scientific. Every shipped line traces to runtime evidence. Belt-and-suspender
 4. Verify on the same surface; the original repro now passes. "Inconclusive" or wrong-surface is not a pass; flag it. Unit tests show branch behavior, not bug absence.
 5. Stage the commits so the failing repro lands before the fix in git history; the diff tells the story. See the [**tdd**](../../tdd/SKILL.md) skill for the failing-test-first cadence when the bug has a cheap local test path; skip it when the test would be expensive, integration-heavy, or unclear.
    This is the canonical [**sequence-verifiable-units**](../../principle-sequence-verifiable-units/SKILL.md) principle skill, the failing test first and the fix on top.
-6. Run [**Opening a PR**](opening-a-pr.md) only when the user requested a PR.
+6. Run [**Opening a PR**](opening-a-pr.md).
 
 Investigation fans out [**how**](../../how/SKILL.md) + [**why**](../../why/SKILL.md) as parallel fresh Explore workers.
 

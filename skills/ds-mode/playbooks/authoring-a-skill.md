@@ -5,7 +5,7 @@
 1. Read and apply the [**writing-for-agents**](../../writing-for-agents/SKILL.md) skill.
 2. Validate the skill: frontmatter has `name` and `description`, referenced files exist, and cross-skill links resolve. Run the Codex skill validator against a temporary copy with Cursor/Pi-only frontmatter removed, then run `scripts/check-skill-invocation-policy.py` from the repository root.
 3. Test cases if structural; skip if subjective.
-4. Run [**Opening a PR**](opening-a-pr.md) only when the user requested a PR.
+4. Run [**Opening a PR**](opening-a-pr.md).
 
 When in doubt, delete; prose earns its keep by changing a decision. Tell it to do the thing and skip the reason. Explain only when the rule is confusing without one. Match tone to scope. Point at structural sources (types, READMEs, config); hardcoded details go stale (the [**encode-lessons-in-structure**](../../principle-encode-lessons-in-structure/SKILL.md) principle skill). Delegate to other skills by path; don't restate. A workflow you keep hitting but isn't captured → propose a new skill.
 

@@ -1,6 +1,6 @@
 # Pstack-based ds-mode redesign
 
-Status: implemented on 2026-09-01. The Pi worker topology was superseded by the native Codex decision in `docs/dogfooding/issue-202-remediation/unit5/topology.md`. Pi worker references below document the original design, not current behavior.
+Status: implemented on 2026-09-01. Revised on 2026-09-24 to restore pstack's development loop: Pi leads with pi-herdr-agents workers, reversible external actions proceed without asking (team chat asks first), and Opening a PR ends every code-changing playbook unless a "local only" session override applies. `docs/upstream-deviations.tsv` records each difference from pstack.
 
 ## Goal
 
@@ -122,7 +122,7 @@ Completion criterion: every upstream playbook has an active, replaced, or inacti
 - Parallel writers, competing experiments, and tracked-file conflicts require separate worktrees with disjoint ownership.
 - Untracked files alone do not make a checkout dirty. Never delete, overwrite, or adopt them incidentally.
 - Stage and commit verified local units by default after the repository instructions have been updated.
-- Push, publish, open a PR, create a remote, or merge only when requested.
+- Push and open a PR at the end of code-changing playbooks, as pstack does, unless the session is local only. Create a remote or merge only when requested. (Revised 2026-09-24; originally push and PR only on request.)
 - Remove the two conflicting Git and worktree restrictions from `AGENTS.md`. Do not replace them with new repository-level wording in that edit.
 
 Completion criterion: representative one-writer and parallel-writer scenarios select the expected checkout arrangement without risking tracked or untracked work.

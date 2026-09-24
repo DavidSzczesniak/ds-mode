@@ -2,11 +2,11 @@
 
 ds-mode is a user-invoked, pstack-derived engineering workflow. The lead owns design, the visible plan, worker briefs, diff review, and final proof. Fresh workers handle exploration, implementation, review, and judgment.
 
-The active workflow covers local investigation, implementation, verification, and requested GitHub PR work. Cloud agents, Graphite, polling, automatic merging, and fleet orchestration remain available only in the pinned source snapshot.
+The active workflow covers local investigation, implementation, verification, and GitHub PRs: Opening a PR ends every code-changing playbook unless the session is local only. Cloud agents, Graphite, polling, automatic merging, and fleet orchestration remain available only in the pinned source snapshot.
 
 ## Repository contents
 
-- `skills/ds-mode/` contains the direct workflow, active playbooks, and the worker contract. Its [Opening a PR playbook](skills/ds-mode/playbooks/opening-a-pr.md) explains how to propose or create a PR and repair its title or body when asked.
+- `skills/ds-mode/` contains the direct workflow, active playbooks, and the worker contract. Its [Opening a PR playbook](skills/ds-mode/playbooks/opening-a-pr.md) ends every code-changing playbook, and also proposes a PR or repairs its title or body when asked.
 - `skills/principle-*/` contains all 21 pstack principle bodies, copied unchanged from the pin.
 - `skills/tdd/` contains pstack TDD.
 - `skills/control-ui/`, `skills/control-cli/`, and `skills/deslop/` contain the pinned Cursor Team Kit control skills.

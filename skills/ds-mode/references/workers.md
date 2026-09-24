@@ -4,7 +4,7 @@ The lead owns design, the main checklist, worker briefs, diff review, and final 
 
 ## Brief and checkout
 
-Give every fresh worker a complete brief. It receives no parent conversation history. Open the brief as **Workers** in `../SKILL.md` directs. Include the role, task contract, scope, exclusions, writable paths, checkout, verification, [profile](worker-profiles.md), and edit permission. Give file pointers, not inlined context: name paths and line ranges instead of pasting file contents. Reviews require fresh contexts.
+Give every fresh worker a complete brief. It receives no parent conversation history. Open the brief as **Workers** in `../SKILL.md` directs. Include the role, task contract, scope, exclusions, writable paths, checkout, verification, [profile](worker-profiles.md), edit permission, and any session override such as local only. Give file pointers, not inlined context: name paths and line ranges instead of pasting file contents. Reviews require fresh contexts.
 
 Use one writer per checkout. The lead may inspect the checkout while the worker runs, but must not edit it. Give parallel writers or competing implementations separate worktrees with disjoint ownership. Protect untracked files from deletion, overwrite, and incidental adoption.
 
