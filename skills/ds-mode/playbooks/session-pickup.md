@@ -1,13 +1,13 @@
 ### Session pickup
 
-**You own the resume point. Read the prior trail, don't redo it.** Use for a canonical child target, resume note, result file, or pushed branch.
+**You own the resume point. Read the prior trail, don't redo it.** For "take over this", "resume this conversation", "continue from <transcript path>", "you're taking over", "pick up where X left off", a resume note, or a pushed branch you're meant to continue.
 
-1. Locate the prior trail. Continue an exact child with `followup_task` when its canonical target is available. The durable brief and result identify the task.
-2. Read the metadata and last messages first, then scan back for decision points. Give a long transcript to a fresh Explore worker and keep the reduced timeline in the lead context.
-3. Reconstruct operational state. Record the branch and checkout, `git log`, the diff against the base, open `update_plan` items, decisions, and verification already completed.
-4. Compare done with pending. Name the resume point and preserve completed work. Re-run evidence only when it is missing, stale, or required by the final accepted outcome.
-5. Route the remaining work to the matching playbook. Verify inherited claims against the original goal on the real artifact.
+A pickup is inheritance. The prior agent already paid the cost of reading the code, running the repros, making the design choices. Redoing loses the bias check and burns context. Resist the urge to re-derive; read.
 
-The decision trail records reasoning. A canonical child target identifies a worker task and its conversation per `../references/workers.md`. Neither claims that a worker is still running.
+1. Locate the prior trail. A resume note, a Pi session file for the active workspace (lead sessions under `~/.pi/agent/sessions/`; worker sessions at the `piSessionPath` that `list_agents` reports; do not search across unrelated projects, that reads private chats from other work), or a pushed branch. Read the metadata overview and last messages first, then scan back for the decision points. Parse a long transcript in a fresh Explore worker and keep the reduced timeline in the main thread (the [**principle-guard-the-context-window**](../../principle-guard-the-context-window/SKILL.md) skill).
+2. Reconstruct operational state. The branch and checkout, what already landed (`git log`, `git diff` against the base), the open `update_plan` items, the decisions made. The prior trail is authoritative input. Resist the bias to re-derive it.
+3. Diff done vs pending. Compare what shipped against what was planned, name the resume point, do not re-run the prior repro or redo completed work. A "let me verify from scratch" pass is the tell that you're treating the trail as untrustworthy when it's actually authoritative.
+4. Route the remaining work to the matching playbook and pick the verdict: continue the execution, ship a finished recommendation, ratify or override a prior conclusion, or postmortem a failed run. Continue interrupted worker work in a fresh worker whose brief consolidates the original scope, the resume point, and what is done; do not resume the interrupted conversation. The pickup playbook ends here; the routed playbook owns the rest.
+5. Verify the inherited claims against the original goal on the real artifact (the [**principle-prove-it-works**](../../principle-prove-it-works/SKILL.md) skill). A passing prior self-report is not the proof.
 
-**Reply:** the canonical child target, where the prior worker stopped, what you inherited or redid, the resume point, and the outcome.
+**Reply:** where the prior agent stopped, what you inherited vs redid (ideally nothing redone), the resume point, and the outcome.

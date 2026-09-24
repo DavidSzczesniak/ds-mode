@@ -14,7 +14,7 @@
 6. Rebase into small, ordered commits; stack follow-ups.
    Use the [**sequence-verifiable-units**](../../principle-sequence-verifiable-units/SKILL.md) principle skill, building, verifying, and committing each small unit before the next.
 7. If the design is contested, run [**interrogate**](../../interrogate/SKILL.md) before shipping.
-8. Run [**Opening a PR**](opening-a-pr.md) only when the user requested a PR.
+8. Run [**Opening a PR**](opening-a-pr.md).
 
 Code-coupled work (one feature, one migration) goes to a single owner with the checkpoint inline; that owner fans out internally after the blocking phase. Parent-level fan-out is for slices that produce independent artifacts (audits, cross-subsystem investigations, competing experiments). Rewrite the checkpoint at phase boundaries; spawn a fresh named worker rather than chaining resumes.
 

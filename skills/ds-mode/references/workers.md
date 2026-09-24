@@ -4,7 +4,7 @@ The lead owns design, the main checklist, worker briefs, diff review, and final 
 
 ## Brief and checkout
 
-Give every fresh worker a complete brief. It receives no parent conversation history. Include the role, task contract, scope, exclusions, writable paths, checkout, verification, [profile](worker-profiles.md), and edit permission. Reviews require fresh contexts.
+Give every fresh worker a complete brief. It receives no parent conversation history. Open the brief as **Workers** in `../SKILL.md` directs. Include the role, task contract, scope, exclusions, writable paths, checkout, verification, [profile](worker-profiles.md), edit permission, and any session override such as local only. Give file pointers, not inlined context: name paths and line ranges instead of pasting file contents. Reviews require fresh contexts.
 
 Use one writer per checkout. The lead may inspect the checkout while the worker runs, but must not edit it. Give parallel writers or competing implementations separate worktrees with disjoint ownership. Protect untracked files from deletion, overwrite, and incidental adoption.
 
@@ -21,7 +21,7 @@ These instructions use `pi-herdr-agents` in a persistent Pi TUI inside Herdr. Ch
 
 1. Call `spawn_agent` with the brief in `task`, the assigned `cwd`, and `fork_turns: "none"`. Pass the `role`, `model`, and `thinking` from [worker-profiles.md](worker-profiles.md). Each worker starts a fresh Pi conversation in its own tab.
 2. Save the returned `workerId` and `submissionId` in your plan's `explanation`. Keep playbook step text unchanged. Report descendant targets to the lead. This pair is the **canonical child target** used in the playbooks. Pass the values as `agent_id` and `submission_id`; pane IDs, Pi session UUIDs, and runtime generations are different identifiers.
-3. Call `wait_agent` with both IDs and `timeout_ms` between 120000 and 600000. It returns early if the task settles. A timeout leaves the task running. On timeout, call `list_agents` once to diagnose, then make one final multi-minute wait on the same submission. If it still has not settled, record the anomaly and stop waiting.
+3. Call `wait_agent` with both IDs and `timeout_ms` between 120000 and 600000. It returns early if the task settles. A timeout leaves the task running. On timeout, call `list_agents` to diagnose. Note the size of the worker's session file (`piSessionPath`) before each further wait. While the task is active and the file keeps growing, keep waiting in multi-minute windows. Two consecutive full windows without growth are a stall: record the anomaly and treat the work as stale.
 
 Read the result before proceeding:
 
@@ -34,7 +34,7 @@ Read the result before proceeding:
 
 ## Continue or interrupt
 
-For a follow-up on the same task, call `followup_task` with `agent_id` and the new `task`. Save its new `submissionId`. The adapter refuses a live busy or unreachable worker. To restart a dead worker, it first proves the old process and endpoint are dead. It preserves the worker ID and Pi conversation, starts a new runtime generation, and submits only the new task.
+For a new task on a settled worker, such as a question about its result or a small follow-up, call `followup_task` with `agent_id` and the new `task`. Save its new `submissionId`. Resume interrupted or stale work in a fresh worker with consolidated scope instead; see **Workers** in `../SKILL.md`. Interrupt a stale worker first and confirm it settled before the replacement starts, so one writer still owns the checkout. The adapter refuses a live busy or unreachable worker. To restart a dead worker, it first proves the old process and endpoint are dead. It preserves the worker ID and Pi conversation, starts a new runtime generation, and submits only the new task.
 
 Use `interrupt_agent` with both IDs for a verified stuck or obsolete task, or an explicit pause. It waits up to 120 seconds for settlement. If submission is ambiguous before the task starts, it requests shutdown and checks process death instead. If death remains unconfirmed, get operator inspection rather than starting a replacement writer.
 

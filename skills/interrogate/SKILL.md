@@ -33,7 +33,7 @@ Write one clear paragraph. Reviewers challenge whether the work achieves the int
 
 ## Step 3, Spawn reviewers
 
-Launch at least two fresh Review workers. Follow `../ds-mode/references/workers.md`. Give each the same intent, diff, and references. Use the Review profile by default and Judgment for the final independent verdict. Give reviewers no edit permission.
+Launch at least two fresh Review workers. Follow `../ds-mode/references/workers.md`. Give each the same intent, diff, and references. Use the Review profile by default. Give reviewers no edit permission.
 
 Read `references/reviewer-prompt.md` and fill in the template with:
 

@@ -1,45 +1,93 @@
-#!/bin/sh
+#!/usr/bin/env bash
+# Read-only worktree prune audit. Classifies every git worktree by size, merge
+# state, uncommitted work, remote/PR state, and the most recent Pi session that
+# operated in it. Emits a table sorted by size with a suggested bucket. Never
+# deletes anything; deletion stays a human-gated step in the playbook.
+#
+# Usage: worktree-audit.sh [repo-path]   (defaults to the current repo)
+set -u
 
-set -eu
+repo="${1:-$(git rev-parse --show-toplevel 2>/dev/null)}"
+[ -z "$repo" ] && { echo "not in a git repo; pass a repo path" >&2; exit 1; }
+cd "$repo" || exit 1
 
-repo=${1:-.}
-root=$(git -C "$repo" rev-parse --show-toplevel)
+# Main worktree is the first entry; everything else is a candidate.
+main_wt=$(git worktree list --porcelain | awk '/^worktree /{print $2; exit}')
+
+# The remote default branch drives the merge check. Best-effort; stale is fine for a first pass.
+base=$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null \
+	|| gh repo view --json defaultBranchRef --jq '"origin/" + .defaultBranchRef.name' 2>/dev/null \
+	|| echo origin/main)
+git fetch origin "${base#origin/}" --quiet 2>/dev/null || echo "warn: could not fetch $base; merged column may be stale" >&2
+
+# PR state by branch, fetched once. Empty if gh is unavailable.
+prs=$(mktemp)
+gh pr list --author "@me" --state all --limit 1000 \
+	--json number,state,headRefName 2>/dev/null > "$prs" || echo "[]" > "$prs"
+
+# Pi keeps lead sessions per working directory under ~/.pi/agent/sessions/--<path>--/,
+# with "/" and ":" turned into "-". pi-herdr-agents keeps worker sessions under its state dir.
+slugify() { printf '%s' "$1" | sed 's#^/##; s#[/:]#-#g'; }
+sessions="$HOME/.pi/agent/sessions"
+main_sessions="$sessions/--$(slugify "$main_wt")--"
+workers="${XDG_STATE_HOME:-$HOME/.local/state}/pi-herdr-agents/v1"
 now=$(date +%s)
-base=$(git -C "$root" symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null || true)
-if [ -z "$base" ]; then
-  if git -C "$root" show-ref --verify --quiet refs/heads/main; then
-    base=main
-  elif git -C "$root" show-ref --verify --quiet refs/heads/master; then
-    base=master
-  else
-    base=HEAD
-  fi
-fi
 
-printf 'path\tbranch\thead\tsize_kb\tage_days\treachable_refs\tbase\tmerged_base\ttracked\tuntracked\tpr\n'
-git -C "$root" worktree list --porcelain | awk '/^worktree / {print substr($0, 10)}' |
-while IFS= read -r path; do
-  head=$(git -C "$path" rev-parse --short HEAD)
-  branch=$(git -C "$path" symbolic-ref --quiet --short HEAD || printf detached)
-  size_kb=$(du -sk "$path" | awk '{print $1}')
-  commit_ts=$(git -C "$path" log -1 --format=%ct)
-  age_days=$(( (now - commit_ts) / 86400 ))
-  reachable_refs=$(git -C "$path" for-each-ref --format='%(refname)' --contains HEAD refs/heads refs/remotes | wc -l | tr -d ' ')
-  tracked=$(git -C "$path" status --porcelain --untracked-files=no | wc -l | tr -d ' ')
-  untracked=$(git -C "$path" ls-files --others --exclude-standard | wc -l | tr -d ' ')
-  if git -C "$path" merge-base --is-ancestor HEAD "$base" 2>/dev/null; then
-    merged=yes
-  else
-    merged=no
-  fi
-  if command -v gh >/dev/null 2>&1 && [ "$branch" != detached ]; then
-    pr=$(cd "$path" && gh pr list --head "$branch" --state all --json number,state --jq 'if length == 0 then "none" else map("#\(.number):\(.state)") | join(",") end' 2>/dev/null || printf unknown)
-  else
-    pr=unavailable
-  fi
-  printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' \
-    "$path" "$branch" "$head" "$size_kb" "$age_days" "$reachable_refs" "$base" "$merged" "$tracked" "$untracked" "$pr"
-done
+printf "SIZE\tAGE\tMERGED\tDIRTY\tREMOTE\tPR\tLAST_CHAT\tBUCKET\tWORKTREE\n"
 
-printf '\nAge is days since the head commit. Reachable refs count local and remote branch refs that contain the head.\n'
-printf 'Every tracked edit and untracked file is protected. Supply active worker associations before deletion.\n'
+git worktree list --porcelain | awk '/^worktree /{print $2}' | while read -r wt; do
+	[ "$wt" = "$main_wt" ] && continue
+
+	size=$(du -sh "$wt" 2>/dev/null | awk '{print $1}')
+	head=$(git -C "$wt" rev-parse HEAD 2>/dev/null)
+	head_ts=$(git -C "$wt" log -1 --format='%ct' HEAD 2>/dev/null || echo 0)
+	age=$([ "$head_ts" -gt 0 ] 2>/dev/null && echo "$(( (now - head_ts) / 86400 ))d" || echo "?")
+
+	# Squash-merged branches are not ancestors of main, so PR state is the
+	# real signal; merge-base only catches fast-forward/rebase merges.
+	git merge-base --is-ancestor "$head" "$base" 2>/dev/null && merged=YES || merged=no
+
+	# Distinguish real WIP (tracked edits) from disposable untracked scratch.
+	porcelain=$(git -C "$wt" status --porcelain 2>/dev/null)
+	if [ -z "$porcelain" ]; then dirty=clean
+	elif printf '%s\n' "$porcelain" | grep -qv '^??'; then
+		dirty="wip:$(printf '%s\n' "$porcelain" | grep -cv '^??')"
+	else dirty="scratch:$(printf '%s\n' "$porcelain" | grep -c '^??')"; fi
+
+	branch=$(git -C "$wt" symbolic-ref --quiet --short HEAD 2>/dev/null || echo "")
+	if [ -z "$branch" ]; then remote=detached
+	elif git -C "$wt" show-ref --verify --quiet "refs/remotes/origin/$branch"; then
+		[ "$(git -C "$wt" rev-parse "origin/$branch" 2>/dev/null)" = "$head" ] \
+			&& remote=pushed \
+			|| remote="ahead$(git -C "$wt" rev-list --count "origin/$branch..HEAD" 2>/dev/null)"
+	else remote=no-remote; fi
+
+	pr=$([ -n "$branch" ] && jq -r --arg b "$branch" \
+		'.[] | select(.headRefName==$b) | "#\(.number)/\(.state)"' "$prs" 2>/dev/null | head -1)
+	[ -z "$pr" ] && pr="-"
+
+	# Most recent Pi session that operated in this worktree: sessions started in it,
+	# plus main-checkout and worker sessions that name it. Match path followed by
+	# "/" or a quote so glint-482 does not match glint-482-r37.
+	last="-"; last_ts=0
+	lead_dir="$sessions/--$(slugify "$wt")--"
+	f=$( { [ -d "$lead_dir" ] && ls "$lead_dir"/*.jsonl 2>/dev/null
+		rg -l -e "${wt}/" -e "${wt}\"" "$main_sessions" "$workers" -g '*.jsonl' 2>/dev/null; } \
+		| grep -v '^$' | xargs stat -f '%m %N' 2>/dev/null | sort -rn | head -1)
+	if [ -n "$f" ]; then last_ts=$(echo "$f" | awk '{print $1}')
+		last=$(date -r "$last_ts" '+%Y-%m-%d' 2>/dev/null); fi
+	recent=$([ "$last_ts" -gt 0 ] 2>/dev/null && [ $(( (now - last_ts) / 86400 )) -le 4 ] && echo yes || echo no)
+
+	case "$dirty" in wip:*) bucket=hold-wip ;; scratch:*) bucket=hold-scratch ;; *)
+		case "$pr" in *OPEN*) bucket=hold-open-pr ;; *)
+			if [ "$recent" = yes ]; then bucket=verify-recent-chat
+			elif [ "$merged" = YES ] || [ "$pr" != "-" ]; then bucket=safe
+			else bucket=review; fi ;;
+		esac ;;
+	esac
+
+	printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n" \
+		"$size" "$age" "$merged" "$dirty" "$remote" "$pr" "$last" "$bucket" "$wt"
+done | sort -t$'\t' -k1,1 -rh
+
+rm -f "$prs"

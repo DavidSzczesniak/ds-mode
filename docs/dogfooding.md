@@ -13,7 +13,7 @@ Use this guide after a completed ds-mode session. Record observations, not succe
 5. Classify friction as a target-project problem, a ds-mode problem, or unresolved.
 6. Recommend the smallest change supported by repeated evidence.
 
-Keep deliberate exclusions out of this review. Cloud agents, Graphite, Shipping, Orchestrate, Autopilot, polling, and automatic merging are inactive design decisions. They are not failed dogfooding experiments.
+Keep deliberate exclusions out of this review. Cloud agents, Graphite, Orchestrate, Autopilot, polling, and automatic merging are inactive design decisions, not failed dogfooding experiments. Each PR gets an independent verdict when it opens. Shipping is active without Graphite: it re-checks verdicts and merges only on a merge request.
 
 ## Questions to test
 

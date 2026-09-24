@@ -2,17 +2,18 @@
 
 ds-mode is a user-invoked, pstack-derived engineering workflow. The lead owns design, the visible plan, worker briefs, diff review, and final proof. Fresh workers handle exploration, implementation, review, and judgment.
 
-The active workflow covers local investigation, implementation, verification, and requested GitHub PR work. Cloud agents, Graphite, polling, automatic merging, and fleet orchestration remain available only in the pinned source snapshot.
+The active workflow covers local investigation, implementation, verification, and GitHub PRs: Opening a PR ends every code-changing playbook unless the session is local only. Cloud agents, Graphite, polling, automatic merging, and fleet orchestration remain available only in the pinned source snapshot.
 
 ## Repository contents
 
-- `skills/ds-mode/` contains the direct workflow, active playbooks, and the worker contract. Its [Opening a PR playbook](skills/ds-mode/playbooks/opening-a-pr.md) explains how to propose or create a PR and repair its title or body when asked.
+- `skills/ds-mode/` contains the direct workflow, active playbooks, and the worker contract. Its [Opening a PR playbook](skills/ds-mode/playbooks/opening-a-pr.md) ends every code-changing playbook, and also proposes a PR or repairs its title or body when asked.
 - `skills/principle-*/` contains all 21 pstack principle bodies, copied unchanged from the pin.
 - `skills/tdd/` contains pstack TDD.
 - `skills/control-ui/`, `skills/control-cli/`, and `skills/deslop/` contain the pinned Cursor Team Kit control skills.
 - `skills/architect/`, `skills/arena/`, `skills/how/`, `skills/why/`, and the other pstack supporting skills back the active routes.
 - `skills/create-verification-skill/`, `skills/maintain-verification-skill/`, and `skills/reflect/` remain explicit invocations.
-- Existing Matt Pocock-derived skills remain installed but are not routed from ds-mode.
+- `skills/blast-radius/`, `skills/teach/`, `skills/bro/`, and `skills/recall/` are pstack user tools for explicit invocation.
+- Local skills outside pstack stay installed. The model can invoke `read-the-damn-docs`, `research`, and `grilling` implicitly. `diagnosing-bugs` is explicit-only, so it does not compete with the Bug fix playbook. ds-mode routes only `writing-for-agents`, which replaces Cursor's built-in `create-skill` for agent-facing prose and the Authoring a Skill playbook.
 - `upstream/` contains the complete pinned pstack tree and the selected Cursor Team Kit sources.
 - `docs/upstream-deviations.tsv` records active substitutions and inactive routes.
 - `scripts/check-lineage.sh` verifies source hashes, verbatim active copies, and manifest coverage.
@@ -49,7 +50,7 @@ Run:
 ./scripts/check-lineage.sh
 ```
 
-The full pstack snapshot retains inactive cloud, Graphite, shipping, orchestration, autopilot, and polling code for inspection. Active ds-mode replaces Babysit with one-shot PR Check and Triage.
+The full pstack snapshot retains inactive cloud, Graphite, orchestration, autopilot, and polling code for inspection. Active ds-mode replaces Babysit with one-shot PR Check and Triage and verifies each PR independently when it opens. The local Shipping playbook re-checks those verdicts and merges only on a merge request.
 
 ## Credits
 
