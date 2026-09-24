@@ -86,7 +86,7 @@ Launch every ordinary worker with a fresh context. A brief states the role, task
 
 **Brief every worker you spawn inside a playbook step as a ds-mode worker** (code-writing delegates, ad-hoc helpers). Open its brief with: "You are operating as ds-mode's full agent style. Read `<absolute path of this SKILL.md>` in full before doing any work, including its inline Principles index. Navigate to a leaf `principle-*` skill whenever you apply that principle. This brief overrides that file wherever they conflict." Routed workflow skills (`how`, `why`, `interrogate`, `reflect`, `swarm`, `no-comments`) write their own briefs for independent review; respect what the skill prescribes, don't add the ds-mode read.
 
-One writer owns a checkout. The lead may inspect and plan while that writer runs, but it does not mutate the writer's checkout. Review every worker diff and inspect its evidence. A worker summary is not proof.
+One writer owns a checkout. The lead may inspect and plan while that writer runs, but it does not mutate the writer's checkout. You own every worker's work. Review the diff and write your own summary, don't pass through what it said. A worker summary is not proof. Interrupt-chained resumes silently drop directives, so fire a fresh worker with consolidated scope rather than trusting a "done" summary. A second opinion is the same prompt against a different model; use the other model in [`references/worker-profiles.md`](references/worker-profiles.md). Agreement is high-signal.
 
 ## Writing the reply
 
@@ -125,7 +125,7 @@ A large or cross-cutting effort, or work the user steps away from to trust later
 - **Eval.** Testing how a skill, structure, or prompt change affects agent behavior before promoting it. `playbooks/eval.md`.
 - **PR Check and Triage.** One-shot inspection of CI, review comments, conflicts, draft state, and current PR state. `playbooks/pr-check-and-triage.md`.
 - **Autonomous run.** A long task to drive through bounded lead-controlled iterations. `playbooks/autonomous-run.md`.
-- **Session pickup.** Resuming an exact worker conversation, a resume note, or a pushed branch. `playbooks/session-pickup.md`.
+- **Session pickup.** Resuming or taking over a prior agent's in-flight work from a transcript, resume note, or pushed branch. `playbooks/session-pickup.md`.
 - **Pause safely.** Suspending in-flight work at a durable boundary. `playbooks/pause-safely.md`.
 - **Multi-phase or multi-PR plan.** Work that spans phases or PR-sized units. Route through the [**show-me-your-work**](../show-me-your-work/SKILL.md) skill and use `playbooks/multi-phase-plan.md`.
 - **Worktree and simulator cleanup.** Auditing and reclaiming local disk without risking tracked or untracked work. `playbooks/worktree-cleanup.md`.

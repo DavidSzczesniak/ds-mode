@@ -1,10 +1,10 @@
 ### Pause safely
 
-**You own a clean stop. Leave a checkpoint a cold-start agent can resume from.** Use on an explicit pause or imminent context compaction.
+**You own a clean stop. Leave a checkpoint a cold-start agent can resume from.** For "pause safely", "I need to go offline", "restart Pi", or "board my flight", and when context is about to compact or summarize. This is explicit only. On "keep going", "going to bed, keep going", or "don't stop", do not pause. Those mean continue, and Autonomous run already checkpoints per iteration.
 
-1. Stop at a safe boundary. Finish the current atomic step or back it out. Start nothing new. Interrupt each active worker by its exact canonical target and record the target for later continuation.
-2. Do not cross an irreversible line to pause. Push or open a PR only when the user already requested it.
-3. Make work durable. Commit a clear `wip:` commit only when repository instructions allow commits. Otherwise leave the exact diff and checkout path intact.
-4. Write a resume note outside the conversation. Capture intent, progress, verified evidence, current state, next steps, key files, gotchas, worker roles, canonical child targets and final states, brief paths, result paths, and checkouts. Point to an existing Show Me Your Work trail instead of duplicating it.
+1. Stop at a safe boundary. Finish the current atomic step or back out of it. Never stop mid-edit in a known-broken state. Start nothing new, and interrupt any active workers by their canonical child targets.
+2. Don't cross an irreversible line to pause. No PR and no push unless you already had one out.
+3. Make the work durable. Commit uncommitted edits as one clear `wip:` commit on the current branch so nothing is lost. If the tree is broken, say so in the commit body in one line. When repository instructions forbid commits, leave the diff and checkout path intact instead.
+4. Write the resume note off-context. Capture intent, what you were doing, progress and what's verified, current state, next steps, key files, and gotchas. Add each worker's role, canonical child target, brief, result path, and checkout. For the compaction trigger write it to a file like `/tmp/<slug>-resume.md`, because the in-context plan won't survive summarization. If a show-me-your-work trail exists, point at it instead of duplicating it.
 
-**Reply:** the current unit, what is on disk, commits if any, checkout paths, canonical child targets, and the first action on resume. This is a pause, not a final report.
+**Reply:** where you are in the loop, what's on disk versus still in your head (paths, no diff dumps), the commits you made and whether the tree is clean, and the first action on resume. This is a pause, not a final report. Resume is the Session pickup playbook reading this note.
