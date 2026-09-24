@@ -12,7 +12,8 @@ The active workflow covers local investigation, implementation, verification, an
 - `skills/control-ui/`, `skills/control-cli/`, and `skills/deslop/` contain the pinned Cursor Team Kit control skills.
 - `skills/architect/`, `skills/arena/`, `skills/how/`, `skills/why/`, and the other pstack supporting skills back the active routes.
 - `skills/create-verification-skill/`, `skills/maintain-verification-skill/`, and `skills/reflect/` remain explicit invocations.
-- Existing Matt Pocock-derived skills remain installed. ds-mode routes only `writing-for-agents`, which replaces Cursor's built-in `create-skill` for agent-facing prose and the Authoring a Skill playbook.
+- `skills/blast-radius/`, `skills/teach/`, `skills/bro/`, and `skills/recall/` are pstack user tools for explicit invocation.
+- Local skills outside pstack stay installed. The model can invoke `read-the-damn-docs`, `research`, and `grilling` implicitly. `diagnosing-bugs` is explicit-only, so it does not compete with the Bug fix playbook. ds-mode routes only `writing-for-agents`, which replaces Cursor's built-in `create-skill` for agent-facing prose and the Authoring a Skill playbook.
 - `upstream/` contains the complete pinned pstack tree and the selected Cursor Team Kit sources.
 - `docs/upstream-deviations.tsv` records active substitutions and inactive routes.
 - `scripts/check-lineage.sh` verifies source hashes, verbatim active copies, and manifest coverage.

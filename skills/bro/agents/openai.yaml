@@ -1,0 +1,6 @@
+interface:
+  display_name: "Bro"
+  short_description: "Explicit bro workflow"
+
+policy:
+  allow_implicit_invocation: false

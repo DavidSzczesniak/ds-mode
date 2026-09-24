@@ -1,0 +1,6 @@
+interface:
+  display_name: "Recall"
+  short_description: "Explicit recall workflow"
+
+policy:
+  allow_implicit_invocation: false
