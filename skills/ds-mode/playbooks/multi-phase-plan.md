@@ -23,7 +23,7 @@
 
 One box is one unit of work. Every box names the evidence that checks it. A nested box is a sub-step of the box above it. Check a box only when its evidence exists, a file, a log line, a screenshot, a test run, or a SHA. The body is a how-to. The appendices explain and record.
 
-The program runs `playbooks/autonomous-run.md` over the PRs, each through its build playbook, and `playbooks/shipping.md` for landing. The swarm verdict below is each PR's Shipping verdict. <Who merges, and which PR ids are the operator's items that stop at merge-ready.>
+The program runs `playbooks/autonomous-run.md` over the PRs, each through its build playbook, and `playbooks/shipping.md` for landing. The swarm verdict below is each PR's independent verdict. <Who merges, and which PR ids are the operator's items that stop at merge-ready.>
 
 Tests alone are not sufficient verification. A PR is verified only when its unit, live, and perf boxes are all checked.
 
@@ -57,7 +57,7 @@ Tests alone are not sufficient verification. A PR is verified only when its unit
 
 - [ ] At the merge-ready head SHA, run the swarm per [swarm](../../swarm/SKILL.md). One gates lane. The live lanes from the PR's **Verify, live** block. The perf lane from its **Verify, perf** block. One audit lane that reads the diff and the receipts and distrusts the PR body.
 - [ ] Clean only when every lane is `PASS`. Post the verdict on the PR with its screenshots. Findings go back to the owner. A new head gets a fresh swarm and a fresh verdict.
-- [ ] Land per [Shipping](shipping.md), with its patch-id rule. Merge only on the operator's explicit request.
+- [ ] Land per [Shipping](shipping.md), with its patch-id rule. Merge only on the operator's merge request.
 
 ### Boot recipe, for every live lane
 
@@ -114,7 +114,7 @@ Each live lane runs as a fresh Review worker at the PR head and drives the surfa
 - [ ] The lead's clean verdict at the exact head SHA.
 - [ ] Bugbot triage done.
 - [ ] Rebased onto current trunk after the verdict, patch-id unchanged.
-- [ ] <The operator merges, or the lead merges per Shipping on the operator's explicit request.>
+- [ ] <The operator merges, or the lead merges per Shipping on the operator's merge request.>
 
 ## Close the program
 

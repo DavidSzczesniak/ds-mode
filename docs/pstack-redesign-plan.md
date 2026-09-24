@@ -101,13 +101,13 @@ Keep these local playbooks active:
 - Worktree Cleanup
 - Opening a PR
 - PR Check and Triage
+- Shipping, without Graphite: it re-checks the verdicts Opening a PR posts and merges only on a merge request
 
 Replace Babysit with one-shot PR Check and Triage. It may inspect CI, review comments, conflicts, and current PR state when requested. It does not poll, retry indefinitely, merge, or keep a queue alive.
 
 Keep these routes in the pinned upstream tree but remove them from active routing:
 
 - Babysit
-- Shipping
 - Orchestrate
 - Autopilot Full
 - Autopilot Stack

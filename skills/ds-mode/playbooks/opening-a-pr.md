@@ -46,4 +46,13 @@ Add `Review focus` for specific review questions. Add `Risks and trade-offs` or 
 
 **Verify.** After creating or repairing the PR, read it back with `gh pr view`. Check the rendered title, body, base, head, draft state, and URL. Correct any mismatch before reporting completion.
 
-Opening a PR does not start PR Check and Triage. Post the URL and keep building. A later status request routes to `playbooks/pr-check-and-triage.md`.
+**Verdict.** After creating the PR or pushing new commits to it, the PR opener gets an independent verdict for the head, unless a verdict with a matching `git patch-id` already covers it. Inside a multi-phase plan, skip this step; the plan's swarm verdict replaces it.
+
+- A PR that changes no behavior says so in its body and needs no verdict.
+- Launch one fresh Review worker per `../references/workers.md`. Brief it with the PR URL, the head SHA, and the checkout path. Leave that checkout unchanged until the verdict returns.
+- The worker exercises the real surface ([control-ui](../../control-ui/SKILL.md) or [control-cli](../../control-cli/SKILL.md) as the change demands) against base versus head and returns `PASS`, `PASS+NOTES` or `FAIL`. It posts the verdict on the PR with the head SHA and the screenshots that prove it (`gh pr comment <number> --body-file <file> --attach <path>`).
+- When the PR changes an interaction, the worker also records a 30 to 60 second video of the change and attaches it.
+- On `FAIL`, fix the findings, push, repeat Change and Verify, and get a new verdict from a fresh worker.
+- Independent means a verdict from an agent that did not write the code. CI green is not a verdict, and an approving bot review is not a verdict.
+
+Opening a PR does not start PR Check and Triage. Post the URL and the verdict, and keep building. A later status request routes to `playbooks/pr-check-and-triage.md`.

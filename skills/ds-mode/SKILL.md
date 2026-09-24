@@ -27,7 +27,7 @@ Remaining triggers:
 - Delivering a UI, IDE, or CLI → the matching control skill. Use [**control-cli**](../control-cli/SKILL.md) for CLIs and TUIs, or [**control-ui**](../control-ui/SKILL.md) for browser, Electron, and web UIs. For bug fixes, reproduce first on the same surface yourself; hand to the user only under the narrow Bug fix step 1 exception.
 - Any PR-status request → the **PR Check and Triage** playbook (`playbooks/pr-check-and-triage.md`). That includes "check on PR X", "anything outstanding on X", CI, conflicts, and triaging existing review comments. Inspect once and report the current state.
 - Reviewing the code of a PR or branch ("review this PR", "review this branch") → the [**interrogate**](../interrogate/SKILL.md) skill.
-- Asked to ship, land, or merge a PR or stack, or whether it is safe to merge → the **Shipping** playbook (`playbooks/shipping.md`). Green is not safe. Nothing merges before an independent per-PR verdict, and only the contiguous verified run from the root lands.
+- Asked to ship, land, or merge a PR or stack, or whether it is safe to merge → the **Shipping** playbook (`playbooks/shipping.md`). Green is not safe. Nothing merges without an independent per-PR verdict that still describes its head, unless the PR changes no behavior, and only the contiguous verified run from the root lands.
 - Bugbot or the agentic security review commented → skeptical posture. They catch real bugs and also file non-issues and nitpicks, so assess each on its merits and dismiss noise with a concrete reason instead of churning code. Triage fix / dismiss / ask per `references/bugbot-triage.md`.
 - Broken skill mid-task → fix it in its own PR, or its own commit under a local-only override. Don't block. Don't silently work around it.
 - Long, autonomous, or multi-phase work, or any task the user steps away from to review later ("going to bed", "trust it when i'm back", "run until X") → a decision trail via the [**show-me-your-work**](../show-me-your-work/SKILL.md) skill. Commit it when stakes need an auditable record; keep it local otherwise.
@@ -78,7 +78,7 @@ Read the leaf skill in full for any principle you apply. Each entry names when i
 
 One writer may use a clean or dedicated active checkout. Parallel writers, competing experiments, and tracked-file conflicts use separate worktrees with disjoint ownership. Untracked files alone do not make a checkout dirty. They are protected from deletion, overwrite, and incidental adoption.
 
-Stage and commit verified local units by default when repository instructions allow it. Pushing a branch and opening a PR are reversible and proceed: Opening a PR ends every code-changing playbook. Create a remote only when requested. Merge only on an explicit request, through Shipping. **Always pause** for irreversible writes: force-push to shared branches, deploys, data deletion, customer messages.
+Stage and commit verified local units by default when repository instructions allow it. Pushing a branch and opening a PR are reversible and proceed: Opening a PR ends every code-changing playbook. Create a remote only when requested. Merge only on a merge request ("ship it", "land", or "merge"), through Shipping. **Always pause** for irreversible writes: force-push to shared branches, deploys, data deletion, customer messages.
 
 **Session overrides:** "Don't stop" / "going to bed" / "run until done" / "be fully autonomous" → keep going. "Local only" / "no PR" → skip Opening a PR and keep commits local.
 
@@ -132,7 +132,7 @@ A large or cross-cutting effort, or work the user steps away from to trust later
 - **Authoring or modifying a skill.** Writing or editing a SKILL.md. `playbooks/authoring-a-skill.md`.
 - **Eval.** Testing how a skill, structure, or prompt change affects agent behavior before promoting it. `playbooks/eval.md`.
 - **PR Check and Triage.** One-shot inspection of CI, review comments, conflicts, draft state, and current PR state. `playbooks/pr-check-and-triage.md`.
-- **Shipping.** The half after PR Check and Triage. Independently verifying each PR on the real surface, then reporting or, on an explicit merge request, landing the contiguous verified run. `playbooks/shipping.md`.
+- **Shipping.** The merge half. Confirming each PR's independent verdict still holds at its head, then reporting or, on a merge request, landing the contiguous verified run. `playbooks/shipping.md`.
 - **Autonomous run.** A long task to drive to completion without stopping ("run until done", "keep going until X"), in bounded lead-controlled iterations. `playbooks/autonomous-run.md`.
 - **Session pickup.** Resuming or taking over a prior agent's in-flight work from a transcript, resume note, or pushed branch. `playbooks/session-pickup.md`.
 - **Pause safely.** Suspending in-flight work cleanly so it can be resumed, on an explicit pause, going offline, a Pi restart, or imminent context compaction. The complement to Session pickup. Full steps: `playbooks/pause-safely.md`.

@@ -50,7 +50,7 @@ Run:
 ./scripts/check-lineage.sh
 ```
 
-The full pstack snapshot retains inactive cloud, Graphite, orchestration, autopilot, and polling code for inspection. Active ds-mode replaces Babysit with one-shot PR Check and Triage and runs a local Shipping playbook that verifies each PR independently and merges only on an explicit request.
+The full pstack snapshot retains inactive cloud, Graphite, orchestration, autopilot, and polling code for inspection. Active ds-mode replaces Babysit with one-shot PR Check and Triage and verifies each PR independently when it opens. The local Shipping playbook re-checks those verdicts and merges only on a merge request.
 
 ## Credits
 
