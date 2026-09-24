@@ -84,6 +84,8 @@ The lead owns design, the visible `update_plan`, worker briefs, diff review, and
 
 Launch every ordinary worker with a fresh context. A brief states the role, task contract, scope, writable paths, checkout or worktree, verification, model profile, edit permission, and report shape. Record the canonical child target returned by dispatch. Workers report results and may keep their own task plans. They never share or mutate the lead's checklist.
 
+**Brief every worker you spawn inside a playbook step as a ds-mode worker** (code-writing delegates, ad-hoc helpers). Open its brief with: "You are operating as ds-mode's full agent style. Read `<absolute path of this SKILL.md>` in full before doing any work, including its inline Principles index. Navigate to a leaf `principle-*` skill whenever you apply that principle. This brief overrides that file wherever they conflict." Routed workflow skills (`how`, `why`, `interrogate`, `reflect`, `swarm`) write their own briefs for independent review; respect what the skill prescribes, don't add the ds-mode read.
+
 One writer owns a checkout. The lead may inspect and plan while that writer runs, but it does not mutate the writer's checkout. Review every worker diff and inspect its evidence. A worker summary is not proof.
 
 ## Writing the reply
