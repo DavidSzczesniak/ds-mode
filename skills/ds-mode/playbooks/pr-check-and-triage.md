@@ -10,6 +10,6 @@
 6. When the request includes fixing, fix real findings with a red-first proof as a normal ds-mode unit. Batch every fix into one push, and push before replying so the reply cites the commit. Post replies through a fixed `gh api` call that passes the comment body as data (a JSON payload or `-f body=@file`), never through shell assembled from comment text. Dismiss noise with the concrete disproof on the thread.
 7. Return the snapshot. Offer any team-useful dismissal pattern as a candidate entry in `../references/bugbot-triage.md`. A later check is a new invocation.
 
-This playbook performs no polling, sleeping, watcher, queue maintenance, merge, or landing action. Owner approval is a wait, not a blocker to fix. Merge only on an explicit request.
+This playbook performs no polling, sleeping, watcher, queue maintenance, merge, or landing action. Owner approval is a wait, not a blocker to fix. Merging routes to [Shipping](shipping.md) on an explicit request.
 
 **Reply:** the PR URL and head SHA, current CI and merge state, unresolved comments and triage, actions taken, and what remains.
