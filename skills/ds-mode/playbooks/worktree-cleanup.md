@@ -1,12 +1,14 @@
 ### Worktree and simulator cleanup
 
-**You own the disk and the safety gate.** Deletion is irreversible. Audit first and ask before deleting protected state.
+**You own the disk and the safety gate.** Prune merged or abandoned git worktrees and stale iOS simulators to reclaim space. Deletion is irreversible, so every step guards against deleting something in use or holding uncommitted work.
 
-1. Record `df -h /`, then run `scripts/worktree-audit.sh`. It reads paths from `git worktree list` and reports size, age, branch reachability, merge state, PR state, tracked edits, and untracked files.
-2. Supply known active worker and worktree associations. The audit has no liveness oracle. A reported bucket is advice, not permission.
-3. Inspect every candidate. Any tracked edit or untracked file is protected. Name each protected path. Never delete, overwrite, or adopt an untracked file incidentally.
-4. Ask before deleting a worktree or file that holds protected state. A clean, merged worktree not owned by an active child may proceed only under the user's deletion request.
-5. Remove each confirmed worktree with `git worktree remove <path>`, using `--force` only after inspecting all remaining paths. If a directory survives, inspect every path before any direct removal. Run `git worktree prune`, record `df -h /`, and re-list worktrees.
-6. For requested simulator cleanup, inspect the target set before running `xcrun simctl` deletion commands. Treat build directories and package caches as separate targets that need the same explicit scope.
+1. Snapshot and audit. Record `df -h /`, then run `scripts/worktree-audit.sh` (the [**build-the-lever**](../../principle-build-the-lever/SKILL.md) principle). It reads paths from `git worktree list`, never hand-typed, since a hand-typed `myrepo-worktrees/x` misses one that lives somewhere else (the [**encode-lessons-in-structure**](../../principle-encode-lessons-in-structure/SKILL.md) principle). It classifies each worktree by size, age, merge state, uncommitted work, PR state, and the newest Pi session that touched it, then suggests a bucket. The session scan is slow, so background it.
+2. The bucket is advice, not permission. The active sessions and workers are the real artifact (the [**prove-it-works**](../../principle-prove-it-works/SKILL.md) principle). Get that set from the user and `list_agents`, and cross-check every candidate. The lever can mark `safe` a worktree an active session still uses, so the active set wins.
+3. Verify usage before deleting. For every `verify-recent-chat` row, or anything you doubt, fan fresh Explore workers out to read the Pi sessions and report whether the session is ongoing and which worktrees it touches (the [**guard-the-context-window**](../../principle-guard-the-context-window/SKILL.md) principle, sessions are bulk). An active session spawns arena and repro trees into sibling worktrees through workers, and those are in use even when their names never appear in its prompt.
+4. Pause on irreversible loss. `wip:N` is N tracked uncommitted edits. Show the diff and get a decision first, since removing a clean worktree is recoverable from its branch but uncommitted work is gone. `scratch:N` is untracked files, which are protected from deletion. Name the files and ask before removing the worktree. Per Autonomy, clean and merged and not-in-use proceeds; `wip`, `scratch`, and in-use pause.
+5. Prune the confirmed set. Per path, `git worktree remove --force <path>`; if the dir survives on ignored build artifacts, `rm -rf` it, then `git worktree prune`. Branch refs survive, so no commits are lost. Confirm with `df -h /` and re-list.
+6. Simulators and other reclaimers. Simulators are usually the next-biggest win. `xcrun simctl --set testing delete all` (XCTestDevices clones), `xcrun simctl delete unavailable`, and `xcrun simctl runtime list` then `runtime delete <id>` for old runtimes. More when needed: Xcode `DerivedData` and `iOS DeviceSupport`; package caches (pnpm, uv, brew, yarn). Clear only caches the user has not said to keep.
 
-**Reply:** disk use before and after, space reclaimed, worktrees pruned, every protected untracked path, and one reason for each worktree held back.
+This is the one playbook that deletes user state with no code review to catch a slip, so the gates above are the review.
+
+**Reply:** `df -h /` before and after with space reclaimed, the worktrees pruned, and a one-line reason for each held back (in-use by which session, or uncommitted work).
