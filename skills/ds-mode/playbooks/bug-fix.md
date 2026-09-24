@@ -12,6 +12,6 @@ Be scientific. Every shipped line traces to runtime evidence. Belt-and-suspender
    This is the canonical [**sequence-verifiable-units**](../../principle-sequence-verifiable-units/SKILL.md) principle skill, the failing test first and the fix on top.
 6. Run [**Opening a PR**](opening-a-pr.md) only when the user requested a PR.
 
-Investigation may fan out [**how**](../../how/SKILL.md) and [**why**](../../why/SKILL.md) to fresh Explore workers with separate briefs.
+Investigation fans out [**how**](../../how/SKILL.md) + [**why**](../../why/SKILL.md) as parallel fresh Explore workers.
 
 **Reply:** what was broken, root cause, fix, how you verified. Paste failing-then-passing repro output verbatim.

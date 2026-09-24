@@ -27,7 +27,7 @@ Remaining triggers:
 - Delivering a UI, IDE, or CLI → the matching control skill. Use [**control-cli**](../control-cli/SKILL.md) for CLIs and TUIs, or [**control-ui**](../control-ui/SKILL.md) for browser, Electron, and web UIs. For bug fixes, reproduce first on the same surface yourself; hand to the user only under the narrow Bug fix step 1 exception.
 - Any PR-status request → the **PR Check and Triage** playbook (`playbooks/pr-check-and-triage.md`). That includes "check on PR X", "anything outstanding on X", CI, conflicts, and review comments. Inspect once and report the current state.
 - Bugbot or the agentic security review commented → skeptical posture. They catch real bugs and also file non-issues and nitpicks, so assess each on its merits and dismiss noise with a concrete reason instead of churning code. Triage fix / dismiss / ask per `references/bugbot-triage.md`.
-- Broken skill mid-task → fix it as a separate verified unit when it blocks the accepted outcome. Otherwise report it.
+- Broken skill mid-task → fix it in its own PR when the session opens PRs, otherwise in its own commit. Don't block. Don't silently work around it.
 - Long, autonomous, or multi-phase work, or any task the user steps away from to review later ("going to bed", "trust it when i'm back", "run until X") → a decision trail via the [**show-me-your-work**](../show-me-your-work/SKILL.md) skill. Commit it when stakes need an auditable record; keep it local otherwise.
 
 ## Principles
@@ -72,9 +72,13 @@ Read the leaf skill in full for any principle you apply. Each entry names when i
 
 ## Autonomy
 
-**Just do it.** Reversible local work proceeds without asking. One writer may use a clean or dedicated active checkout. Parallel writers, competing experiments, and tracked-file conflicts use separate worktrees with disjoint ownership. Untracked files alone do not make a checkout dirty. They are protected from deletion, overwrite, and incidental adoption.
+**Just do it.** Use any available tool or CLI. Reversible work and external actions (ticket updates, kicking off evals) proceed without asking. Team chat asks first.
 
-Stage and commit verified local units by default when repository instructions allow it. Push, publish, open a PR, create a remote, or merge only when requested. Pause for irreversible writes such as force-pushing shared branches, deployments, data deletion, and customer messages.
+One writer may use a clean or dedicated active checkout. Parallel writers, competing experiments, and tracked-file conflicts use separate worktrees with disjoint ownership. Untracked files alone do not make a checkout dirty. They are protected from deletion, overwrite, and incidental adoption.
+
+Stage and commit verified local units by default when repository instructions allow it. Push, publish, open a PR, create a remote, or merge only when requested. **Always pause** for irreversible writes: force-push to shared branches, deploys, data deletion, customer messages.
+
+**Session overrides:** "Don't stop" / "going to bed" / "run until done" / "be fully autonomous" → keep going.
 
 **No is an acceptable answer.** Asked whether to do something, invited to add scope, or shown an approach, reply with your real judgment. Decline, push back, or say "this doesn't earn its place" when true. A recommendation is a judgment, not a validation. Agreement is not the default, candor over sycophancy.
 
@@ -107,6 +111,8 @@ Comments follow the same rule as the reply. Write them clean as you go; a flat "
 
 ## Playbooks
 
+On a new task in the same session, re-match the playbook when one fits or rigor is needed; a casual turn or an explicit opt-out doesn't need either.
+
 Your first `update_plan` actions are the matched playbook's steps, copied in verbatim, before any task-specific items and before you reason about the task. The failure mode is reading a playbook then writing a bespoke plan that drops its named steps (`architect`, the throughput checkpoint). A step you choose not to do stays in the list with a one-line `skip: <reason>`; skipping silently is not allowed. Match the task to a playbook below, open its file, and copy its steps in verbatim.
 
 A large or cross-cutting effort, or work the user steps away from to trust later, routes to the [**figure-it-out**](../figure-it-out/SKILL.md) skill even when a narrower playbook like Feature fits. Use [**figure-it-out**](../figure-it-out/SKILL.md) whenever no bundled playbook fits. It designs one rigorous run with an audit trail.
@@ -124,9 +130,9 @@ A large or cross-cutting effort, or work the user steps away from to trust later
 - **Authoring or modifying a skill.** Writing or editing a SKILL.md. `playbooks/authoring-a-skill.md`.
 - **Eval.** Testing how a skill, structure, or prompt change affects agent behavior before promoting it. `playbooks/eval.md`.
 - **PR Check and Triage.** One-shot inspection of CI, review comments, conflicts, draft state, and current PR state. `playbooks/pr-check-and-triage.md`.
-- **Autonomous run.** A long task to drive through bounded lead-controlled iterations. `playbooks/autonomous-run.md`.
+- **Autonomous run.** A long task to drive to completion without stopping ("run until done", "keep going until X"), in bounded lead-controlled iterations. `playbooks/autonomous-run.md`.
 - **Session pickup.** Resuming or taking over a prior agent's in-flight work from a transcript, resume note, or pushed branch. `playbooks/session-pickup.md`.
-- **Pause safely.** Suspending in-flight work at a durable boundary. `playbooks/pause-safely.md`.
+- **Pause safely.** Suspending in-flight work cleanly so it can be resumed, on an explicit pause, going offline, a Pi restart, or imminent context compaction. The complement to Session pickup. Full steps: `playbooks/pause-safely.md`.
 - **Multi-phase or multi-PR plan.** Work that spans phases or PR-sized units. Route through the [**show-me-your-work**](../show-me-your-work/SKILL.md) skill and use `playbooks/multi-phase-plan.md`.
 - **Worktree and simulator cleanup.** Auditing and reclaiming local disk without risking tracked or untracked work. `playbooks/worktree-cleanup.md`.
 - **Opening a PR.** Prepare or create a PR when requested, or repair an existing PR's title or body when explicitly requested. `playbooks/opening-a-pr.md`.
