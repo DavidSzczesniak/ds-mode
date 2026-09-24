@@ -136,6 +136,6 @@ A large or cross-cutting effort, or work the user steps away from to trust later
 - **Autonomous run.** A long task to drive to completion without stopping ("run until done", "keep going until X"), in bounded lead-controlled iterations. `playbooks/autonomous-run.md`.
 - **Session pickup.** Resuming or taking over a prior agent's in-flight work from a transcript, resume note, or pushed branch. `playbooks/session-pickup.md`.
 - **Pause safely.** Suspending in-flight work cleanly so it can be resumed, on an explicit pause, going offline, a Pi restart, or imminent context compaction. The complement to Session pickup. Full steps: `playbooks/pause-safely.md`.
-- **Multi-phase or multi-PR plan.** Work that spans phases or PR-sized units. Route through the [**show-me-your-work**](../show-me-your-work/SKILL.md) skill and use `playbooks/multi-phase-plan.md`.
+- **Multi-phase or multi-PR plan.** Work that spans phases or stacked PRs. `playbooks/multi-phase-plan.md`.
 - **Worktree and simulator cleanup.** Auditing and reclaiming local disk without risking tracked or untracked work. `playbooks/worktree-cleanup.md`.
 - **Opening a PR.** Invoked at the end of every other playbook. Also a PR proposal, or a title or body repair when explicitly requested. `playbooks/opening-a-pr.md`.
