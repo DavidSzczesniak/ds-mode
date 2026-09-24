@@ -34,3 +34,5 @@ Record the models and thinking levels used by the lead, candidates, and reviewer
 Label reviews within one known model family `same-family independent review`. For different families, name the families and their workers. If the family is unknown, say so. Different providers or thinking levels alone do not establish model-family diversity.
 
 Independent review requires a fresh worker. A follow-up in the original conversation is not a fresh review.
+
+Where pstack asks for a different model family, use one once it is configured here. Until then, a second opinion is the same prompt against the other configured model (`gpt-6-sol` or `gpt-6-astra`), labelled `same-family independent review`.

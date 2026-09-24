@@ -33,7 +33,7 @@ ts	phase	decision	why	evidence	result
 
 ## Logging a row
 
-Write each entry the way you'd tell a teammate what you did. Plain words, concrete actions, no AI speak or abstract jargon (the **unslop** skill applies to log text too). A reviewer should understand each row without decoding it.
+Write each entry the way you'd tell a teammate what you did. Plain words, concrete actions, no AI speak or abstract jargon (the [**unslop**](../unslop/SKILL.md) skill applies to log text too). A reviewer should understand each row without decoding it.
 
 Use the helper so rows stay well-formed: `scripts/log.sh <logfile> <phase> <decision> <why> <evidence> <result>`. It stamps `ts`, writes the header on first use, strips stray tabs/newlines, and prefixes any cell starting with `=`, `+`, `-`, or `@` with a single quote so a reviewer opening the log in a spreadsheet doesn't trigger formula execution. A bare `printf` appending a row works too, but mind those same bytes if cells come from generated or user-supplied text.
 
@@ -49,11 +49,11 @@ Commit it only when the work is ambitious enough that a reviewer needs the trail
 
 - One row is one decision or checkpoint. If it doesn't fit on one line, the decision isn't crisp yet.
 - Append-only. A wrong call gets a new row that supersedes it. Never edit or delete history.
-- Prefer evidence produced by committed scripts over hand-made one-offs, so a reviewer can re-run it (the **encode-lessons-in-structure** principle skill).
+- Prefer evidence produced by committed scripts over hand-made one-offs, so a reviewer can re-run it (the [**encode-lessons-in-structure**](../principle-encode-lessons-in-structure/SKILL.md) principle skill).
 
 ## Audit the log against the transcript
 
-At the end of the run, before handing back, check the log told the truth. Use the exact lead transcript when the host exposes it. Otherwise audit against the current conversation and durable command artifacts. Do not search unrelated sessions. Walk the log against what actually happened:
+At the end of the run, before handing back, check the log told the truth. Read this run's session file at `$PI_SESSION_FILE` (Pi exposes it to bash). When it is unset, say so and audit against the conversation. Don't search unrelated sessions; that reads unrelated private chats. Walk the log against what actually happened:
 
 - Every row maps to a real action. Cut invented or aspirational entries.
 - Each row's evidence resolves and shows what the row claims.
@@ -62,18 +62,16 @@ At the end of the run, before handing back, check the log told the truth. Use th
 
 Fix the log, not the story. If the work diverged from what a row claims, the row is wrong.
 
-## Fresh review of the trail
+## Cross-model review of the trail
 
-Before handing back, launch a fresh Judgment worker per `../ds-mode/references/workers.md`. Give it the audit trail, exact transcript or session digest, and no edit permission. The worker flags what the user should inspect. Disclose the actual review composition per `../ds-mode/references/worker-profiles.md`.
-
-The review scans for:
+Before handing back, you must launch a fresh Judgment worker per `../ds-mode/references/workers.md`, on a different model family from the one that did the work. While only one family is configured, run it on the configured model that did not do most of the work, overriding the Judgment profile's default model, and label the review per `../ds-mode/references/worker-profiles.md`. Self-review is not a substitute; the point is fresh eyes you cannot bring yourself. The worker reads the audit trail and the run's session file, then flags what the user should pay attention to. Not a redo of the work, a scan for what's suboptimal or risky.
 
 - Decisions logged with weak or absent evidence.
-- Verification skipped or claimed without proof in the session.
-- Risky choices that were premature, widened scope, or hid a symptom.
-- Gaps the user would miss on a casual skim.
+- Verification steps skipped or claimed without proof in the transcript.
+- Choices that look risky in hindsight (premature, scope-creeping, papering over a symptom).
+- Gaps the user would otherwise miss on a casual skim.
 
-Every reply for a run that produced a trail ends with an `Attention` section. Start with the review label and actual reviewer model and family on its own line, per `../ds-mode/references/worker-profiles.md`. List each flag with its exact row or session moment. `No flags` is valid. A model name alone is not.
+Every reply for a run that produced a trail ends with an "Attention" section. Lead with the reviewer's model and its review label on its own line (`reviewed by <model>, <label>`), then list each flag pointing to specific rows or moments. "No flags" is a valid value; the model name is not. The self-audit asks if the log told the truth; this asks what the user should still scrutinize even when it did.
 
 ## Reviewing the trail
 
