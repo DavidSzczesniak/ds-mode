@@ -54,6 +54,12 @@ with tempfile.TemporaryDirectory(prefix="ds-mode-install-") as temporary:
     assert result.stdout == "", result.stdout
     assert [(link.lstat().st_ino, link.lstat().st_mtime_ns) for link in links] == before
 
+def stable(path):
+    # Access time is excluded: Linux updates it when the installer reads the symlink.
+    status = path.lstat()
+    return status.st_ino, status.st_mode, status.st_size, status.st_mtime_ns
+
+
 for destination in ("shared", "claude"):
     for conflict in ("file", "directory", "symlink"):
         with tempfile.TemporaryDirectory(prefix="ds-mode-conflict-") as temporary:
@@ -70,8 +76,6 @@ for destination in ("shared", "claude"):
                 (target / "keep-me").write_text("keep me")
             else:
                 target.symlink_to(root / "missing-unrelated-skill")
-            # Access time is excluded: Linux updates it when the installer reads the symlink.
-            stable = lambda path: (lambda st: (st.st_ino, st.st_mode, st.st_size, st.st_mtime_ns))(path.lstat())
             before = stable(target)
 
             result = install(skills_root, claude_root)
