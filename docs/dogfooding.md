@@ -27,7 +27,7 @@ Keep deliberate exclusions out of this review. Cloud agents, Graphite, Orchestra
 8. Do Control UI and Control CLI produce better proof than ad hoc verification instructions?
 9. Does one-shot PR Check and Triage retain the useful part of Babysit?
 10. Are the four role profiles sufficient without pstack's larger model matrix?
-11. Does each worker report stay at or below 800 words with no raw source or command dump?
+11. Does each worker report give file pointers instead of raw source or command dumps?
 12. Does the lead use multi-minute waits without progress checks, duplicated exploration, or truncated output?
 13. Does the final lead context stay within the task's recorded budget after a fresh review passes?
 
