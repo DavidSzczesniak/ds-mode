@@ -64,7 +64,7 @@ Correct the log, not the story. The audit never edits or removes a row, even an 
 
 ## Cross-model review of the trail
 
-Before handing back, launch a fresh Judgment worker per `../ds-mode/references/workers.md`, on a different model family from the one that did the work. While only one family is configured, run it on the configured model that did not do most of the work, overriding the Judgment profile's default model, and label the review per `../ds-mode/references/worker-profiles.md`. Self-review is not a substitute. The worker reads the audit trail and the run's session file, then flags what the user should pay attention to. Not a redo of the work, a scan for what's suboptimal or risky.
+Before handing back, launch a fresh Judgment worker per `../ds-mode/references/workers.md`, on a different model family from the one that did the work. The Judgment profile runs on Anthropic. When most of the work ran on Anthropic, use the Judgment profile's OpenAI second-opinion model instead. Label the review per `../ds-mode/references/worker-profiles.md`. Self-review is not a substitute. The worker reads the audit trail and the run's session file, then flags what the user should pay attention to. Not a redo of the work, a scan for what's suboptimal or risky.
 
 - Decisions logged with weak or absent evidence.
 - Verification steps skipped or claimed without proof in the transcript.

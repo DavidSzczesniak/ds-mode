@@ -25,10 +25,10 @@ Three fresh workers in parallel per `../ds-mode/references/workers.md`, each wit
 | Lens | Profile | Prompt template |
 |---|---|---|
 | Judgment | Judgment | `references/judgment-reviewer.md` |
-| Tooling | Review role on `gpt-6-sol`, `high` thinking | `references/tooling-reviewer.md` |
+| Tooling | Review role on `openai-codex` / `gpt-6-sol`, `high` thinking, `runtime: "pi"` | `references/tooling-reviewer.md` |
 | Divergent | Judgment | `references/divergent-reviewer.md` |
 
-Pass each template verbatim, substituting the session file path or digest where marked. Reviewers return findings in their task result. The Tooling lens runs on the other configured model so the lenses do not share one model, as upstream's did not. Disclose the review composition per `../ds-mode/references/worker-profiles.md`.
+Pass each template verbatim, substituting the session file path or digest where marked. Reviewers return findings in their task result. The Tooling lens runs on the OpenAI family while Judgment runs on Anthropic, so the lenses span two families, as upstream's did. Disclose the review composition per `../ds-mode/references/worker-profiles.md`.
 
 ### 3. Synthesize
 

@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Interrogate
 
-Launch fresh reviewers to adversarially review code changes. Each reviewer gets the same prompt and rubric. Independence requires fresh sessions and isolated reads. Record the actual model-family composition per `../ds-mode/references/worker-profiles.md`; independent runs alone do not establish model-family diversity.
+Launch one fresh reviewer per configured model family to adversarially review code changes. Each reviewer gets the same prompt and rubric. The adversarial signal comes from model diversity. Independence requires fresh sessions and isolated reads. Record the actual model-family composition per `../ds-mode/references/worker-profiles.md`; independent runs alone do not establish model-family diversity.
 
 The deliverable is a synthesized verdict. Do NOT auto-apply changes.
 
@@ -33,7 +33,7 @@ Write one clear paragraph. If you're unsure about the intent, ask the user befor
 
 ## Step 3, Spawn reviewers
 
-Launch at least two fresh Review workers. Follow `../ds-mode/references/workers.md`. Give each the same intent, diff, and references. Use the Review profile by default. Give reviewers no edit permission.
+Launch one fresh Review worker per family in `../ds-mode/references/worker-profiles.md`: the Review profile, plus its second-opinion model from the other family. Follow `../ds-mode/references/workers.md`. Give each the same intent, diff, and references. Give reviewers no edit permission.
 
 Read `references/reviewer-prompt.md` and fill in the template with:
 

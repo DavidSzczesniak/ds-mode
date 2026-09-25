@@ -10,8 +10,8 @@ Pass `role`, `runtime`, `model`, and `thinking` from these tables on every `spaw
 |---|---|---|---|---|
 | `explore` | `pi` | OpenAI | `openai-codex` / `gpt-6-sol` | `medium` |
 | `implement` | `pi` | OpenAI | by tier, below | by tier, below |
-| `review` | `pi` | OpenAI | `openai-codex` / `gpt-6-astra` | `medium` |
-| `judgment` | `pi` | OpenAI | `openai-codex` / `gpt-6-astra` | `high` |
+| `review` | `claude` | Anthropic | `anthropic` / `claude-opus-5-5` | `high` |
+| `judgment` | `claude` | Anthropic | `anthropic` / `claude-opus-5-5` | `high` |
 
 A model is written `provider` / `id` and passed as `model: {provider, id}`.
 
@@ -37,8 +37,8 @@ Follow-ups, reloads, and cold continuation retain the worker's settings, includi
 
 Record the models and thinking levels used by the lead, candidates, and reviewers. A receipt's `selection` records task-start settings. Consult native session entries if settings changed during the task.
 
-Label reviews within one known model family `same-family independent review`. For different families, name the families and their workers. If the family is unknown, say so. Different providers or thinking levels alone do not establish model-family diversity.
+Writers run on OpenAI through Pi, and review and judgment run on Anthropic through Claude Code, so review is cross-family by default, as pstack intends. Name the families and their workers, for example `cross-family review: writer OpenAI gpt-6-sol, reviewer Anthropic claude-opus-5-5`. Label reviews within one known model family `same-family independent review`. If the family is unknown, say so. Different providers or thinking levels alone do not establish model-family diversity.
 
 Independent review requires a fresh worker. A follow-up in the original conversation is not a fresh review.
 
-Where pstack asks for a different model family, use one once it is configured here. Until then, a second opinion is the same prompt against the other configured model (`gpt-6-sol` or `gpt-6-astra`), labelled `same-family independent review`.
+Where pstack asks for a different model family, use the other family from these tables. A second opinion is the same prompt with the other family's model at the same role. A second opinion on a Claude review or judgment runs on `openai-codex` / `gpt-6-astra` at `high` with `runtime: "pi"`. A second opinion on OpenAI work runs on `anthropic` / `claude-opus-5-5` at `high` with `runtime: "claude"`.
