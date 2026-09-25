@@ -18,9 +18,9 @@ Use one writer per checkout. The lead may inspect the checkout while the worker 
 
 These instructions use `pi-herdr-agents` in a persistent Pi TUI inside Herdr. Check the available tool schemas before dispatch. Stock Pi, non-TUI modes, and ephemeral sessions do not provide these controls.
 
-1. Call `spawn_agent` with the brief in `task`, the assigned `cwd`, and `fork_turns: "none"`. Pass the `role`, `model`, and `thinking` from [worker-profiles.md](worker-profiles.md). Each worker starts a fresh Pi conversation in its own tab.
+1. Call `spawn_agent` with the brief in `task`, the assigned `cwd`, and `fork_turns: "none"`. Pass the `role`, `runtime`, `model`, and `thinking` from [worker-profiles.md](worker-profiles.md). Each worker starts a fresh conversation in its own tab: Pi for `runtime: "pi"`, Claude Code for `runtime: "claude"`.
 2. Save the returned `workerId` and `submissionId` in your plan's `explanation`. Keep playbook step text unchanged. Report descendant targets to the lead. This pair is the **canonical child target** used in the playbooks. Pass the values as `agent_id` and `submission_id`; pane IDs, Pi session UUIDs, and runtime generations are different identifiers.
-3. Call `wait_agent` with both IDs and `timeout_ms` between 120000 and 600000. It returns early if the task settles. A timeout leaves the task running. On timeout, call `list_agents` to diagnose. Note the size of the worker's session file (`piSessionPath`) before each further wait. While the task is active and the file keeps growing, keep waiting in multi-minute windows. Two consecutive full windows without growth are a stall: record the anomaly and treat the work as stale.
+3. Call `wait_agent` with both IDs and `timeout_ms` between 120000 and 600000. It returns early if the task settles. A timeout leaves the task running. On timeout, call `list_agents` to diagnose. Note the size of the worker's session file (`piSessionPath`, or `transcriptPath` for a Claude worker) before each further wait. While the task is active and the file keeps growing, keep waiting in multi-minute windows. Two consecutive full windows without growth are a stall: record the anomaly and treat the work as stale.
 
 Read the result before proceeding:
 
@@ -33,7 +33,7 @@ Read the result before proceeding:
 
 ## Continue or interrupt
 
-For a new task on a settled worker, such as a question about its result or a small follow-up, call `followup_task` with `agent_id` and the new `task`. Save its new `submissionId`. Resume interrupted or stale work in a fresh worker with consolidated scope instead; see **Workers** in `../SKILL.md`. Interrupt a stale worker first and confirm it settled before the replacement starts, so one writer still owns the checkout. The adapter refuses a live busy or unreachable worker. To restart a dead worker, it first proves the old process and endpoint are dead. It preserves the worker ID and Pi conversation, starts a new runtime generation, and submits only the new task.
+For a new task on a settled Pi worker, such as a question about its result or a small follow-up, call `followup_task` with `agent_id` and the new `task`. Claude workers refuse follow-ups; give the new task to a fresh worker. Save its new `submissionId`. Resume interrupted or stale work in a fresh worker with consolidated scope instead; see **Workers** in `../SKILL.md`. Interrupt a stale worker first and confirm it settled before the replacement starts, so one writer still owns the checkout. The adapter refuses a live busy or unreachable worker. To restart a dead worker, it first proves the old process and endpoint are dead. It preserves the worker ID and Pi conversation, starts a new runtime generation, and submits only the new task.
 
 Use `interrupt_agent` with both IDs for a verified stuck or obsolete task, or an explicit pause. It waits up to 120 seconds for settlement. If submission is ambiguous before the task starts, it requests shutdown and checks process death instead. If death remains unconfirmed, get operator inspection rather than starting a replacement writer.
 
@@ -49,7 +49,7 @@ Retirement preserves the conversation, results, artifacts, and model settings. A
 
 ## Tools and permissions
 
-Every role has normal tools, including Bash, Git through Bash, edit, write, and nested delegation. A read-only brief limits what the worker may change, not which tools it receives.
+Every role has normal tools, including Bash, Git through Bash, edit, write, and nested delegation. A read-only brief limits what the worker may change, not which tools it receives. Claude workers have Claude Code's normal tools but no delegation, so give them only leaf work.
 
 Children load only the adapter extension. Pi discovers their skills, context files, settings, and file-based authentication. Do not assume they inherit the lead's other extensions, external tools, or environment-only credentials.
 
@@ -65,7 +65,7 @@ For the lead, `/new` starts a new plan and worker ownership tree. Old workers ma
 
 ## Evidence and acceptance
 
-Resolve transcripts from the exact worker identity, not a search through unrelated sessions. `list_agents` exposes `piSessionId` and `piSessionPath`. `/herdr-agents` shows the current identity and state directory. That directory holds:
+Resolve transcripts from the exact worker identity, not a search through unrelated sessions. `list_agents` exposes `piSessionId` and `piSessionPath`, or a Claude worker's `transcriptPath`. `/herdr-agents` shows the current identity and state directory. That directory holds:
 
 - `workers/<workerId>.json`: worker identity.
 - `tasks/<workerId>/<submissionId>.json`: the task record, used to delimit one submission within a continued conversation.
