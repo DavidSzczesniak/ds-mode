@@ -12,7 +12,7 @@ Invoked at the end of every other playbook. Also use when the user asks for a PR
 
 **Issues.** Start with ticket references in the task, branch, commits, and repository guidance. Fetch those tickets and follow links needed to confirm how they relate to the change. Stop when you have checked those references. Keep every relevant, verified ticket across trackers, including Jira, GitHub Issues, and Linear.
 
-**Titles.** Use a Conventional Commit title, `type(scope): outcome`, for the PR and squash commit. Choose the type from the problem solved or capability added. Use a short product or module name for the scope. Keep the outcome specific, imperative, and without a trailing period. If the work has a linked ticket, append its reference in parentheses: `(#123)` for a GitHub issue, `(ABC-123)` for other trackers.
+**Titles and commit messages.** Use a Conventional Commit title, `type(scope): outcome`, for every commit except Pause safely's `wip:` commit, and for the PR and the squash commit. Choose the type from the problem solved or capability added. Use a short product or module name for the scope. Keep the outcome specific, imperative, and without a trailing period. If the commit or PR resolves a linked ticket, append that ticket's reference in parentheses: `(#123)` for a GitHub issue, `(ABC-123)` for other trackers. Give each branch commit a body of two or three lines that says why: the need or the root cause.
 
 Choose the narrowest accurate type:
 

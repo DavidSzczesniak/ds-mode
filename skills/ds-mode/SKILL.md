@@ -21,7 +21,7 @@ Remaining triggers:
 - Contested design → the [**interrogate**](../interrogate/SKILL.md) skill (independent adversarial review) before shipping.
 - Nontrivial multi-step → write the throughput checkpoint (Feature step 3).
 - Any prose surface → the [**unslop**](../unslop/SKILL.md) skill. Your reply is a prose surface; write it per **Writing the reply**. Agent-facing prose also follows the [**writing-for-agents**](../writing-for-agents/SKILL.md) skill.
-- Docs, RFCs, readmes, PR descriptions, or commit messages → the [**technical-writing**](../technical-writing/SKILL.md) skill.
+- Docs, RFCs, readmes, PR descriptions, or commit messages → the [**technical-writing**](../technical-writing/SKILL.md) skill. Commit messages also follow **Titles and commit messages** in [Opening a PR](playbooks/opening-a-pr.md).
 - Before a commit allowed by repository instructions → the [**deslop**](../deslop/SKILL.md) skill.
 - Before review, when the diff adds comment or lint-suppression lines → the [**no-comments**](../no-comments/SKILL.md) skill.
 - Delivering a UI, IDE, or CLI → the matching control skill. Use [**control-cli**](../control-cli/SKILL.md) for CLIs and TUIs, or [**control-ui**](../control-ui/SKILL.md) for browser, Electron, and web UIs. For bug fixes, reproduce first on the same surface yourself; hand to the user only under the narrow Bug fix step 1 exception.
