@@ -30,7 +30,7 @@ Skip Phase A only when the work is genuinely greenfield with no surrounding syst
 
 Run the [**arena**](../arena/SKILL.md) skill with the design-sketch task and the Phase A grounding artifacts. Pass `references/runner-prompt.md` as each runner's prompt. Each candidate produces a design package shaped per `references/rationale-template.md`.
 
-Use at least two fresh Judgment workers. Follow `../ds-mode/references/workers.md` and keep candidate outputs isolated. Disclose the actual model-family composition per `../ds-mode/references/worker-profiles.md`.
+Use one fresh Judgment runner per family. Run the Judgment profile and the second-opinion row for Anthropic work. Follow `../ds-mode/references/workers.md` and keep candidate outputs isolated. Disclose the actual model-family composition per `../ds-mode/references/worker-profiles.md`.
 
 Design it twice. Require at least two structurally distinct candidates before synthesis, even when the first looks sufficient. This is the [**exhaust-the-design-space**](../principle-exhaust-the-design-space/SKILL.md) principle skill made concrete. Whole-shape alternatives, not point fixes inside one shape.
 

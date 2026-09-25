@@ -33,7 +33,7 @@ Write one clear paragraph. If you're unsure about the intent, ask the user befor
 
 ## Step 3, Spawn reviewers
 
-Launch one fresh Review worker per family in `../ds-mode/references/worker-profiles.md`: the Review profile, plus its second-opinion model from the other family. Follow `../ds-mode/references/workers.md`. Give each the same intent, diff, and references. Give reviewers no edit permission.
+Launch one fresh Review worker per family in `../ds-mode/references/worker-profiles.md`. Use the Review profile and the second-opinion row for Anthropic work. Follow `../ds-mode/references/workers.md`. Give each the same intent, diff, and references. Give reviewers no edit permission.
 
 Read `references/reviewer-prompt.md` and fill in the template with:
 
