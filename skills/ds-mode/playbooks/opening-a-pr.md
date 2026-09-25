@@ -2,7 +2,7 @@
 
 Invoked at the end of every other playbook. Also use when the user asks for a PR proposal or a title or body repair to an existing PR. A "local only" or "no PR" session override skips it.
 
-**Checkout.** Follow the repository instructions. Use the current checkout and protect unrelated work. Ask the user before creating a worktree.
+**Checkout.** Follow the repository instructions and protect unrelated work. Use the current checkout when it is clean or dedicated to this task. Otherwise create a worktree off the base branch without asking and carry only this task's changes into it.
 
 **Commits.** Commit liberally. Rebase into small, ordered commits before opening PRs. Each commit is a future PR: landable, ordered to tell the story. Amend when the fix belongs in a just-made commit. New commit when separable.
 
