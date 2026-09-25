@@ -70,12 +70,14 @@ for destination in ("shared", "claude"):
                 (target / "keep-me").write_text("keep me")
             else:
                 target.symlink_to(root / "missing-unrelated-skill")
-            before = target.lstat()
+            # Access time is excluded: Linux updates it when the installer reads the symlink.
+            stable = lambda path: (lambda st: (st.st_ino, st.st_mode, st.st_size, st.st_mtime_ns))(path.lstat())
+            before = stable(target)
 
             result = install(skills_root, claude_root)
             assert result.returncode != 0, (destination, conflict)
             assert "refusing to" in result.stderr, result.stderr
-            assert target.lstat() == before
+            assert stable(target) == before
             assert set(skills_root.iterdir()) | set(claude_root.iterdir()) == {target}
 
 print(f"installer ok: {len(sources)} skills, existing relative links, repeat run, six conflicts")
