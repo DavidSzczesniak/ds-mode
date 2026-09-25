@@ -86,7 +86,7 @@ Do not proceed until you have reproduced **and** minimised.
 
 ## Phase 3 — Hypothesise
 
-If the minimised reproduction crosses an unfamiliar subsystem or its ownership, boundaries, or runtime flow remain unclear, read [`how`](../how/SKILL.md) and use Explain mode before ranking hypotheses.
+If the minimised reproduction crosses an unfamiliar subsystem or its ownership, boundaries, or runtime flow remain unclear, read [`how`](../how/SKILL.md) before ranking hypotheses.
 
 Generate **3–5 ranked hypotheses** before testing any of them. Single-hypothesis generation anchors on the first plausible idea.
 
@@ -138,4 +138,4 @@ Required before declaring done:
 - [ ] Throwaway prototypes deleted (or moved to a clearly-marked debug location)
 - [ ] The hypothesis that turned out correct is stated in the commit / PR message — so the next debugger learns
 
-**Then ask: what would have prevented this bug?** If the answer involves architectural change such as no good test seam, tangled callers, or hidden coupling, report it with the specifics. Use [`how`](../how/SKILL.md) in Critique mode if the user asks to investigate that architecture. Make the recommendation **after** the fix is in, not before. You have more information now than when you started.
+**Then ask: what would have prevented this bug?** If the answer involves architectural change such as no good test seam, tangled callers, or hidden coupling, report it with the specifics. Use [`how`](../how/SKILL.md) if the user asks to investigate that architecture. Make the recommendation **after** the fix is in, not before. You have more information now than when you started.

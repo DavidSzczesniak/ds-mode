@@ -1,6 +1,6 @@
 # Pstack-based ds-mode redesign
 
-Status: implemented on 2026-09-01. Revised on 2026-09-24 to restore pstack's development loop: Pi leads with pi-herdr-agents workers, reversible external actions proceed without asking (team chat asks first), and Opening a PR ends every code-changing playbook unless a "local only" session override applies. `docs/upstream-deviations.tsv` records each difference from pstack.
+Status: implemented on 2026-09-01. Revised on 2026-09-24 to restore pstack's development loop: Pi leads with pi-herdr-agents workers, reversible external actions proceed without asking (team chat asks first), and Opening a PR ends every code-changing playbook unless a "local only" session override applies. Re-pinned to pstack `fadd237` on 2026-09-25. `docs/upstream-deviations.tsv` records each difference from pstack.
 
 ## Goal
 
@@ -12,8 +12,8 @@ The initial workflow covers local investigation, implementation, verification, a
 
 Import and record these sources without modifying them:
 
-- Pstack at commit `b9ddc83c32972210b8a94d389130713e8eed346e`.
-- Cursor Team Kit's `control-ui`, `control-cli`, and `deslop` skills at commit `b9ddc83c32972210b8a94d389130713e8eed346e`.
+- Pstack at commit `fadd23794c0075468eb8964b0fd93e06e09486ad`.
+- Cursor Team Kit's `control-ui`, `control-cli`, and `deslop` skills at commit `fadd23794c0075468eb8964b0fd93e06e09486ad`.
 - FirstMate at commit `355f46fe5528ccc9790481171bf9da48dee2e90d` remains research evidence only. It is not a dependency or methodology layer.
 
 For each import, record the repository URL, commit, import date, license, and hashes. Keep the complete pstack tree under `upstream/pstack/`. Keep the selected Cursor Team Kit sources in a separate pinned location.

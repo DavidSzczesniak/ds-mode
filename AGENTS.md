@@ -6,7 +6,7 @@ This repository develops the `$ds-mode` workflow. Keep it small and evidence-led
 
 ## Current dogfooding boundary
 
-- Keep the `principle-*` bodies unchanged until dogfooding supplies evidence for a correction. All 21 pinned pstack principles are active.
+- Keep the `principle-*` bodies unchanged until dogfooding supplies evidence for a correction. All 23 pinned pstack principles are active.
 - Run `scripts/install.sh` only when the user asks to change the active global installation.
 
 ## Change the workflow

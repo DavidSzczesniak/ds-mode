@@ -7,7 +7,7 @@ The active workflow covers local investigation, implementation, verification, an
 ## Repository contents
 
 - `skills/ds-mode/` contains the direct workflow, active playbooks, and the worker contract. Its [Opening a PR playbook](skills/ds-mode/playbooks/opening-a-pr.md) ends every code-changing playbook, and also proposes a PR or repairs its title or body when asked.
-- `skills/principle-*/` contains all 21 pstack principle bodies, copied unchanged from the pin.
+- `skills/principle-*/` contains all 23 pstack principle bodies, copied unchanged from the pin.
 - `skills/tdd/` contains pstack TDD.
 - `skills/control-ui/`, `skills/control-cli/`, and `skills/deslop/` contain the pinned Cursor Team Kit control skills.
 - `skills/architect/`, `skills/arena/`, `skills/how/`, `skills/why/`, and the other pstack supporting skills back the active routes.
@@ -42,7 +42,7 @@ Set `DS_MODE_SKILLS_DIR` and `DS_MODE_CLAUDE_SKILLS_DIR` to override the respect
 
 ## Lineage
 
-The source pin is Cursor plugins commit `b9ddc83c32972210b8a94d389130713e8eed346e`. `upstream/SOURCES.tsv` records repository URLs, tree hashes, import date, and licenses. `upstream/SHA256SUMS` records every imported file.
+The source pin is Cursor plugins commit `fadd23794c0075468eb8964b0fd93e06e09486ad`. `upstream/SOURCES.tsv` records repository URLs, tree hashes, import date, and licenses. `upstream/SHA256SUMS` records every imported file.
 
 Run:
 
