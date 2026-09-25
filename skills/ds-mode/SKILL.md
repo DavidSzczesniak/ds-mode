@@ -120,7 +120,7 @@ On a new task in the same session, re-match the playbook when one fits or rigor 
 
 Open an `update_plan` checklist whose first items are the matched playbook's steps, copied in verbatim, before any task-specific items. A step you choose not to do stays in the list with a one-line `skip: <reason>`. Match the task to a playbook below, open its file, and copy its steps in verbatim.
 
-A large or cross-cutting effort, or work the user steps away from to trust later, routes to the [**figure-it-out**](../figure-it-out/SKILL.md) skill even when a narrower playbook like Feature fits. Use [**figure-it-out**](../figure-it-out/SKILL.md) whenever no bundled playbook fits. It designs one rigorous run with an audit trail.
+Use the [**figure-it-out**](../figure-it-out/SKILL.md) skill whenever no bundled playbook fits, including a large or cross-cutting effort that none covers. It designs one rigorous run with an audit trail. When a bundled playbook fits, use it at any size.
 
 - **Investigation.** Read-only question: how does X work, why was Y built this way, are we sure about Z, should we do X or Y. `playbooks/investigation.md`.
 - **Bug fix.** A reported defect to reproduce, root-cause, and fix with runtime evidence. `playbooks/bug-fix.md`.
@@ -129,7 +129,7 @@ A large or cross-cutting effort, or work the user steps away from to trust later
 - **Runtime forensics.** Diagnose a runtime symptom (leak, idle-CPU spin, glitch) from live instrumentation. The deliverable is a diagnosis, not a fix. `playbooks/runtime-forensics.md`.
 - **Trace forensics.** Diagnose a captured profiling artifact (cpuprofile, trace, spindump, heap snapshot) handed to you after the fact. The deliverable is a diagnosis, not a fix. `playbooks/trace-forensics.md`.
 - **Feature.** New or changed behavior, built from a named data shape. `playbooks/feature.md`.
-- **Refactoring.** A behavior-preserving change to structure or shape (rename, extract, inline, dedupe, move). `playbooks/refactoring.md`.
+- **Refactoring.** A behavior-preserving change to structure or shape (rename, extract, inline, dedupe, move), or a ticket to simplify or delete code, configuration, or setup paths. `playbooks/refactoring.md`.
 - **Prototype.** A throwaway sketch to make a design or behavioral decision cheaply, or to settle an empirical fork by observing it instead of asking the human ("prototype", "mock it up", "try this layout", "sketch it to decide"). `playbooks/prototype.md`.
 - **Visual parity.** Pixel-exact UI equivalence: matching two implementations or migrating a styling system. `playbooks/visual-parity.md`.
 - **Authoring or modifying a skill.** Writing or editing a SKILL.md. `playbooks/authoring-a-skill.md`.
