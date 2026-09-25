@@ -4,7 +4,7 @@ Invoked at the end of every other playbook. Also use when the user asks for a PR
 
 **Checkout.** Follow the repository instructions. Use the current checkout and protect unrelated work. Ask the user before creating a worktree.
 
-**Commits.** Commit liberally; rebase into small, ordered commits before opening PRs. Each commit is a future PR: landable, ordered to tell the story. Amend when the fix belongs in a just-made commit; new commit when separable.
+**Commits.** Commit liberally. Rebase into small, ordered commits before opening PRs. Each commit is a future PR: landable, ordered to tell the story. Amend when the fix belongs in a just-made commit. New commit when separable.
 
 **Change.** Identify the repository and head branch, then check for an open PR. If one exists and this task added commits to its branch, push them and update its body to describe the final change. Otherwise report it and stop unless the user requested a title or body repair. For a repair, inspect the PR's base and head. For a new PR, use the requested base or repository default. When the commits sit on the default branch, create a topic branch at the current commit first; never push the default branch. Fetch the target branch and check the worktree and remote state. Change an existing PR's base only when the user explicitly asks.
 

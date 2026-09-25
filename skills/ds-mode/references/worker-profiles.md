@@ -13,12 +13,12 @@ Pass these values on every `spawn_agent` call. Set `model.provider` to `openai-c
 | `review` | `gpt-6-astra` | `medium` |
 | `judgment` | `gpt-6-astra` | `high` |
 
-Implement work tiers by difficulty; the role stays `implement`. The hardest changes (cross-cutting design, gnarly concurrency, subtle algorithms) go to the judgment tier when the task needs judgment or the intent is vague, and to the instruction-following tier when the work is a precisely specified sequence of steps to execute to the letter. Trivial mechanical edits go to the fast tier. Name the tier in the brief.
+Implement work tiers by difficulty; the role stays `implement`. The hardest changes (cross-cutting design, gnarly concurrency, subtle algorithms) go to the judgment tier, whether the task needs judgment on vague intent or is a precisely specified sequence of steps to execute to the letter. Trivial mechanical edits go to the fast tier. Name the tier in the brief.
 
 | Implement tier | `model.id` | `thinking` |
 |---|---|---|
-| Judgment: vague intent or cross-cutting design | `gpt-6-astra` | `high` |
-| Instruction-following: precisely specified steps (default) | `gpt-6-sol` | `high` |
+| Judgment: the hardest changes | `gpt-6-astra` | `high` |
+| Instruction-following: everything else (default) | `gpt-6-sol` | `high` |
 | Fast: trivial mechanical edits | `gpt-6-sol` | `medium` |
 
 These tables are configuration. Retune a role or tier by changing its line.

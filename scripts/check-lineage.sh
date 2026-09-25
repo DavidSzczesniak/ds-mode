@@ -6,13 +6,13 @@ repo_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 cd "$repo_root"
 
 printf '%s  %s\n' \
-  '3b56f8308038ceb9d823726fd59585214accba8e660746ea856ea9e880f94c04' 'upstream/SHA256SUMS' \
-  'a1bec8e2449cee4d65dcb475e394dbfd88cb92406e2a6fded61718df4305f052' 'upstream/SOURCES.tsv' |
+  '0f9384b3c70320851f8a50ce80f000bd1ad1a17ba5dbb93755ccae7c5b1a7ee6' 'upstream/SHA256SUMS' \
+  '48c6dc70fb86fa728620383f2366e702cc0ec07a4f254f767ada98eace92ea01' 'upstream/SOURCES.tsv' |
   sha256sum -c - >/dev/null
 
 (
   cd upstream
-  [ "$(wc -l < SHA256SUMS | tr -d ' ')" = 161 ]
+  [ "$(wc -l < SHA256SUMS | tr -d ' ')" = 162 ]
   sha256sum -c SHA256SUMS >/dev/null
 )
 
@@ -44,7 +44,7 @@ for row in rows:
         errors.append(f"invalid status for {row['upstream_path']}: {row['status']}")
     if any(not row[column].strip() for column in required):
         errors.append(f"empty manifest field for {row['upstream_path']}")
-    if row["commit"] == "b9ddc83c32972210b8a94d389130713e8eed346e" and not (root / "upstream" / row["upstream_path"]).exists():
+    if row["commit"] == "fadd23794c0075468eb8964b0fd93e06e09486ad" and not (root / "upstream" / row["upstream_path"]).exists():
         errors.append(f"manifest upstream path does not exist: {row['upstream_path']}")
 
 for marker in sorted((root / "skills").glob("*/.upstream-source")):
@@ -96,5 +96,5 @@ for row in rows:
 if errors:
     print("\n".join(errors), file=sys.stderr)
     raise SystemExit(1)
-print(f"lineage ok: 161 snapshot files, {len(rows)} deviation rows")
+print(f"lineage ok: 162 snapshot files, {len(rows)} deviation rows")
 PY
