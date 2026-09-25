@@ -4,7 +4,13 @@ The lead owns design, the main checklist, worker briefs, diff review, and final 
 
 ## Brief and checkout
 
-Give every fresh worker a brief that stands on its own; it has no parent conversation history. Open it as **Workers** in `../SKILL.md` directs. Give a specific scope: the files it may change (none for review, exploration, and judgment), the named data shape for code, how to verify, and any session override, such as local only. Size the brief to the task. Give file pointers, not inlined context, and ask for the same in the report. A code-writing worker builds, verifies, and commits each small unit in order ([sequence-verifiable-units](../../principle-sequence-verifiable-units/SKILL.md)). The lead reviews those commits; Opening a PR can still reshape them. Reviews require fresh contexts.
+Give every fresh worker a brief that stands on its own; it has no parent conversation history. Open it as **Workers** in `../SKILL.md` directs. Every brief you write carries three fields. A routed skill's worker keeps the brief that skill prescribes. A field you cannot fill is a task you have not scoped yet, so do not spawn until you can.
+
+- **SCOPE.** The task's scope, and its non-goals when it states them, quoted verbatim from the ticket or user request, then this worker's unit and the files the worker may change (none for review, exploration, and judgment). Never widen the quoted scope. Record further work as a follow-up. A review worker checks the diff against it.
+- **FORBIDDEN.** Changes outside SCOPE, including adjacent fixes and cleanups, plus task-specific bans. The worker reports out-of-scope findings instead of acting on them.
+- **VERIFY.** The exact commands that prove the task, including the repository's documented test command, not only targeted tests, before a code-writing worker reports done. Follow repository instructions where they name the gate. For review, exploration, and judgment, VERIFY names the evidence the report must cite.
+
+Also give the named data shape for code and any session override, such as local only. Size the brief to the task. A small task collapses the fields to a paragraph that still names all three. Give file pointers, not inlined context, and ask for the same in the report. A code-writing worker builds, verifies, and commits each small unit in order ([sequence-verifiable-units](../../principle-sequence-verifiable-units/SKILL.md)). The lead reviews those commits; Opening a PR can still reshape them. Reviews require fresh contexts.
 
 Use one writer per checkout. The lead may inspect the checkout while the worker runs, but must not edit it. Give parallel writers or competing implementations separate worktrees with disjoint ownership. Protect untracked files from deletion, overwrite, and incidental adoption.
 
