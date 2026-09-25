@@ -6,13 +6,13 @@ Invoked at the end of every other playbook. Also use when the user asks for a PR
 
 **Commits.** Commit liberally; rebase into small, ordered commits before opening PRs. Each commit is a future PR: landable, ordered to tell the story. Amend when the fix belongs in a just-made commit; new commit when separable.
 
-**Change.** Identify the repository and head branch, then check for an open PR. If one exists and this task added commits to its branch, push them and update its body to describe the final change. Otherwise report it and stop unless the user requested a title or body repair. For a repair, inspect the PR's base and head. For a new PR, use the requested base or repository default. A PR that builds on another open PR targets that PR's branch. When the commits sit on the default branch, create a topic branch at the current commit first; never push the default branch. Fetch the target branch and check the worktree and remote state. Change an existing PR's base only when the user explicitly asks.
+**Change.** Identify the repository and head branch, then check for an open PR. If one exists and this task added commits to its branch, push them and update its body to describe the final change. Otherwise report it and stop unless the user requested a title or body repair. For a repair, inspect the PR's base and head. For a new PR, use the requested base or repository default. When the commits sit on the default branch, create a topic branch at the current commit first; never push the default branch. Fetch the target branch and check the worktree and remote state. Change an existing PR's base only when the user explicitly asks.
 
 **Evidence.** Inspect the final base-to-head diff, commits, changed files, and validation results. Reuse inspection, cleanup, review, and validation from this task when their inputs have not changed. Before publishing, finish any checks the repository requires. Run [deslop](../../deslop/SKILL.md) over the diff before each commit. Run [no-comments](../../no-comments/SKILL.md) before review when the diff adds comment or lint-suppression lines. Whoever opens the PR, lead or worker, first runs [interrogate](../../interrogate/SKILL.md) when the design was contested and the task has not run it yet, and confirms deslop covered the final diff, and no-comments when it applies.
 
 **Issues.** Start with ticket references in the task, branch, commits, and repository guidance. Fetch those tickets and follow links needed to confirm how they relate to the change. Stop when you have checked those references. Keep every relevant, verified ticket across trackers, including Jira, GitHub Issues, and Linear.
 
-**Titles.** Use a Conventional Commit title, `type(scope): outcome`, for the PR and squash commit. Choose the type from the problem solved or capability added. Use a short product or module name for the scope. Keep the outcome specific, imperative, and without a trailing period. If the work has a linked ticket, append its reference in the format recent merged PR titles use, such as `(#123)`.
+**Titles.** Use a Conventional Commit title, `type(scope): outcome`, for the PR and squash commit. Choose the type from the problem solved or capability added. Use a short product or module name for the scope. Keep the outcome specific, imperative, and without a trailing period. If the work has a linked ticket, append its reference in parentheses: `(#123)` for a GitHub issue, `(ABC-123)` for other trackers.
 
 Choose the narrowest accurate type:
 
@@ -36,7 +36,7 @@ Choose the narrowest accurate type:
 
 Add `Review focus` for specific review questions. Add `Risks and trade-offs` or `Rollout and rollback` for concerns such as migrations, security, schema changes, tenant impact, deployment, compatibility, or reversal. Keep each fact in one section, except where the squash message needs it. Omit file lists, abandoned approaches, boilerplate, and tool credits. Attach videos or screenshots when they prove a claim.
 
-**Size.** Prefer five narrow PRs to one large PR. Branch from the default branch only for independent work.
+**Size and stacks.** Prefer five narrow PRs to one large PR. Stack follow-ups: open each PR with its base set to the branch below it. After Verify on the top PR, join the stack with `gh stack link <PR number>...` (the `github/gh-stack` extension), bottom to top, adding `--base <branch>` when the bottom PR does not target the default branch. Pass PR numbers only; a branch without a PR, or `gh stack submit`, makes gh-stack open PRs with generated titles. If linking fails, report it and keep the base-chained PRs. Branch from the default branch only for independent work. Rebase on the default branch before substantial stack work.
 
 **Proposals.** When the user asks only for a title and body, return or save them. You may read remote state. Stop before pushing or changing GitHub.
 
