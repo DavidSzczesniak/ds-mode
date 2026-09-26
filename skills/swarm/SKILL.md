@@ -27,7 +27,7 @@ Open an `update_plan` checklist with one entry per phase before launching anythi
 
 ## Phase B: Fan out
 
-Launch all N as fresh workers per ds-mode's **Workers** defaults (`../ds-mode/SKILL.md`). Give writers separate worktrees only when tracked-file ownership overlaps or experiments compete.
+Launch all N as fresh workers per ds-mode's **Workers** defaults (`../ds-mode/SKILL.md`). Give each writer its own git worktree.
 
 Every brief stands alone. Include the goal, scope, exact slice or race arm, how to verify, and what to report. Reports use `PASS`, `ISSUES`, or `BLOCKED` with evidence. A worker that can prove a defect reports `ISSUES` and lists every issue it can prove, not only the first.
 

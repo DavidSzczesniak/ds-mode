@@ -4,7 +4,7 @@ Invoked at the end of every other playbook. A request for only a title and body 
 
 **Checkout.** Use the current checkout when it is clean or dedicated to this task, otherwise a git worktree off the base branch that carries only this task's changes. Untracked files do not make a checkout dirty, and nobody deletes, overwrites, or adopts them. On the default branch, create a topic branch first. Never push the default branch.
 
-**Commits.** Commit liberally. Rebase into small, ordered commits before opening PRs. Each commit is a future PR: landable, ordered to tell the story. Amend when the fix belongs in a just-made commit. New commit when separable. Rewrite your own PR branch freely and push it with `--force-with-lease`. A branch someone else has pushed to or reviewed is shared.
+**Commits.** Commit liberally. Rebase into small, ordered commits before opening PRs. Each commit is a future PR: landable, ordered to tell the story. Amend when the fix belongs in a just-made commit. New commit when separable. Rewrite your own PR branch freely and push it with `--force-with-lease` without asking. A branch someone else has pushed to or reviewed is shared.
 
 **PRs.** Run [deslop](../../deslop/SKILL.md) over the diff before commit. Run [no-comments](../../no-comments/SKILL.md) before review. Run [interrogate](../../interrogate/SKILL.md) first when the design was contested and the task has not run it. Write every PR title, PR description, and commit body with [technical-writing](../../technical-writing/SKILL.md), then apply [unslop](../../unslop/SKILL.md). Whoever opens the PR, lead or worker, runs these.
 
