@@ -20,9 +20,10 @@ for sha in $revs; do
 	[ "$lines" -gt "$trailers" ] || problem="${problem:+$problem; }no why body"
 	[ "${#title}" -le 72 ] || problem="${problem:+$problem; }title over 72 characters"
 	# A backslash-n typed inside a quoted -m touches the next word or ends the line. Code in backticks is exempt.
-	git log -1 --format=%B "$sha" | sed 's/`[^`]*`//g' | grep -Eq '\\n([^[:space:],.;:)]|$)' && problem="${problem:+$problem; }literal \\n in message"
+	git log -1 --format=%B "$sha" | sed 's/`[^`]*`//g' | grep -Eq '\\n([^[:space:],.;:)'"'"'"]|$)' && problem="${problem:+$problem; }literal \\n in message"
 	if [ -n "$problem" ]; then
-		echo "$(git log -1 --format=%h "$sha") $title -- $problem"
+		# printf, not echo: macOS sh and dash expand a backslash-n in echo, hiding the defect being reported.
+		printf '%s %s -- %s\n' "$(git log -1 --format=%h "$sha")" "$title" "$problem"
 		status=1
 	fi
 done
