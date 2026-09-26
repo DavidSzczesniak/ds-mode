@@ -18,6 +18,9 @@ for sha in $revs; do
 	lines=$(git log -1 --format=%b "$sha" | grep -c '[^[:space:]]' || true)
 	trailers=$(git log -1 --format='%(trailers:only,unfold=false)' "$sha" | grep -c '[^[:space:]]' || true)
 	[ "$lines" -gt "$trailers" ] || problem="${problem:+$problem; }no why body"
+	[ "${#title}" -le 72 ] || problem="${problem:+$problem; }title over 72 characters"
+	# A backslash-n typed inside a quoted -m touches the next word or ends the line. Code in backticks is exempt.
+	git log -1 --format=%B "$sha" | sed 's/`[^`]*`//g' | grep -Eq '\\n([^[:space:],.;:)]|$)' && problem="${problem:+$problem; }literal \\n in message"
 	if [ -n "$problem" ]; then
 		echo "$(git log -1 --format=%h "$sha") $title -- $problem"
 		status=1
