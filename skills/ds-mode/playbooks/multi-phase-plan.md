@@ -34,7 +34,7 @@ Tests alone are not sufficient verification. A PR is verified only when its unit
 - [ ] State the protocol and this plan to the operator, then stop. Start execution only on the operator's explicit go.
 - [ ] On the go, state the done predicate in `update_plan`. "<The plan path, the PR ids in order, the verification rule, who merges, and the done condition.>"
 - [ ] At every PR boundary, post a short status message to the operator in chat naming each tracked change that no earlier status message reported, such as a PR opened, a round launched or closed, a verdict, a merge, a stuck agent and the action taken, a blocker added or cleared, or a decision only the operator can make. Name every such change and nothing else. Do not repeat a table, the merged list, or an unchanged blocker.
-- [ ] On the operator's hold or stand-down, send every owner a zero-writes order at once. Interrupt each by its canonical child target.
+- [ ] On the operator's hold or stand-down, send every owner a zero-writes order at once. Interrupt each.
 
 ### Spawn owners
 

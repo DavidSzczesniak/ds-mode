@@ -19,7 +19,7 @@ When in doubt, take the simple path.
 
 ## Step 2a. Explore (complex questions only)
 
-Decompose the question into 2 to 4 exploration angles, each a distinct slice of the subsystem. Launch all explorers as fresh workers. Follow `../ds-mode/references/workers.md`:
+Decompose the question into 2 to 4 exploration angles, each a distinct slice of the subsystem. Launch all explorers as fresh workers per ds-mode's **Workers** defaults (`../ds-mode/SKILL.md`):
 
 - Role: Explore
 - Profile: Explore

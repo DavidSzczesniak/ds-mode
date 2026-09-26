@@ -16,11 +16,11 @@ Invoke when the user says "reflect" or "/skill:reflect". Skip when the conversat
 
 ### 1. Locate the active transcript
 
-The parent reads its own session file at `$PI_SESSION_FILE` before fanning out. Do not search other sessions. That crosses workspace boundaries and reads private chats from unrelated projects. If it is unset, write a tight digest of the session and pass that instead.
+The parent reads its own session file at `$PI_SESSION_FILE` before fanning out. Do not search other sessions. That crosses workspace boundaries and reads private chats from unrelated projects. If it is unset, write a tight digest of the session and pass that instead. Say in the report that a digest cannot prove tool history.
 
 ### 2. Launch three reviewers in parallel
 
-Three fresh workers in parallel per `../ds-mode/references/workers.md`, each with the profile below and normal tools. Reviewers need tool access for context lookups (tickets, chat threads, observability traces referenced in the transcript).
+Three fresh workers in parallel per ds-mode's **Workers** defaults (`../ds-mode/SKILL.md`), each with the profile below and normal tools. Reviewers need tool access for context lookups (tickets, chat threads, observability traces referenced in the transcript).
 
 | Lens | Profile | Prompt template |
 |---|---|---|
