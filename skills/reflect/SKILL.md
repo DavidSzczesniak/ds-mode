@@ -30,6 +30,8 @@ Three fresh workers in parallel per `../ds-mode/references/workers.md`, each wit
 
 Pass each template verbatim, substituting the session file path or digest where marked. Reviewers return findings in their task result. The Tooling lens runs on the OpenAI family while Judgment runs on Anthropic, so the lenses span two families, as upstream's did. Disclose the review composition per `../ds-mode/references/worker-profiles.md`.
 
+Claude workers have no MCP servers. After each template, tell a Claude worker to make lookups through CLIs and to mark every citation it cannot reach. Verify marked citations yourself before accepting their findings.
+
 ### 3. Synthesize
 
 One fresh Judgment worker with normal tools. The synthesizer's quality check includes spot-verifying citations, which can require tool access. Use `references/synthesizer.md` verbatim, with each reviewer's full output inlined where marked. The synthesizer returns a structured Accepted / Rejected / Backlog list.

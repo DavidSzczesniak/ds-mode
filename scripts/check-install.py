@@ -55,7 +55,7 @@ with tempfile.TemporaryDirectory(prefix="ds-mode-install-") as temporary:
     assert [(link.lstat().st_ino, link.lstat().st_mtime_ns) for link in links] == before
 
 def stable(path):
-    # Access time is excluded: Linux updates it when the installer reads the symlink.
+    # Exclude access time because Linux updates it when the installer reads the symlink.
     status = path.lstat()
     return status.st_ino, status.st_mode, status.st_size, status.st_mtime_ns
 

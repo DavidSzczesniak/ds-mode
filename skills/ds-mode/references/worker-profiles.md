@@ -18,4 +18,4 @@ Pass `role`, `runtime`, `model`, and `thinking` from this table on every `spawn_
 
 A second opinion reruns the same prompt and role on the second-opinion row for the family that did the work. Swarm lanes that drive the product or run gates stay on the code model, as upstream's swarm workers do. Audit lanes use the `review` row.
 
-Disclose review composition by family and worker, for example `cross-family review: writer OpenAI gpt-6-sol, reviewer Anthropic claude-opus-5-5`. Label a review within one family `same-family independent review`.
+Disclose review composition by family and worker, for example `Cross-family review. The writer used OpenAI gpt-6-sol. The reviewer used Anthropic claude-opus-5-5.` Label a review within one family `same-family independent review`.
