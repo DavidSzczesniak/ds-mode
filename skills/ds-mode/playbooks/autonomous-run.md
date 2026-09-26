@@ -2,7 +2,7 @@
 
 **You own the exit condition. Define done, then drive to it without stopping.**
 
-1. State the exit condition as a checkable predicate before the first iteration (tests green, repro fixed, all N PRs merged, pixel-diff zero).
+1. State the exit condition as a checkable predicate before the first iteration (tests green, repro fixed, pixel-diff zero).
 2. Choose a bounded iteration and the evidence worth checking at its end. The lead starts each iteration. It does not install a watcher, poll, or schedule an automatic retry.
 3. Each iteration makes the smallest change the evidence justifies, verifies it against the predicate, commits if it advanced, discards changes that didn't help. Belt-and-suspenders that "might help" gets reverted, not left to ride.
    Sequence the work via the [**sequence-verifiable-units**](../../principle-sequence-verifiable-units/SKILL.md) principle skill, verifying each unit before the next instead of batching checks at the end.

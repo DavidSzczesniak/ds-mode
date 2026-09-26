@@ -6,7 +6,7 @@ Use this guide after a completed ds-mode session. Record observations, not succe
 
 ## Inspect the session
 
-1. Read the lead transcript, worker briefs, child transcripts, and reviewer output. Resolve exact runtime records per [workers.md](../skills/ds-mode/references/workers.md). Use a parser only after checking that it understands that host's transcript format.
+1. Read the lead transcript, worker briefs, child transcripts, and reviewer output. Resolve each worker's transcript from its receipt's `piSessionPath` or `transcriptPath`. Use a parser only after checking that it understands that host's transcript format.
 2. Compare the lead's `update_plan` with the matched playbook. Record verbatim steps, explicit skips, and dropped steps.
 3. Inspect the target repository before blaming ds-mode for a repeated failure.
 4. Check the real artifacts behind every proof claim.

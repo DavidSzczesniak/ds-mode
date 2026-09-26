@@ -1,5 +1,5 @@
 #!/bin/sh
-# Check branch commits against Opening a PR's "Titles and commit messages" before a push.
+# Check branch commits against Opening a PR's "Titles" before a push.
 # Usage: check-commit-titles.sh <base-ref>. Prints each non-conforming commit and exits 1; exits 0 only when all conform.
 # Merge commits and Pause safely's wip: commits are exempt. Git's own trailer parsing decides what is not a why body.
 set -eu
@@ -27,4 +27,14 @@ for sha in $revs; do
 		status=1
 	fi
 done
+if [ "$status" -ne 0 ]; then
+	cat <<EOF
+
+Rule: title "type(scope): outcome", at most 72 characters, imperative, no trailing period,
+optionally ending " (#123)" or " (ABC-123)" for the ticket it resolves.
+Types: $(printf '%s' "$types" | sed 's/|/, /g').
+Body: two or three lines of why, written through a quoted heredoc: git commit -F - <<'MSG'
+Reword each listed commit, then rerun this check.
+EOF
+fi
 exit "$status"

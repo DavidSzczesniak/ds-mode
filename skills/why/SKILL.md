@@ -75,7 +75,7 @@ Source control is available through git and, when authenticated, `gh`. For the o
 
 Aim for a complete **coverage map**, not a minimal one. Document the null, don't skip the search.
 
-Run external evidence queries in the lead when only the lead owns those tools. Launch a fresh Explore worker for the local source-control category and for any category whose exact tool is explicitly available to that worker. Follow `../ds-mode/references/workers.md`; give investigators no edit permission. One investigator owns one category.
+Run external evidence queries in the lead when only the lead owns those tools. Launch a fresh Explore worker for the local source-control category and for any category whose exact tool is explicitly available to that worker. Dispatch per ds-mode's **Workers** defaults (`../ds-mode/SKILL.md`), and give investigators no edit permission. One investigator owns one category.
 
 Each investigator gets:
 1. The base prompt from `references/investigator-prompt.md`
