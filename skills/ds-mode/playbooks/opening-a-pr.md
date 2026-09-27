@@ -12,14 +12,14 @@ Invoked at the end of every other playbook. A request for only a title and body 
 
 **Descriptions.** The PR body is a briefing, not the lab notebook. A reviewer who has the diff should learn why the change exists, what is out of scope, and how you proved the change works. Keep the body under about 40 lines.
 
-Use these sections in order. Drop a section when it has nothing to say.
+Use these sections in order. Drop a section when it has nothing to say, except Open decisions.
 
 - `## Why`. State the intent and approach in one or two short paragraphs. Do not list SHAs or rebase genealogy. Do not add a "based on main" preamble.
 - `## Scope`. Use bullets to list real symbols and paths. Name both sides of a rename or retarget. State what is in and out only when the boundary matters. Do not write a file-by-file essay.
 - `## Tradeoffs`. Name only rejected alternatives that a reviewer would otherwise ask about. Skip this section when there was no real choice.
 - `## Blast Radius`. In one to three sentences, name who or what the change touches and why the change is safe or risky. State the continuing cost if main stays red without the fix.
 - `## Verification`. Name each real run path and its outcome. For a performance change, report one primary number with its unit in `before → after` form. Link the arena or swarm directory for the remaining evidence. Do not include sample-size methodology, swarm recitals, or metric tables.
-- `## Open decisions`. Each call the ticket left open, the default you applied, and the one word that reverses it.
+- `## Open decisions`. Every product or preference call you settled without the user and the default you chose, with the word that reverses an operator-only default. Write `None.` when there were none.
 - `## Squash commit message`. A fenced `text` block with the commit body only, two or three lines on the need or root cause and the resulting behavior.
 
 After these sections, attach videos or screenshots when they prove a claim. Do not paste full SHAs, swarm or arena lane recitals, lever-correction essays, file-by-file checklists, or "CLEAN" verdicts. Put these details in a linked artifact. Do not use `## Summary` or `## Test plan` boilerplate. A commit body does not restate its subject.
@@ -30,7 +30,7 @@ After these sections, attach videos or screenshots when they prove a claim. Do n
 
 **Verdict.** After creating the PR or pushing commits that change its patch, get an independent verdict for the head. Skip it inside a multi-phase plan, whose swarm verdict replaces it, when a verdict with a matching `git patch-id` already covers the head, or when the PR changes only docs or comments and says so.
 
-- Launch one fresh Review worker with the PR URL, the head SHA, and the checkout path. Leave that checkout unchanged until the verdict returns.
+- Launch one fresh Review worker. Brief it with only the PR URL, the head SHA, and the checkout path. Leave that checkout unchanged, and start no builds or tests on this machine, until the verdict returns.
 - The worker first re-runs the repository's documented gates at the head SHA. A test or check that fails at head but passes at the merge base is a `FAIL`. It runs the merge base in a separate worktree, only for checks that fail at head. When the base cannot run or the check is new, a failure at head is a `FAIL`.
 - It then exercises the real surface ([control-ui](../../control-ui/SKILL.md) or [control-cli](../../control-cli/SKILL.md) as the change demands) against base versus head. It posts `PASS`, `PASS+NOTES`, or `FAIL` on the PR with the head SHA and the screenshots that prove it (`gh pr comment <number> --body-file <file> --attach <path>`). An interaction change also gets a 30 to 60 second video.
 - On `FAIL`, fix the findings, push, and get a new verdict from a fresh worker.
