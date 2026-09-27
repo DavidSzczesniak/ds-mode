@@ -38,7 +38,7 @@ If a candidate fails to produce output, proceed with N-1 and note the dropout in
 
 ## Phase C: Cross-judge
 
-After all Phase B candidates complete, launch one fresh Judgment worker with no edit permission. Prefer the family the candidates did not use, per the second-opinion rows in `../ds-mode/references/worker-profiles.md`. Disclose its review composition per `../ds-mode/references/worker-profiles.md`. It sees the rubric and the candidates by path label, scores each criterion, and recommends a base with rationale. It runs in parallel with the parent's reading in Phase D, not with the candidates themselves. Don't spawn the judge while candidates are still writing.
+After all Phase B candidates complete, launch one fresh Judgment worker with no edit permission. Prefer the family the candidates did not use, per the second-opinion rows in `../ds-mode/references/worker-profiles.md`. Disclose its review composition per `../ds-mode/references/worker-profiles.md`. It sees only the task, the rubric, and the candidates by path label, never your preference. It scores each criterion, and recommends a base with rationale. It runs in parallel with the parent's reading in Phase D, not with the candidates themselves. Don't spawn the judge while candidates are still writing.
 
 ## Phase D: Pick a base
 
