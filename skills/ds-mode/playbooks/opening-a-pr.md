@@ -19,7 +19,7 @@ Use these sections in order. Drop a section when it has nothing to say, except O
 - `## Tradeoffs`. Name only rejected alternatives that a reviewer would otherwise ask about. Skip this section when there was no real choice.
 - `## Blast Radius`. In one to three sentences, name who or what the change touches and why the change is safe or risky. State the continuing cost if main stays red without the fix.
 - `## Verification`. Name each real run path, its outcome, and the SHA it ran at. For a performance change, report one primary number with its unit in `before → after` form. Link the arena or swarm directory for the remaining evidence. Do not include sample-size methodology, swarm recitals, or metric tables.
-- `## Open decisions`. Every product or preference call you settled without the user and the default you chose, with the word that reverses an operator-only default. Write `None.` when there were none.
+- `## Open decisions`. Every product or preference call you settled without the user and the default you chose, with the word that reverses an operator-only default. An either/or clause in the ticket, or an acceptance criterion met only partly or through a manual step, is such a call. Write `None.` when there were none.
 - `## Squash commit message`. A fenced `text` block with the commit body only, two or three lines on the need or root cause and the resulting behavior.
 
 After these sections, attach videos or screenshots when they prove a claim. Do not paste full SHAs, swarm or arena lane recitals, lever-correction essays, file-by-file checklists, or "CLEAN" verdicts. Put these details in a linked artifact. Do not use `## Summary` or `## Test plan` boilerplate. A commit body does not restate its subject.
@@ -30,9 +30,10 @@ After these sections, attach videos or screenshots when they prove a claim. Do n
 
 **Verdict.** After creating the PR or pushing commits that change its patch, get an independent verdict for the head. Skip it inside a multi-phase plan, whose swarm verdict replaces it, when a verdict with a matching `git patch-id` already covers the head, or when the PR changes only docs or comments and says so.
 
-- Launch one fresh Review worker. Brief it with only the PR URL, the head SHA, and the checkout path. Leave that checkout unchanged, and start no builds or tests on this machine, until the verdict returns.
+- Launch one fresh Review worker. Brief it with only the PR URL, the head SHA, the checkout path, and the ticket. Leave that checkout unchanged, and start no builds or tests on this machine, until the verdict returns.
 - The worker reads the diff, its callers, and the Verification section's results first. A result from any SHA other than the head is stale. It probes a suspected defect at base and head before it reports the defect. It runs any suite the diff touches that those results leave out. It re-runs the documented gates only when those results are missing, stale, or failing, or when the diff changes test infrastructure. For a check that fails at head, it runs the merge base in a separate worktree. A check that fails at head and passes at the merge base is a `FAIL`. When the base cannot run or the check is new, a failure at head is a `FAIL`.
 - It then exercises the real surface ([control-ui](../../control-ui/SKILL.md) or [control-cli](../../control-cli/SKILL.md) as the change demands) against base versus head. It posts `PASS`, `PASS+NOTES`, or `FAIL` on the PR with the head SHA and the screenshots that prove it (`gh pr comment <number> --body-file <file> --attach <path>`). An interaction change also gets a 30 to 60 second video.
+- It checks `Open decisions` against the ticket's either/or clauses and acceptance criteria. Add any entry it names before you reply.
 - On `FAIL`, fix the findings, push, and get a new verdict from a fresh worker.
 - The verdict comes from an agent that did not write the code. CI green is not a verdict, and an approving bot review is not a verdict.
 
