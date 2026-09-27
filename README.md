@@ -1,6 +1,6 @@
 # ds-mode
 
-ds-mode is a user-invoked, pstack-derived engineering workflow. The lead owns design, the visible plan, worker briefs, diff review, and final proof. Fresh workers handle exploration, implementation, review, and judgment.
+ds-mode is a user-invoked, pstack-derived engineering workflow. The lead owns design, the visible plan, worker briefs, diff review, and final proof. Workers handle exploration, implementation, review, and judgment. Reviews and judgment always run in fresh workers. A settled writer can take its next task in the same files.
 
 The active workflow covers local investigation, implementation, verification, and GitHub PRs: Opening a PR ends every code-changing playbook unless the session is local only. Cloud agents, Graphite, polling, automatic merging, and fleet orchestration remain available only in the pinned source snapshot.
 
