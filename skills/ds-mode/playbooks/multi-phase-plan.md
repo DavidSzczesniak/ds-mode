@@ -49,7 +49,7 @@ Tests alone are not sufficient verification. A PR is verified only when its unit
 
 - [ ] Open the PR ready, never draft, per [Opening a PR](opening-a-pr.md).
 - [ ] Run the repo's lint and typecheck once before the PR-facing push. Push with hooks on.
-- [ ] Run [deslop](../../deslop/SKILL.md) before each commit and [no-comments](../../no-comments/SKILL.md) before review.
+- [ ] Run [deslop](../../deslop/SKILL.md) before each commit and [no-comments](../../no-comments/SKILL.md) before review when the diff adds comment or lint-suppression lines.
 - [ ] Triage every Bugbot and security-reviewer comment per `../references/bugbot-triage.md`.
 - [ ] Rebase onto current trunk before opening the PR. Keep that merge base in fix rounds. Rebase again only at merge prep, on a `git merge-tree` conflict with trunk, or on a CI failure that comes from a change on trunk.
 
