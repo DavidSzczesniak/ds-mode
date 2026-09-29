@@ -2,7 +2,7 @@
 
 **You own the design. Plan, review, verify.** Delegate implementation. Stay in the lead.
 
-1. Run [**how**](../../how/SKILL.md) over the affected subsystem.
+1. Restate the goal as an observable outcome that names no mechanism. Run [**how**](../../how/SKILL.md) over the affected subsystem. Then list at least two different kinds of mechanism that could produce the outcome, including the smallest change the traced model supports. A mechanism the ticket names is one entry on that list unless the ticket marks it as required.
 2. Run [**architect**](../../architect/SKILL.md) for parallel design exploration.
 3. Write the throughput checkpoint as four todo items. A dimension that genuinely does not apply (single file, no fan-out) keeps its item with `n/a: <reason>` rather than being dropped:
    - **Blocking first steps.** Gates run before fan-out.
